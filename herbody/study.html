@@ -1,0 +1,414 @@
+<title>The herbody Study</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Spline+Sans+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FBF6F4;--surface:#FFFFFF;--surface-2:#F4E9E7;--ink:#2A1B22;--ink-soft:#6E5560;--line:#E6D4D4;
+  --berry:#C2255C;--berry-deep:#7A1F45;--berry-wash:#F9E7EE;--go:#2F7D5C;--go-wash:#E4F1EA;--warn:#B4690E;--warn-wash:#F8EEDD;
+  --display:'Bricolage Grotesque','Trebuchet MS',Verdana,sans-serif;--body:'Instrument Sans','Helvetica Neue',Arial,sans-serif;--mono:'Spline Sans Mono','Courier New',monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1D1218;--surface:#28191F;--surface-2:#33222A;--ink:#F5E8EE;--ink-soft:#C1A3B0;--line:#432E38;--berry:#F06595;--berry-deep:#F8B4CC;--berry-wash:#3A1F2C;--go:#5CBA8E;--go-wash:#1F3A2E;--warn:#E3A65C;--warn-wash:#3B2C18;}}
+:root[data-theme="dark"]{--bg:#1D1218;--surface:#28191F;--surface-2:#33222A;--ink:#F5E8EE;--ink-soft:#C1A3B0;--line:#432E38;--berry:#F06595;--berry-deep:#F8B4CC;--berry-wash:#3A1F2C;--go:#5CBA8E;--go-wash:#1F3A2E;--warn:#E3A65C;--warn-wash:#3B2C18;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+a{color:var(--berry);text-decoration:none;border-bottom:1px solid transparent}a:hover{border-bottom-color:var(--berry)}
+.wrap{max-width:820px;margin:0 auto;padding:0 24px}
+header.hero{padding:72px 0 36px;border-bottom:1px solid var(--line)}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--berry);font-weight:600;margin:0 0 18px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,6.5vw,58px);line-height:1.04;letter-spacing:-.02em;margin:0 0 20px;text-wrap:balance}
+h1 .accent{color:var(--berry)}
+.lede{font-size:18.5px;line-height:1.55;color:var(--ink-soft);max-width:62ch;margin:0}
+.lede strong{color:var(--ink);font-weight:600}
+nav.toc{display:flex;flex-wrap:wrap;gap:8px 18px;padding:22px 0 0;font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+nav.toc a{color:var(--ink-soft)}nav.toc a:hover{color:var(--berry)}
+section{padding:54px 0 6px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--berry);font-weight:600;margin:0 0 10px}
+h2{font-family:var(--display);font-weight:700;font-size:30px;line-height:1.12;letter-spacing:-.015em;margin:0 0 16px;text-wrap:balance}
+h3{font-family:var(--display);font-weight:600;font-size:19px;margin:30px 0 8px}
+h4{font-family:var(--display);font-weight:700;font-size:16px;margin:0 0 6px}
+p{max-width:68ch;margin:0 0 16px}
+p.note,li.note{color:var(--ink-soft);font-size:15px}
+strong{font-weight:600}
+.thesis{background:var(--berry-wash);border-left:4px solid var(--berry);padding:20px 24px;border-radius:0 10px 10px 0;margin:26px 0}
+.thesis p{margin:0;font-size:17.5px;line-height:1.5;font-weight:500;max-width:none}
+.thesis .who{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--berry);display:block;margin-bottom:8px;font-weight:600}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:24px 0}
+@media(max-width:680px){.grid2,.grid3{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px}
+.card p{font-size:14.5px;color:var(--ink-soft);margin:0;max-width:none;line-height:1.5}
+.card p strong{color:var(--ink)}
+.card.enemy h4{color:var(--berry)}.card.us h4{color:var(--go)}
+.tablebox{overflow-x:auto;margin:22px 0;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:680px;font-size:14px}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-align:left;color:var(--ink-soft);font-weight:600;padding:11px 14px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+tr:last-child td{border-bottom:none}
+td.b{font-weight:600;white-space:nowrap}
+td .sub{display:block;font-size:12.5px;color:var(--ink-soft)}
+.you td{background:var(--berry-wash)}.you td.b{color:var(--berry)}
+.num{font-variant-numeric:tabular-nums}
+ul.tight{padding-left:20px;margin:12px 0 20px}
+ul.tight li{margin-bottom:9px;max-width:66ch}
+ul.tight li::marker{color:var(--berry)}
+ol.plain{padding-left:22px;margin:12px 0 20px}ol.plain li{margin-bottom:9px;max-width:66ch}
+.tag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;font-weight:600;padding:2px 7px;border-radius:999px;vertical-align:middle;margin-left:4px}
+.A{background:var(--go-wash);color:var(--go)}.B{background:var(--warn-wash);color:var(--warn)}.C{background:var(--berry-wash);color:var(--berry)}
+.mathrow{display:flex;flex-wrap:wrap;gap:14px;margin:22px 0}
+.stat{flex:1 1 150px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.stat .n{font-family:var(--display);font-weight:800;font-size:28px;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--berry)}
+.stat .l{font-size:13px;color:var(--ink-soft);line-height:1.35;margin-top:4px}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:20px 0}
+.sw{border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--surface)}
+.sw .chip{height:74px}
+.sw .meta{padding:10px 12px;font-size:12.5px;line-height:1.4}
+.sw .meta b{font-family:var(--mono);font-size:11.5px;display:block;letter-spacing:.04em}
+.sw .meta span{color:var(--ink-soft)}
+.thumbrow{display:flex;gap:18px;align-items:flex-end;flex-wrap:wrap;margin:20px 0}
+.pouch{width:170px;aspect-ratio:5/8;border-radius:10px 10px 14px 14px;padding:14px 12px;display:flex;flex-direction:column;justify-content:space-between;color:#FBF3EC;font-family:var(--display);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.pouch.small{width:64px;padding:5px 4px;border-radius:4px;box-shadow:none}
+.pouch .brand{font-size:11px;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.pouch .cat{font-size:22px;font-weight:800;line-height:.95;letter-spacing:-.02em}
+.pouch .hook{background:#E8386D;color:#fff;font-size:10px;font-weight:700;padding:3px 7px;border-radius:999px;align-self:flex-start;font-family:var(--mono);letter-spacing:.04em}
+.pouch .foot{font-size:9px;opacity:.85;font-family:var(--mono);letter-spacing:.06em}
+.pouch.small .brand{font-size:4px}.pouch.small .cat{font-size:8px}.pouch.small .hook{font-size:3.5px;padding:1px 3px}.pouch.small .foot{font-size:3px}
+.whitebg{background:#fff;padding:14px;border-radius:10px;border:1px solid var(--line);display:flex;gap:14px;align-items:flex-end}
+.thumbcap{font-size:12.5px;color:var(--ink-soft);max-width:26ch;line-height:1.4}
+.brief{background:var(--surface);border:1.5px solid var(--berry);border-radius:14px;padding:26px 28px;margin:26px 0}
+.brief h3{margin-top:0}
+.brief pre{white-space:pre-wrap;font-family:var(--mono);font-size:13px;line-height:1.55;background:var(--surface-2);padding:18px 20px;border-radius:10px;overflow-x:auto;margin:14px 0 0;color:var(--ink)}
+.guardrail{background:var(--surface-2);border-radius:14px;padding:24px 28px;margin:26px 0 10px}
+.guardrail h3{margin-top:0;font-size:17px}
+.guardrail ul{padding-left:20px;margin:10px 0 0;font-size:14.5px;color:var(--ink-soft)}
+.guardrail li{margin-bottom:8px;max-width:72ch}.guardrail li strong{color:var(--ink)}
+.rubric td:first-child{font-weight:600}
+.src{font-size:13px;color:var(--ink-soft);line-height:1.6;max-width:none}
+.src li{margin-bottom:5px}
+footer{padding:40px 0 64px}
+footer p{font-size:13.5px;color:var(--ink-soft);max-width:72ch}
+.close{font-family:var(--display);font-weight:700;font-size:22px;line-height:1.3;color:var(--ink);margin:0 0 18px;max-width:32ch;text-wrap:balance}
+.close .accent{color:var(--berry)}
+:focus-visible{outline:2px solid var(--berry);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="kicker">herbody · Amazon UK · pouch, psychology &amp; competitive study · September 2026</p>
+  <h1>Own the square <span class="accent">nobody else</span> is standing in.</h1>
+  <p class="lede">Five live research streams — the fastest-growing supplement brands of 2023–26, the Amazon UK search results you'll actually appear in, the peer-reviewed evidence on how women read a pack, UK search demand, and the claims rules — distilled into what to put on the pouch, what to say, and a brief you can hand to an AI designer today. <strong>Read the first section even if you skip the rest.</strong></p>
+  <nav class="toc">
+    <a href="#read">01 The read</a><a href="#buyer">02 The buyer</a><a href="#landscape">03 Amazon UK</a><a href="#brands">04 Winning brands</a><a href="#pouch">05 The pouch</a><a href="#names">06 Names &amp; claims</a><a href="#brief">07 Designer brief</a><a href="#evidence">08 Evidence</a>
+  </nav>
+</header>
+
+<section id="read">
+  <p class="eyebrow">01 · The read</p>
+  <h2>Five findings that change decisions</h2>
+  <ol class="plain">
+    <li><strong>Free Soul already owns "women's creatine" in the UK.</strong> Pure Creatine (June 2025), CreaGlow (creatine + collagen), HydraCreatine, £42m revenue, 268 Boots stores, TikTok Shop's first Super Brand Day of 2026, a rebrand built on 7,000 women's input. "Creatine for her" is no longer a wedge on its own — <em>the complete scoop</em> is. Nobody on amazon.co.uk combines full-dose creatine + collagen + a complete multivitamin + inositol. That square is empty and it is yours to name.</li>
+    <li><strong>The women's-creatine buyer is older and more cognitive than the pink-pack aesthetic assumes.</strong> Industry data puts 76% of social conversation around menopause/perimenopause, the core buyer at 40–65, and motivations ranked cognition &gt; energy &gt; strength; "muscle" is eighth. Women are now 30% of GNC creatine buyers (18% in 2020). Design for a 38-year-old who wants to feel sharp and steady, not a 22-year-old who wants a pump — and you'll capture both.</li>
+    <li><strong>Under-dosing is the category's open wound.</strong> Every women-positioned creatine on Amazon UK sits at 3–3.5g (Warrior, Myprotein 3-in-1, Free Soul HydraCreatine); the clinical and UK-legal-claim threshold is 3g, and the "5g" line is uncontested. Scoop and serving honesty is the #2 complaint in reviews. A true 5g scoop and a real 30 servings is both your best claim and your best trust signal.</li>
+    <li><strong>Pink is the category, not the differentiator.</strong> Wellgard, VitaSense, Bloom, Warrior's pink accents, Myprotein's pastels — on the "creatine for women" grid a pink pouch disappears. The evidence says saturated, hue-congruent colour signals potency and taste, pale pastels signal "healthy but weak", and dark packs out-thumb pastels on Amazon's white. Deep raspberry, not blush.</li>
+    <li><strong>Sweetness is the #1 flavoured-combo complaint.</strong> "Disgustingly sweet", "extremely sweet at 300ml". A light, low-sweetener strawberry-raspberry is a formulation answer to a review problem — make sure Black Label's taste development lands there, and say "not sickly-sweet" in the listing.</li>
+  </ol>
+  <div class="thesis"><span class="who">Positioning, updated</span><p>herbody is the <strong>complete daily scoop for women</strong>: a full 5g of creatine, collagen with the vitamin C that supports it, a whole multivitamin and myo-inositol — one strawberry-raspberry ritual replacing the shelf. Free Soul sells you creatine. Bloom sells you greens. herbody is the only one that finishes the job.</p></div>
+</section>
+
+<section id="buyer">
+  <p class="eyebrow">02 · The buyer</p>
+  <h2>Who she is and how she decides in two seconds</h2>
+  <p>Two women buy this product and the pack has to talk to both without splitting the difference into mush.</p>
+  <div class="grid2">
+    <div class="card"><h4>The core buyer · 35–55 · "Steady &amp; sharp"</h4><p>Perimenopause-aware, strength-training on advice, reads about creatine for brain and mood, hates being marketed to like a teenager. Anxiety she won't say aloud: <strong>losing the edge — energy, memory, shape.</strong> She trusts experts (Stacy Sims, Mary Claire Haver, Dr Louise Newson in the UK), podcasts and other women her age. Price-tolerant if the dose is honest.</p></div>
+    <div class="card"><h4>The growth buyer · 24–34 · "Sorted"</h4><p>Gym-curious, TikTok-fed, already buys collagen and a multi, tired of five tubs. Anxiety: <strong>bloat, breakouts, "am I doing this right".</strong> Trusts creators and reviews; converts on taste, aesthetics and per-day price. Wants the pouch to look good on the counter.</p></div>
+  </div>
+  <h3>The purchase drivers this product activates</h3>
+  <ul class="tight">
+    <li><strong>Ritual identity</strong> — "one scoop, done" is the product's moat. The pack should feel like a morning object, not a gym accessory. Name the ritual on pack and in the insert ("your daily scoop").</li>
+    <li><strong>Anxiety reduction, obliquely</strong> — validate ("you're not imagining the 3pm crash"), normalise, then solve. Never shame, never "anti-ageing". Legally in the UK you carry this through the B-vitamin "reduction of tiredness and fatigue" claim, not through promises.</li>
+    <li><strong>Expertise translated</strong> — post-Ordinary consumers want doses on the front and the science explained like a smart friend. Dose transparency is also, per the evidence, the single strongest label-trust lever.</li>
+    <li><strong>Social permission</strong> — she needs to see women like her using it. Vine reviews, then a "Designed with her" panel (Free Soul's play), then creator UGC.</li>
+    <li><strong>Sensory anticipation</strong> — powders are bought on imagined taste. Real fruit on pack and a "light, not sickly" cue lift both taste and healthiness perception when hue matches the ingredient.</li>
+  </ul>
+  <h3>The decision journey and where the pouch enters</h3>
+  <p>Trigger: a podcast, a friend, a GP's offhand "creatine is good for women now". Search: "creatine for women", "is creatine safe for women" (22,500 safety searches a month), then Amazon. On the results grid she scans <strong>colour, shape and the biggest word</strong> in under two seconds — text is skipped under time pressure. She opens 3–4 listings, compares price per serving, dose, rating count and taste comments, then buys the one that resolves "will it work" and "will I like drinking it" fastest. Post-purchase she validates through the first-week taste and the week-3 feeling — which is why the insert card matters for reviews.</p>
+  <h3>Objection architecture</h3>
+  <div class="tablebox"><table>
+    <tr><th>Unspoken objection</th><th>Where it's answered</th><th>Evidence-backed technique</th></tr>
+    <tr><td>"Creatine will bloat me / bulk me"</td><td>Bullet 2, image 4</td><td>Dose honesty + "5g monohydrate, no loading phase" + real reviews; never claim "no bloat" on pack (unauthorised)</td></tr>
+    <tr><td>"Is this a real dose or a sprinkle?"</td><td>Front of pack hook, image 3</td><td>The number on the front. Specific, verifiable wording beats vague superlatives for trust (Atkinson &amp; Rosenthal)</td></tr>
+    <tr><td>"Will it taste like chalk / sickly?"</td><td>Image 5, bullet 5, flavour line</td><td>Saturated hue-congruent fruit cue; "light, not sweet" copy; Vine reviews</td></tr>
+    <tr><td>"Is £30 worth it?"</td><td>Image 2, bullet 1</td><td>Shelf-replacement anchor (£59+ of separate tubs) and per-day price</td></tr>
+    <tr><td>"Is it safe / made properly?"</td><td>Image 4, back panel</td><td>One third-party mark (Informed Sport or a lab-tested badge), not five self-badges</td></tr>
+  </table></div>
+</section>
+
+<section id="landscape">
+  <p class="eyebrow">03 · Amazon UK</p>
+  <h2>The grid you'll actually appear in</h2>
+  <p>Live search of amazon.co.uk, September 2026. Prices are approximate list prices; review counts are ratings shown on the results page.</p>
+  <div class="mathrow">
+    <div class="stat"><div class="n">0</div><div class="l">listings combining 5g creatine + collagen + full multivitamin + inositol</div></div>
+    <div class="stat"><div class="n">3–3.5g</div><div class="l">creatine dose in every women-positioned SKU found</div></div>
+    <div class="stat"><div class="n">£0.65–1.00</div><div class="l">per-serving band for women's/flavoured combo powders</div></div>
+    <div class="stat"><div class="n">17</div><div class="l">total results for "inositol powder women" — an unowned term</div></div>
+  </div>
+  <h3>The direct combo set — what they contain and what they charge</h3>
+  <div class="tablebox"><table>
+    <tr><th>Listing</th><th>Creatine</th><th>Collagen</th><th>Vitamins</th><th>Inositol</th><th>Servings</th><th>Price</th><th>Rating</th></tr>
+    <tr><td class="b">Warrior Creatine + Collagen<span class="sub">tub, black + pink</span></td><td>3g</td><td>5g</td><td>—</td><td>—</td><td class="num">30</td><td class="num">£13.49–17.99</td><td class="num">4.2 (244)</td></tr>
+    <tr><td class="b">Wellgard Peach Perfect<span class="sub">pink pouch</span></td><td>5g</td><td>5g</td><td>Mg only</td><td>—</td><td class="num">21</td><td class="num">£19.99</td><td class="num">4.5 (182)</td></tr>
+    <tr><td class="b">Roam &amp; Ritual<span class="sub">pouch</span></td><td>5g</td><td>10g</td><td>electrolytes</td><td>—</td><td class="num">25</td><td class="num">~£20</td><td class="num">4.2 (34)</td></tr>
+    <tr><td class="b">Myprotein 3-in-1<span class="sub">pastel pouch, out of stock</span></td><td>3g</td><td>5g</td><td>D, B6, iron, folate, biotin</td><td>—</td><td class="num">20</td><td class="num">£18.99</td><td class="num">—</td></tr>
+    <tr><td class="b">Free Soul HydraCreatine<span class="sub">bag</span></td><td>3.4g</td><td>—</td><td>C, biotin + electrolytes</td><td>—</td><td class="num">30</td><td class="num">£29.99</td><td class="num">4.0 (39)</td></tr>
+    <tr><td class="b">VitaSense Women's Creatine<span class="sub">pink pouch</span></td><td>3.5g</td><td>—</td><td>—</td><td>—</td><td class="num">60</td><td class="num">—</td><td class="num">4.7 (31)</td></tr>
+    <tr><td class="b">Ancient + Brave True Creatine+<span class="sub">dark glass jar</span></td><td>6g</td><td>—</td><td>Mg, D3, taurine</td><td>—</td><td class="num">30</td><td class="num">~£30</td><td class="num">4.4 (296)</td></tr>
+    <tr class="you"><td class="b">herbody</td><td><strong>5g</strong></td><td>✓ + vit C</td><td><strong>full multi</strong></td><td><strong>✓</strong></td><td class="num">30</td><td class="num">£27.99–29.99</td><td>—</td></tr>
+  </table></div>
+  <p class="note">Bloom's greens sit at £27–65 on the UK grid as a US import; Ancient + Brave and Wellgard hold #28 and #36 in the Creatine best-seller list with under 300 reviews each — that's the ceiling of the women-specific tier, and it is reachable.</p>
+  <h3>What the reviews complain about, in order</h3>
+  <ol class="plain">
+    <li><strong>Sweetness</strong> — Warrior: 8 of 21 taste mentions negative, "disgustingly sweet", "extremely sweet using the recommended 300ml".</li>
+    <li><strong>Scoop and serving honesty</strong> — "scoop does not provide 5g as stated, more like 7g", "won't provide 30 servings"; Wellgard's 21 servings per 420g; Ancient + Brave "no scoop".</li>
+    <li><strong>"Can't tell if it's working"</strong> — the classic creatine expectation gap. Solve with an insert that sets week-3 expectations, not with claims.</li>
+    <li><strong>Bloating / stomach upset</strong> — present on Wellgard; Free Soul is praised for "doesn't bloat me". You cannot claim it; you can dose honestly and avoid sugar alcohols.</li>
+    <li><strong>Packaging damage on delivery</strong> — a seal-strength and FBA-prep issue, worth a word with the pouch converter.</li>
+  </ol>
+  <h3>Search-term map — who owns what</h3>
+  <div class="tablebox"><table>
+    <tr><th>Term</th><th>Who owns page 1</th><th>Your play</th></tr>
+    <tr><td class="b">creatine for women</td><td>Commodity monohydrate (Myprotein 7.9K, ON 21.5K reviews) + gummies; women's powders with 13–100 reviews rank via ads and velocity</td><td>Primary term. Sponsored + exact match; ~50–100 reviews at ≥4.4★ gets organic page 1</td></tr>
+    <tr><td class="b">all in one supplement for women</td><td>Tablets (Wellwoman, Centrum); no powder owner</td><td>Title and backend. The category word on your pouch should echo this</td></tr>
+    <tr><td class="b">collagen creatine powder</td><td>Warrior, Wellgard, Roam, Vital Proteins</td><td>Secondary exact term; your "+ multivitamin + inositol" is the differentiator in the title</td></tr>
+    <tr><td class="b">inositol powder women</td><td>17 results, weak ratings, capsules outrank powders</td><td>Cheap long-tail; own it in backend keywords and one bullet</td></tr>
+    <tr><td class="b">greens powder for women</td><td>Bloom (US import), Huel, Vital Greens</td><td>Do not fight here. Ocean, not wedge</td></tr>
+    <tr><td class="b">women's daily powder supplement</td><td>Fibre and collagen; no owner</td><td>Backend; matches the "daily" ritual language on pack</td></tr>
+  </table></div>
+</section>
+
+<section id="brands">
+  <p class="eyebrow">04 · Winning brands</p>
+  <h2>What the fastest growers actually do</h2>
+  <p>Eleven brands, verified figures, one thing to steal and one to avoid from each. Full sources in the appendix.</p>
+  <div class="tablebox"><table>
+    <tr><th>Brand</th><th>Scale signal</th><th>Pack &amp; naming</th><th>Steal</th><th>Avoid</th></tr>
+    <tr><td class="b">Free Soul<span class="sub">UK</span></td><td>£42.3m, No.10 Sunday Times 100; 268 Boots stores; TikTok Super Brand Day</td><td>Functional name + "for women"; Oct-2025 rebrand from 7,000-woman consultation</td><td>"Designed by Her" co-creation panel as proof and content</td><td>Three creatine SKUs diluting one hero</td></tr>
+    <tr><td class="b">Bloom<span class="sub">US</span></td><td>$350–400m 2025 → ~$500m; #1 greens at Walmart; 7,000 doors</td><td>Category word large, lowercase wordmark, flavour-coded pastels, "38 ingredients"</td><td>CATEGORY as hero; TikTok-Shop-first launches</td><td>Pastel-on-pastel that vanishes on white</td></tr>
+    <tr><td class="b">Arrae<span class="sub">US</span></td><td>$100m+; Tone (women's creatine) = 31% of quarterly revenue on 28% of spend</td><td>One-word pain-point names (Bloat, Tone, Sleep); cream, serif-led</td><td>"Not Your Boyfriend's Creatine" — enemy framing that names the bro aisle</td><td>UK can't run outcome-named SKUs without an authorised claim beside them</td></tr>
+    <tr><td class="b">Momentous<span class="sub">US</span></td><td>"Creatine: Essential for Women" with Dr Stacy Sims; Women's Three</td><td>Black clinical; expert-authored "non-negotiable" framing</td><td>Borrow an expert voice for the UK (a named nutritionist or menopause GP)</td><td>Black clinical for an all-in-one — reads as a lab, not a ritual</td></tr>
+    <tr><td class="b">Nello<span class="sub">US</span></td><td>1m+ units; $25.7m TikTok Shop; all Target doors</td><td>One named hero SKU (Supercalm) riding a cultural word (cortisol)</td><td>A single hero with a name you can say on TikTok</td><td>"Cortisol reducer" claims — illegal in the UK</td></tr>
+    <tr><td class="b">AG1</td><td>~$600m, $1.2bn valuation; $99/month</td><td>Monogram hero, forest green, no category word</td><td>Single SKU, clinical-trial cadence, subscription default</td><td>Brand-larger-than-category — only works with unaided recall you don't have yet</td></tr>
+    <tr><td class="b">Huel<span class="sub">UK</span></td><td>£254m, +19%; Danone €1bn (Mar 2026)</td><td>Black/white utility, price per serving on page</td><td>Per-serving price transparency</td><td>Genderless "fuel" tone</td></tr>
+    <tr><td class="b">Wild Nutrition<span class="sub">UK</span></td><td>£30m → £40m+; 1,300 free nutritionist consults/month</td><td>Food-Grown® trademark; life-stage naming (Perimenopause, 45+)</td><td>A trademarked "how it's made" and life-stage language</td><td>Capsules only, no ritual/format story</td></tr>
+    <tr><td class="b">JSHealth<span class="sub">AU→UK</span></td><td>400+ Boots stores; 42,000+ reviews; 75%+ return rate</td><td>"Hair + Energy" two-benefit naming; JSHealth Kelp™</td><td>"A + B" benefit pairing in sub-lines (legal in UK if each is an authorised claim)</td><td>Founder-face dependence</td></tr>
+    <tr><td class="b">Gruns<span class="sub">US</span></td><td>$300m ARR at month 24; $500m valuation</td><td>Bright green, umlaut sub-brands, "60+ ingredients", 100k+ reviews on page</td><td>Review count as pack/page furniture</td><td>Big one-time vs subscription price gap</td></tr>
+    <tr><td class="b">Create<span class="sub">US</span></td><td>250m gummies; $20m Series B (Unilever Ventures)</td><td>NSF Certified for Sport badge on a gummy</td><td>One credible third-party mark, front and centre</td><td>Gummy stability problems — powder is your advantage</td></tr>
+  </table></div>
+  <h3>The patterns underneath</h3>
+  <div class="grid3">
+    <div class="card"><h4>One hero, one name</h4><p>Nello's Supercalm, Arrae's Tone, AG1. Winners launch a <strong>named product</strong>, not a brand with a range. herbody needs a product name people can say on camera.</p></div>
+    <div class="card"><h4>Category word is the hero</h4><p>Bloom prints GREENS &amp; SUPERFOODS bigger than "bloom". Until you have recall, the biggest words on the pouch should say <strong>what it is</strong>.</p></div>
+    <div class="card"><h4>Proof furniture</h4><p>Ingredient counts, review counts, clinical-trial mentions, one third-party mark. <strong>Numbers on the front</strong>, not adjectives.</p></div>
+    <div class="card"><h4>Expert or community voice</h4><p>Sims for Momentous, 7,000 women for Free Soul, nutritionists for Wild. Borrowed authority is the cheapest trust you can buy.</p></div>
+    <div class="card"><h4>TikTok Shop first, Amazon second</h4><p>Bloom, Nello, Lemme ($13m in one month). Amazon is the profit centre; social commerce is the launch pad — a run-two decision for you.</p></div>
+    <div class="card"><h4>Design trend, 2026</h4><p>Dieline's "Clinical with Soul": science-forward structure softened by warmth and hand-touch. Exactly the register between Momentous-black and Bloom-pastel.</p></div>
+  </div>
+</section>
+
+<section id="pouch">
+  <p class="eyebrow">05 · The pouch</p>
+  <h2>Design direction, decided — and a pre-print audit for your current artwork</h2>
+  <p>Your artwork is finalised but unprinted; the honest move is to score it against this before the pouch quote is accepted. The direction below is built from the evidence in §08 and the grid in §03. Where a recommendation rests on weak evidence, it says so.</p>
+
+  <h3>Layer 1 · Hierarchy (reading order in 0.5–2 seconds)</h3>
+  <ol class="plain">
+    <li><strong>What it is</strong> — the largest type: a category line she is searching for. Recommended: <em>THE COMPLETE DAILY</em> with the sub-line <em>creatine · collagen · multivitamin · inositol</em>. Under time pressure shoppers use one or two visual elements and skip text (Silayoi &amp; Speece) — this line and the colour do the work.</li>
+    <li><strong>Who makes it</strong> — <em>herbody</em> wordmark, second tier, top-left. Short names read healthier (Motoki 2023); you have a good one.</li>
+    <li><strong>The hook</strong> — a single contrasting badge: <em>5g creatine per scoop</em>. Specific, verifiable wording is the strongest label-trust lever (Atkinson &amp; Rosenthal). Confirm the dose with Black Label before this goes to print.</li>
+    <li><strong>Proof</strong> — <em>30 servings · 1 scoop a day</em>, tabular numerals, engineered feel.</li>
+    <li><strong>Everything else</strong> — flavour (<em>Strawberry &amp; Raspberry</em>), "food supplement", net weight, mandatory statements at ≥6pt.</li>
+  </ol>
+
+  <h3>Layer 2 · Grid</h3>
+  <p><strong>Type-First Editorial</strong> with a single real-fruit accent, not a hero photo. Image-led powders make the fruit the hero of the category, not the brand; a type-led pouch is what Bare Performance and Innermost use to stand apart from image-heavy Bloom clones. Allocation: top third — wordmark + category line; middle — hook badge and the ingredient sub-line with a small hue-matched berry accent or optional powder window; bottom third — servings, flavour, mandatory copy. Keep the seal zones and gusset fold clear.</p>
+
+  <h3>Layer 3 · Colour system</h3>
+  <p>The evidence, not folklore: saturation signals potency and taste; pale, low-saturation packs read "healthy but weak"; saturation only helps when the hue matches the hero ingredient; dark packs out-thumb pastels on Amazon's white; feminine cues help even healthy products <em>when</em> they're present — but pink pastel is now the category uniform on the women's-creatine grid. So: a saturated, dark <strong>berry</strong> anchor that is literally the colour of your flavour, feminine by hue rather than by pastel, with cream type for contrast and a bright raspberry accent for the hook.</p>
+  <div class="swatches">
+    <div class="sw"><div class="chip" style="background:#7A1F45"></div><div class="meta"><b>#7A1F45 · anchor</b>Deep raspberry (≈ Pantone 7644 C). ~70% of front. Dark + saturated + flavour-congruent.<span></span></div></div>
+    <div class="sw"><div class="chip" style="background:#FBF3EC"></div><div class="meta"><b>#FBF3EC · type</b>Warm cream (≈ Pantone 9224 C). Category word, wordmark, body. Contrast ratio vs anchor ≈ 9:1.</div></div>
+    <div class="sw"><div class="chip" style="background:#E8386D"></div><div class="meta"><b>#E8386D · hook</b>Bright raspberry (≈ Pantone 1915 C). Badge only. The one loud thing.</div></div>
+    <div class="sw"><div class="chip" style="background:#2A1B22"></div><div class="meta"><b>#2A1B22 · ink</b>Aubergine-black for back-panel text. Never pure black.</div></div>
+  </div>
+  <p class="note">Squint test: a 100×100 swatch of #7A1F45 on white holds; blush pink (#F4C2D0) disappears. Amazon's grid is white — this is physics, not taste. Trade-off acknowledged: a dark pouch reads slightly less "light and healthy" than cream; the fruit hue and the cream type recover that without surrendering the thumbnail.</p>
+
+  <div class="thumbrow">
+    <div class="pouch" style="background:#7A1F45"><div><div class="brand">herbody</div><div class="cat" style="margin-top:8px">THE<br>COMPLETE<br>DAILY</div><div style="font-size:8px;opacity:.85;margin-top:6px;font-family:var(--mono);letter-spacing:.04em">creatine · collagen<br>multivitamin · inositol</div></div><div class="hook">5g CREATINE / SCOOP</div><div class="foot">30 SERVINGS · STRAWBERRY &amp; RASPBERRY</div></div>
+    <div class="whitebg">
+      <div class="pouch small" style="background:#7A1F45"><div><div class="brand">herbody</div><div class="cat" style="margin-top:3px">THE<br>COMPLETE<br>DAILY</div></div><div class="hook">5g</div><div class="foot">30 SERV</div></div>
+      <div class="pouch small" style="background:#F4C2D0;color:#7A1F45"><div><div class="brand">brand</div><div class="cat" style="margin-top:3px">women's<br>creatine</div></div><div class="hook" style="background:#fff;color:#C2255C">3g</div><div class="foot">60 SERV</div></div>
+      <div class="thumbcap">Amazon thumbnail simulation on #FFFFFF: the berry pouch holds shape and reads its biggest word; the category-standard pink one melts into the page.</div>
+    </div>
+  </div>
+
+  <h3>Layer 4 · Typography</h3>
+  <ul class="tight">
+    <li><strong>Display (category line):</strong> a confident contemporary grotesk with personality — Bricolage Grotesque (free, used on this page), or PP Right Grotesk / Söhne Breit if licensing. Set tight, heavy weight, wide enough to survive flexo. The evidence favours moderately bold letters at small sizes and penalises hairline and ultra-bold extremes (Beier &amp; Oderkerk).</li>
+    <li><strong>Wordmark:</strong> lowercase <em>herbody</em> in the same family or a softened custom cut — feminine cue through rounded terminals, not script. Script and pastel are the "feminine" defaults the evidence says work but the grid says are saturated.</li>
+    <li><strong>Body:</strong> Instrument Sans or Inter at semibold minimum on flexo; 6pt floor for mandatory copy.</li>
+    <li><strong>Numerals:</strong> tabular, semibold, given their own weight. The "5g" and "30" are trust objects.</li>
+  </ul>
+
+  <h3>Layer 5 · Claims and badges (maximum four)</h3>
+  <ol class="plain">
+    <li><strong>5g creatine per scoop</strong> — the hook badge (only if the formula delivers it).</li>
+    <li><strong>Collagen + vitamin C</strong> — small lock-up; the legal collagen story in the UK is "vitamin C contributes to normal collagen formation for the normal function of skin".</li>
+    <li><strong>30 servings</strong> — serving honesty is a live review complaint; make it prominent and true.</li>
+    <li><strong>One third-party mark</strong> — Informed Sport if you can (over 40% of UK/US buyers look for a mark), else "independently lab-tested" with the COA behind it. No "premium quality", no "doctor formulated" without a name. There is no experiment on badge counts, but scepticism rises with label density (Fenko et al.) — group everything into one strip.</li>
+  </ol>
+  <p><strong>Material and finish:</strong> matte soft-touch laminate. Gloss reads greasy and less healthy; matte raises perceived naturalness and, for goal-attainment products like yours, perceived effectiveness (Huang et al. 2023). Optional: a 25%-area powder window — evidence says windows lift attractiveness and purchase intent, and gains plateau above 25% exposure; the pink powder against berry film is a genuine differentiator if your converter offers it.</p>
+
+  <h3>Pre-print audit — score your current artwork</h3>
+  <div class="tablebox"><table class="rubric">
+    <tr><th>Check</th><th>Pass looks like</th><th>Fail looks like</th></tr>
+    <tr><td>Biggest word</td><td>A category/what-it-is line she is searching for</td><td>"herbody" is the largest element</td></tr>
+    <tr><td>Thumbnail at 64px</td><td>Colour block + one word still legible on white</td><td>Pastel or white ground; word dissolves</td></tr>
+    <tr><td>Hue congruence</td><td>Anchor colour is visibly "strawberry-raspberry"</td><td>Colour unrelated to flavour (sage, navy, generic pink)</td></tr>
+    <tr><td>One hook</td><td>A single number badge (5g)</td><td>Three to six competing badges</td></tr>
+    <tr><td>Dose on front</td><td>Creatine grams visible without turning the pouch</td><td>Doses only on the back panel</td></tr>
+    <tr><td>Servings honesty</td><td>"30 servings" and a scoop that delivers it</td><td>Servings implied by weight only</td></tr>
+    <tr><td>Claims legality</td><td>Only register-authorised wording; no "diuretic", "bloat", "balance hormones"</td><td>Any outcome word without an authorised claim beside it</td></tr>
+    <tr><td>Type weight</td><td>Semibold minimum body, no hairlines</td><td>Thin serif that photographs well and prints grey</td></tr>
+    <tr><td>Finish</td><td>Matte / soft-touch</td><td>High gloss</td></tr>
+    <tr><td>Feminine cue</td><td>Carried by hue, curves, wordmark</td><td>Carried by pastel pink + script (the category uniform)</td></tr>
+    <tr><td>Dieline physics</td><td>Nothing critical in seal zones or gusset fold</td><td>Hook badge crossing the side seal</td></tr>
+    <tr><td>Mandatory UK copy</td><td>"Food supplement", do-not-exceed, not-a-substitute, keep-from-children, %NRV, FBO address, allergens bold</td><td>Any of these missing or under 6pt</td></tr>
+  </table></div>
+  <p class="note">Send the finalised artwork and I'll score it line by line against this and return a marked-up version before the pouch order is confirmed.</p>
+</section>
+
+<section id="names">
+  <p class="eyebrow">06 · Names &amp; claims</p>
+  <h2>A product name she can say on camera, and blend names that are legal in Britain</h2>
+  <p>Category naming conventions right now: <em>Crea-</em> prefixes (CreaGlow, Creatonics, Creapure), <em>Her-</em> prefixes (Hertime, Hergreens), <em>-Glow</em> suffixes, "+" pairings (Hair + Energy), umlauts (Gruns), and the definite article ("The Health Protein"). Avoid Crea-, Her- and -Glow; they are the crowded lanes.</p>
+  <h3>Product name — the thing on the front and in the title</h3>
+  <ul class="tight">
+    <li><strong>herbody <em>Complete</em></strong> — "The Complete Daily" as category line, "Complete" as the sayable product name. Descriptive of the all-in-one truth, uncontested on Amazon UK, and it is the enemy-framing of every single-ingredient competitor in one word. <em>Recommended.</em></li>
+    <li><strong>herbody <em>One</em></strong> — "one scoop, one ritual". Short, clean, slightly generic; strong if you plan a range (One, Sleep, Glow) later.</li>
+    <li><strong>herbody <em>Daily Five</em></strong> — names the five pillars (creatine, collagen, vitamins, inositol, botanicals). Proof-furniture built into the name, like Bloom's "38 ingredients".</li>
+  </ul>
+  <h3>Trademarked blend names — with the UK rule that governs them</h3>
+  <p>In GB, a brand or blend name that <em>implies</em> a health benefit is itself treated as a health claim under assimilated Regulation 1924/2006 and must be accompanied by an authorised claim. So outcome-led names work only where you have an authorised claim to sit beside them; elsewhere use descriptive or process-led names. Note also that no experiment has tested whether a ™ symbol raises perceived quality — treat the "invention heuristic" as folklore; the real value is un-copyable keywords and content modules.</p>
+  <div class="tablebox"><table>
+    <tr><th>Blend</th><th>Groups</th><th>Why it's legal</th><th>Bullet copy</th></tr>
+    <tr><td class="b">FullDose™ Creatine</td><td>5g creatine monohydrate</td><td>Descriptive of dose, not an outcome; pair with the authorised creatine performance claim at ≥3g/day</td><td>"A FullDose™ 5g of creatine monohydrate — the amount the research uses, not a sprinkle"</td></tr>
+    <tr><td class="b">GlowLayer™</td><td>Collagen peptides, vitamin C, biotin, zinc</td><td>"Glow" implies a skin benefit → must sit beside "vitamin C contributes to normal collagen formation for the normal function of skin" and "biotin contributes to the maintenance of normal skin"</td><td>"GlowLayer™ pairs collagen with the vitamin C that contributes to normal collagen formation"</td></tr>
+    <tr><td class="b">SteadyCore™</td><td>Myo-inositol, B6, B12, folate, magnesium</td><td>"Steady" is soft; anchor it to the authorised B-vitamin claim "contributes to the reduction of tiredness and fatigue" and "normal psychological function"</td><td>"SteadyCore™: myo-inositol with B6 and B12, which contribute to the reduction of tiredness and fatigue"</td></tr>
+    <tr><td class="b">Botanical Base (no ™)</td><td>Dandelion, nettle, hibiscus or whatever the water-balance botanicals are</td><td>No authorised claim exists — name them descriptively, list doses, imply nothing</td><td>"…with a botanical base of dandelion leaf and hibiscus"</td></tr>
+  </table></div>
+  <div class="guardrail">
+    <span class="tag C" style="margin-left:0">Non-negotiable</span>
+    <h3>Words that cannot appear on the pouch or listing</h3>
+    <ul>
+      <li><strong>"Diuretic", "water retention", "de-bloat", "reduces bloating"</strong> — unauthorised health claims; "diuretic" risks the product being treated as a medicine by the MHRA.</li>
+      <li><strong>"Balances hormones", "supports PCOS", "menopause relief"</strong> — inositol has no authorised claim and these are medicinal. Life-stage <em>language</em> (Wild Nutrition's "45+") is fine; symptom promises are not.</li>
+      <li><strong>"Clinically proven"</strong> — needs a trial on the finished product; the "clinically studied" ingredient framing is the honest version.</li>
+      <li><strong>Any collagen benefit stated of collagen itself</strong> — route every skin/hair/nail benefit through vitamin C, biotin or zinc's authorised claims.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="brief">
+  <p class="eyebrow">07 · Designer brief</p>
+  <h2>Paste this into your AI designer</h2>
+  <p>Written to be dropped, unedited, into a design agent, Midjourney/Ideogram for concepts, or handed to a human. Fill the two bracketed facts first.</p>
+  <div class="brief">
+    <h3>Brief · herbody Complete stand-up pouch · Amazon UK</h3>
+<pre>PROJECT
+Front-panel artwork for a 30-serving stand-up pouch (approx. 160 × 240 mm face, 5:8; bottom gusset hidden on shelf; keep 12 mm clear of all seals). Product: herbody Complete — women's all-in-one daily powder: [5]g creatine monohydrate, collagen peptides + vitamin C, complete multivitamin, myo-inositol, botanical base. Flavour: Strawberry &amp; Raspberry. Channel: Amazon UK first; the artwork must win as a 64-px thumbnail on pure white before it wins in the hand.
+
+STRATEGIC ANCHOR (the one thing the pack must say first)
+"The complete daily scoop for women." Category first, brand second. This is the only product on Amazon UK combining full-dose creatine, collagen, a complete multivitamin and inositol — the pack should feel like the shelf replaced, not one more tub.
+
+AUDIENCE
+Primary: women 35–55, perimenopause-aware, strength-training, want to feel sharp and steady; allergic to being marketed to like teenagers. Secondary: women 24–34, gym-curious, buy on taste, aesthetics and per-day price. Tone register: "clinical with soul" — science-forward structure, warm human surface. Not bro, not pink-and-shrink, not spa.
+
+COMPETITIVE SET TO STAND APART FROM
+Free Soul (pastel functional), Bloom (pastel tubs, category word large), Wellgard / VitaSense (pink pouches), Warrior (black + pink tub), Ancient + Brave (dark glass, clinical), Momentous (black clinical). Pink pastel is the category uniform: do not use it as the ground.
+
+HIERARCHY (reading order, sizes relative to a 240 mm face)
+1. Category line — largest type, cream on berry: "THE COMPLETE DAILY" (three lines, ~28–34 mm cap height) with sub-line "creatine · collagen · multivitamin · inositol" (~5 mm).
+2. Wordmark — "herbody", lowercase, top-left, ~9 mm x-height.
+3. Hook badge — one pill, bright raspberry, "5g CREATINE / SCOOP" (~6 mm cap height). The only loud element.
+4. Proof — "30 SERVINGS · 1 SCOOP A DAY", tabular numerals, ~4 mm.
+5. Flavour — "Strawberry &amp; Raspberry", bottom band, ~4 mm. Mandatory copy ≥ 6 pt.
+
+GRID
+Type-First Editorial. Top third: wordmark + category line, flush-left. Middle third: hook badge left; a single small, saturated, photoreal strawberry-and-raspberry accent right (hue must match the ground) OR a 25%-area clear window revealing pink powder. Bottom third: servings, flavour, "Food supplement", net weight. Generous negative space; nothing centred-stacked.
+
+COLOUR (max three on front)
+Anchor #7A1F45 deep raspberry (≈ Pantone 7644 C), ~70% coverage.
+Type #FBF3EC warm cream (≈ Pantone 9224 C).
+Hook #E8386D bright raspberry (≈ Pantone 1915 C), badge only.
+Back-panel ink #2A1B22. No gradients, no pure black, no pastel ground, no gold foil.
+
+TYPOGRAPHY
+Display: Bricolage Grotesque ExtraBold (or PP Right Grotesk / Söhne Breit), tight tracking, never below Bold on the category line. Wordmark: same family, lowercase, softened terminals. Body: Instrument Sans Semibold minimum. Numerals: tabular. No script, no hairline serif.
+
+CLAIMS ON FRONT (max four, grouped in one strip or one corner)
+"5g creatine per scoop" · "Collagen + vitamin C" · "30 servings" · one third-party mark [Informed Sport / independently lab-tested]. Nothing else. No "premium", no "doctor formulated", no outcome words.
+
+FORBIDDEN WORDS ANYWHERE
+diuretic, water retention, de-bloat, bloating, balance hormones, PCOS, menopause relief, clinically proven, anti-ageing, detox, fat burn.
+
+MATERIAL &amp; FINISH
+Matte soft-touch laminate; optional spot-gloss on the hook badge only. If window: matte film with clear 25% window, positioned in the middle third.
+
+DELIVERABLES
+1. Three concept boards on the same brief: (A) Berry Monolith — type only, no fruit; (B) Berry + Fruit accent; (C) Berry + powder window. Each shown flat and as a 64 px thumbnail on #FFFFFF beside a pink competitor.
+2. Chosen concept as print-ready front and back at dieline scale with a 3 mm bleed, plus the Amazon hero render on white.
+3. A one-line rationale per concept referencing the hierarchy above.
+
+THUMBNAIL TEST (must pass)
+Shrink the front to 64 × 100 px on white. The berry block must hold as a shape and "COMPLETE" must be readable. If it isn't, increase type size or contrast; do not add elements.</pre>
+  </div>
+  <h3>Image-generation seed prompt (concepts only)</h3>
+  <div class="brief"><pre>Product packaging photography, a matte deep-raspberry (#7A1F45) stand-up pouch for a women's daily supplement powder, bold cream (#FBF3EC) grotesk typography reading "herbody" small top-left and "THE COMPLETE DAILY" large flush-left, a single bright raspberry (#E8386D) pill badge reading "5g CREATINE / SCOOP", small line "creatine · collagen · multivitamin · inositol", a single photoreal strawberry and raspberry accent lower right, "30 SERVINGS · STRAWBERRY &amp; RASPBERRY" along the bottom, clean editorial layout with generous negative space, soft-touch matte finish, studio lighting on pure white background, Amazon product shot, no pastel pink, no gold, no script fonts, no gradients --ar 5:8</pre></div>
+</section>
+
+<section id="evidence">
+  <p class="eyebrow">08 · Evidence</p>
+  <h2>What the design rests on</h2>
+  <p>A = replicated peer-reviewed · B = single study or industry data · C = folklore or unverified. Every citation was checked live; anything unverifiable is flagged rather than quoted.</p>
+  <ul class="tight src">
+    <li>Pale/low-saturation packs read healthier but less tasty; saturated colour reads tastier — Mead &amp; Richerson (2018) <a href="https://www.sciencedirect.com/science/article/abs/pii/S0148296317302783">JBR</a>; Tijssen et al. (2017) <a href="https://www.semanticscholar.org/paper/69d33771b61525315b6a16758b9b33722d97845b">FQP</a>; Kunz et al. (2020) <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/mar.21317">P&amp;M</a> <span class="tag A">A</span></li>
+    <li>Saturation only helps when hue matches the hero ingredient — Steiner, Kunz &amp; Florack (2025) <a href="https://www.emerald.com/bfj/article/127/13/1/1267042/How-can-health-look-tasty-Effects-of-packaging">BFJ</a> <span class="tag B">B</span></li>
+    <li>Saturation signals potency/efficacy (7 studies, n=2,745) — Labrecque et al. (2025) <a href="https://journals.sagepub.com/doi/10.1177/00222429241296392">J. Marketing</a> <span class="tag B">B</span></li>
+    <li>Colour→health via three mechanisms, 20-study review — Steiner &amp; Florack (2023) <a href="https://www.mdpi.com/2304-8158/12/21/3911">Foods</a> <span class="tag A">A</span>; fluency mediates colour–category fit — Su &amp; Wang (2024) <a href="https://www.frontiersin.org/journals/nutrition/articles/10.3389/fnut.2023.1344237/full">Front. Nutr.</a> <span class="tag B">B</span></li>
+    <li>Generic colour psychology ("blue = trust") is weak and context-bound — Elliot &amp; Maier (2012, 2014); Lehmann et al. (2018) meta-analysis <a href="https://journals.sagepub.com/doi/10.1177/1474704918802412">Evol. Psych.</a> <span class="tag C">C</span></li>
+    <li>Under time pressure, graphics/colour/shape drive choice; text skipped — Silayoi &amp; Speece (2004) <a href="https://www.emerald.com/insight/content/doi/10.1108/00070700410553602/full/html">BFJ</a>; shelf eye-tracking — Clement et al. (2013) <a href="https://www.sciencedirect.com/science/article/abs/pii/S0969698913000040">JRCS</a> <span class="tag B">B</span></li>
+    <li>Moderately bold letters win at small sizes; extremes lose — Beier &amp; Oderkerk (2019) <a href="https://www.sciencedirect.com/science/article/pii/S000169181830581X">Acta Psychologica</a> <span class="tag B">B</span></li>
+    <li>Specific, verifiable claim wording raises label trust — Atkinson &amp; Rosenthal (2014) <a href="https://www.tandfonline.com/doi/abs/10.1080/00913367.2013.834803">J. Advertising</a> <span class="tag B">B</span>; more labels → complexity and scepticism — Fenko et al. (2016) <a href="https://www.sciencedirect.com/science/article/abs/pii/S0950329315002190">FQP</a> <span class="tag B">B</span></li>
+    <li>Structure/function wording inflates perceived disease benefit — Assadourian et al. (2025) <a href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2839201">JAMA Netw. Open</a> <span class="tag B">B</span></li>
+    <li>&gt;40% of UK/US supplement buyers look for a certification mark — Informed Sport / CIL survey (2026) <a href="https://sport.wetestyoutrust.com/news/new-consumer-survey-testing-catalyst-confidence">source</a> <span class="tag B">B</span></li>
+    <li>Benefit-suggestive names lock recall to one benefit — Keller, Heckler &amp; Houston (1998) <a href="https://journals.sagepub.com/doi/abs/10.1177/002224299806200105">J. Marketing</a> <span class="tag A">A</span>; fluent names → safer/purer/purchase — Song &amp; Schwarz (2009); Cho (2018); shorter names → healthier — Motoki et al. (2023) <a href="https://onlinelibrary.wiley.com/doi/full/10.1002/mar.21859">P&amp;M</a> <span class="tag B">B</span></li>
+    <li>™/® "invention heuristic" — no empirical study found <span class="tag C">C</span></li>
+    <li>Feminine-cued packs raise attractiveness and purchase intent for healthy products — Zhu et al. (2015) <a href="https://psycnet.apa.org/record/2015-26765-001">Social Psychology</a> <span class="tag B">B</span>; "pink it and shrink it" backlash — <a href="https://www.vitafoodsinsights.com/womens-health/marketing-to-women-why-shrink-it-and-pink-it-will-no-longer-cut-it">Vitafoods 2022</a>, <a href="https://www.nutritionaloutlook.com/view/no-pinkwashing-womens-health-supplements-reach-beyond-typical">Nutritional Outlook 2026</a> <span class="tag C">C</span></li>
+    <li>Transparent windows raise purchase intent; gains plateau at ~25% exposure — Simmonds et al. (2018) <a href="https://www.sciencedirect.com/science/article/abs/pii/S095032931730174X">FQP</a>; Calderón et al. (2026) <a href="https://www.sciencedirect.com/science/article/pii/S0963996926015589">FRI</a> <span class="tag B">B</span></li>
+    <li>Matte = natural/effective for approach products; gloss = greasy, less healthy — Marckhgott &amp; Kamleitner (2019); Ye et al. (2020) <a href="https://myscp.onlinelibrary.wiley.com/doi/abs/10.1002/jcpy.1126">JCP</a>; Huang et al. (2023) <a href="https://onlinelibrary.wiley.com/doi/10.1002/mar.21764">P&amp;M</a> <span class="tag A">A</span></li>
+    <li>Women's-creatine buyer data (76% menopause discussion, 40–65 core, cognition first) — <a href="https://www.nutraingredients.com/Article/2026/05/26/creatine-for-women-what-the-data-says-about-the-industrys-most-misread-buyer/">NutraIngredients 2026</a>; women 30% of GNC creatine buyers — <a href="https://medicalxpress.com/news/2025-09-women-older-adults-sales-creatine.html">MedicalXpress</a>; "creatine for women" ~110k searches/mo, +123% YoY — <a href="https://www.risingtrends.co/trends/supplement-trends-2026">Rising Trends</a>, <a href="https://www.bupa.co.uk/newsroom/ourviews/health-trends-for-2026">Bupa 2026</a> <span class="tag B">B</span></li>
+    <li>Brand figures — Free Soul <a href="https://londonbusinessjournal.co.uk/2026/06/05/free-soul-sunday-times-100-growth/">£42.3m</a>, <a href="https://freesoul.com/blogs/blog/same-soul-elevated-look">rebrand</a>, <a href="https://freesoul.com/collections/the-creatine-collection">creatine range</a>; Bloom <a href="https://www.forbes.com/sites/yolarobert1/2026/04/28/bloom-nutrition-scaled-to-1-billion-by-prioritizing-its-community-first/">Forbes</a>, <a href="https://beautymatter.com/articles/tiktok-wellness-sensation-bloom-is-on-the-move-at-retail">BeautyMatter</a>; Arrae <a href="https://newengen.com/work/arrae/">Tone case</a>, <a href="https://www.forbes.com/sites/karineldor/2026/02/18/building-100m-wellness-brand-arrae-siff-haider-on-calculated-risk-and-relentless-standards/">Forbes</a>; Momentous <a href="https://shop.livemomentous.com/womens-creatine">women's creatine</a>; Nello <a href="https://wwd.com/beauty-industry-news/wellness/tiktok-nello-cortisol-supplement-target-launch-1237088747/">WWD</a>; AG1 <a href="https://www.patigroup.com/p/the-ag1-phenomenon-how-a-single-sku">Pati</a>; Huel <a href="https://www.nutraingredients.com/Article/2026/03/24/danone-expands-complete-nutrition-portfolio-with-1-billion-huel-deal/">Danone deal</a>; Wild Nutrition <a href="https://uk.finance.yahoo.com/news/wild-nutrition-supplement-health-uk-brand-050000837.html">Yahoo Finance</a>; JSHealth <a href="https://www.boots-uk.com/newsroom/news-item/boots-boosts-beauty-vitamin-and-wellness-supplements-range-with-two-iconic-new-brands/">Boots</a>; Gruns <a href="https://www.inc.com/david-lidsky/exclusive-gruns-gummy-vitamin-startup-growing-fast-as-ai-company/91254742">Inc</a>; Create <a href="https://www.nutraingredients.com/Article/2026/03/30/create-raises-20m-in-series-b-to-expand-creatine-access-and-innovation/">NutraIngredients</a>; Dieline 2026 trends <a href="https://thedieline.com/dielines-2026-trend-report/">report</a></li>
+    <li>Amazon UK listings — Warrior <a href="https://www.amazon.co.uk/dp/B0DWXXT69T">B0DWXXT69T</a>; Wellgard <a href="https://www.amazon.co.uk/dp/B0F8W4VDWG">B0F8W4VDWG</a>; Roam &amp; Ritual <a href="https://www.amazon.co.uk/dp/B0GPD5HXQ8">B0GPD5HXQ8</a>; Free Soul HydraCreatine <a href="https://www.amazon.co.uk/dp/B0FD53NFY7">B0FD53NFY7</a>; VitaSense <a href="https://www.amazon.co.uk/dp/B0GGC7K48B">B0GGC7K48B</a>; Ancient + Brave <a href="https://www.amazon.co.uk/dp/B0DDYD8F2P">B0DDYD8F2P</a>; Myprotein 3-in-1 <a href="https://www.myprotein.com/p/sports-nutrition/3-in-1-creatine-collagen-electrolytes/17691717/">brand page</a>; Creatine best sellers <a href="https://www.amazon.co.uk/Best-Sellers-Creatine-Nutritional-Supplements/zgbs/drugstore/5977690031">list</a></li>
+    <li>UK market — VMS £568m, +10% to 2028 <a href="https://store.mintel.com/report/uk-vitamins-and-supplements-market-report-2023">Mintel</a>; UK supplements $4.79bn → $9.65bn <a href="https://www.grandviewresearch.com/industry-analysis/uk-dietary-supplements-market-report">Grand View</a>; UK menopause supplements <a href="https://www.grandviewresearch.com/horizon/outlook/menopause-market/uk">Grand View</a> <span class="tag B">B</span></li>
+  </ul>
+  <p class="note">Method limits: Amazon review pages are login-gated, so complaint analysis uses Amazon's "Customers say" summaries, brand-site reviews and third-party write-ups; keyword volumes come from published trend data because the Semrush account has no API units; prices seen through a proxy are approximate. Trademark clearance was dropped at your instruction — herbody is already registered and owned.</p>
+</section>
+
+<footer>
+  <p class="close">Everyone else sells her <span class="accent">one ingredient</span>. You sell her the finished routine.</p>
+  <p>herbody · Amazon UK study · September 2026. Companion documents: <em>The herbody Playbook</em> (strategy and launch choreography) and <em>herbody/launch-plan.md</em> (admin, compliance, budget) on your GitHub branch. Doses in brackets in the brief must be confirmed against the Black Label Creations spec before print.</p>
+</footer>
+
+</div>
