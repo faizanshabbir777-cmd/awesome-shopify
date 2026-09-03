@@ -1,0 +1,382 @@
+<title>The herbody Playbook</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Spline+Sans+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FBF6F4;
+  --surface:#FFFFFF;
+  --surface-2:#F4E9E7;
+  --ink:#2A1B22;
+  --ink-soft:#6E5560;
+  --line:#E6D4D4;
+  --berry:#C2255C;
+  --berry-deep:#7A1F45;
+  --berry-wash:#F9E7EE;
+  --go:#2F7D5C;
+  --go-wash:#E4F1EA;
+  --warn:#B4690E;
+  --warn-wash:#F8EEDD;
+  --display:'Bricolage Grotesque','Trebuchet MS',Verdana,sans-serif;
+  --body:'Instrument Sans','Helvetica Neue',Arial,sans-serif;
+  --mono:'Spline Sans Mono','Courier New',monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1D1218;
+    --surface:#28191F;
+    --surface-2:#33222A;
+    --ink:#F5E8EE;
+    --ink-soft:#C1A3B0;
+    --line:#432E38;
+    --berry:#F06595;
+    --berry-deep:#F8B4CC;
+    --berry-wash:#3A1F2C;
+    --go:#5CBA8E;
+    --go-wash:#1F3A2E;
+    --warn:#E3A65C;
+    --warn-wash:#3B2C18;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1D1218;
+  --surface:#28191F;
+  --surface-2:#33222A;
+  --ink:#F5E8EE;
+  --ink-soft:#C1A3B0;
+  --line:#432E38;
+  --berry:#F06595;
+  --berry-deep:#F8B4CC;
+  --berry-wash:#3A1F2C;
+  --go:#5CBA8E;
+  --go-wash:#1F3A2E;
+  --warn:#E3A65C;
+  --warn-wash:#3B2C18;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--body);font-size:16.5px;line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:780px;margin:0 auto;padding:0 24px}
+header.hero{padding:72px 0 40px;border-bottom:1px solid var(--line)}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--berry);font-weight:600;margin:0 0 18px}
+h1{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(40px,7vw,62px);line-height:1.02;letter-spacing:-.02em;
+  margin:0 0 22px;text-wrap:balance;
+}
+h1 .accent{color:var(--berry)}
+.hero p.lede{font-size:19px;line-height:1.55;color:var(--ink-soft);max-width:60ch;margin:0}
+.hero p.lede strong{color:var(--ink);font-weight:600}
+
+section{padding:52px 0 8px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--berry);font-weight:600;margin:0 0 10px}
+h2{font-family:var(--display);font-weight:700;font-size:30px;line-height:1.12;letter-spacing:-.015em;margin:0 0 16px;text-wrap:balance}
+h3{font-family:var(--display);font-weight:600;font-size:19px;margin:28px 0 8px}
+p{max-width:66ch;margin:0 0 16px}
+p.note{color:var(--ink-soft);font-size:15px}
+strong{font-weight:600}
+em{font-style:italic}
+
+.thesis{
+  background:var(--berry-wash);border-left:4px solid var(--berry);
+  padding:20px 24px;border-radius:0 10px 10px 0;margin:26px 0;
+}
+.thesis p{margin:0;font-size:18px;line-height:1.5;font-weight:500;max-width:none}
+.thesis .who{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--berry);display:block;margin-bottom:8px;font-weight:600}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+@media(max-width:640px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.card h4{font-family:var(--display);font-weight:700;font-size:16px;margin:0 0 8px}
+.card p{font-size:15px;color:var(--ink-soft);margin:0;max-width:none}
+.card p strong{color:var(--ink)}
+.card.enemy h4{color:var(--berry)}
+.card.us h4{color:var(--go)}
+
+.tablebox{overflow-x:auto;margin:24px 0;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14.5px}
+th{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;text-align:left;color:var(--ink-soft);font-weight:600;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+td{padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+tr:last-child td{border-bottom:none}
+td.b{font-weight:600;white-space:nowrap}
+td .sub{display:block;font-size:12.5px;color:var(--ink-soft)}
+.you td{background:var(--berry-wash)}
+.you td.b{color:var(--berry)}
+
+.mathrow{display:flex;flex-wrap:wrap;gap:14px;margin:24px 0}
+.stat{flex:1 1 150px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.stat .n{font-family:var(--display);font-weight:800;font-size:28px;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--berry)}
+.stat .l{font-size:13px;color:var(--ink-soft);line-height:1.35;margin-top:4px}
+
+ol.seq{list-style:none;counter-reset:step;padding:0;margin:26px 0}
+ol.seq>li{counter-increment:step;position:relative;padding:0 0 26px 58px}
+ol.seq>li::before{
+  content:counter(step,decimal-leading-zero);
+  position:absolute;left:0;top:1px;
+  font-family:var(--mono);font-weight:600;font-size:13px;color:var(--berry);
+  border:1.5px solid var(--berry);border-radius:999px;
+  width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+  background:var(--surface);
+}
+ol.seq>li::after{content:"";position:absolute;left:18px;top:42px;bottom:4px;width:1.5px;background:var(--line)}
+ol.seq>li:last-child::after{display:none}
+ol.seq h4{font-family:var(--display);font-weight:700;font-size:17px;margin:5px 0 6px}
+ol.seq p{font-size:15px;color:var(--ink-soft);margin:0 0 6px;max-width:64ch}
+ol.seq p strong{color:var(--ink)}
+.when{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+
+ul.tight{padding-left:20px;margin:12px 0 20px}
+ul.tight li{margin-bottom:9px;max-width:62ch}
+ul.tight li::marker{color:var(--berry)}
+
+.imgstack{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:22px 0}
+.frame{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.frame .fn{font-family:var(--mono);font-size:11px;color:var(--berry);letter-spacing:.08em;font-weight:600;text-transform:uppercase}
+.frame h5{font-family:var(--display);font-weight:700;font-size:14.5px;margin:6px 0 4px}
+.frame p{font-size:13px;color:var(--ink-soft);margin:0;max-width:none;line-height:1.45}
+
+.gates{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:24px 0}
+@media(max-width:700px){.gates{grid-template-columns:1fr}}
+.gate{border-radius:12px;padding:18px 20px;border:1px solid var(--line);background:var(--surface)}
+.gate .g{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+.gate.good{background:var(--go-wash);border-color:transparent}
+.gate.good .g{color:var(--go)}
+.gate.mid{background:var(--warn-wash);border-color:transparent}
+.gate.mid .g{color:var(--warn)}
+.gate.bad{background:var(--berry-wash);border-color:transparent}
+.gate.bad .g{color:var(--berry)}
+.gate h4{font-family:var(--display);font-size:15.5px;font-weight:700;margin:8px 0 6px}
+.gate p{font-size:13.5px;color:var(--ink-soft);margin:0;max-width:none;line-height:1.45}
+
+.guardrail{
+  background:var(--surface-2);border-radius:14px;padding:26px 28px;margin:30px 0 10px;
+}
+.guardrail h3{margin-top:0;font-size:17px}
+.guardrail ul{padding-left:20px;margin:10px 0 0;font-size:14.5px;color:var(--ink-soft)}
+.guardrail li{margin-bottom:8px;max-width:70ch}
+.guardrail li strong{color:var(--ink)}
+.guardrail .tag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--warn);font-weight:600}
+
+.week{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:22px 0}
+@media(max-width:640px){.week{grid-template-columns:1fr}}
+
+footer{padding:40px 0 64px;border-top:1px solid var(--line);margin-top:56px}
+footer p{font-size:13.5px;color:var(--ink-soft);max-width:70ch}
+.close{
+  font-family:var(--display);font-weight:700;font-size:22px;line-height:1.3;
+  color:var(--ink);margin:0 0 18px;max-width:30ch;text-wrap:balance;
+}
+.close .accent{color:var(--berry)}
+:focus-visible{outline:2px solid var(--berry);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="kicker">herbody · Amazon UK · 1,300-unit first run</p>
+  <h1>Sell the shelf,<br>not the <span class="accent">scoop</span>.</h1>
+  <p class="lede">AG1 didn't win by having the best greens — it won by standing for one belief: <strong>your cluttered supplement shelf is the enemy, and one ritual replaces it.</strong> This playbook applies that belief to a market AG1 ignores: women who want creatine, collagen and their vitamins without buying five products — and without the bro-science aisle.</p>
+</header>
+
+<section>
+  <p class="eyebrow">01 · The wedge</p>
+  <h2>Win one search, not a category</h2>
+  <p>The greens-powder shelf on Amazon UK is a graveyard for new brands: hundreds of listings, review counts in the tens of thousands, PPC bids priced for venture money. You don't have the units or the hours to fight there. But there's a wedge sitting open:</p>
+
+  <div class="thesis">
+    <span class="who">The positioning</span>
+    <p>Women's creatine is exploding, and every product serving it is either a <em>bro brand in pink</em> or a wellness powder with a fairy-dust sprinkle. herbody is the only all-in-one built around a <strong>full creatine dose</strong> — plus the collagen, vitamins and inositol she's already buying separately.</p>
+  </div>
+
+  <p>Strategically this means you enter through <strong>"creatine for women"</strong> and its long tail — a search term with fast-growing volume, weak incumbents, and buyers who already know what they want — rather than "greens powder" or "multivitamin," where you'd be invisible. The all-in-one story then does the upsell work <em>inside</em> the listing: she came for creatine, she stays because it replaces four other purchases.</p>
+
+  <div class="grid2">
+    <div class="card enemy">
+      <h4>Name the enemy</h4>
+      <p>Not a competitor — a behaviour: <strong>the £70 shelf of half-finished tubs</strong> and the pink-tax products that charge more for less. Every piece of copy either attacks the cluttered shelf or the sprinkle-dose.</p>
+    </div>
+    <div class="card us">
+      <h4>One belief, everywhere</h4>
+      <p>"One scoop replaces the shelf" is the thesis of the hero image, the first bullet, the website headline and the insert card. Repetition is the strategy — 1,300 units can't afford two messages.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <p class="eyebrow">02 · The battlefield</p>
+  <h2>Where everyone else is exposed</h2>
+  <p>You're not trying to beat these brands — you're positioning in the gap between them. Each row is an angle you can say out loud in comparison content and A+ modules (without naming names on Amazon).</p>
+
+  <div class="tablebox">
+  <table>
+    <tr><th>Player</th><th>What they own</th><th>Where they're exposed</th><th>Your angle against them</th></tr>
+    <tr>
+      <td class="b">AG1<span class="sub">~£79/mo</span></td>
+      <td>The all-in-one belief; premium ritual</td>
+      <td>No creatine, no collagen, unisex, brutal price</td>
+      <td>"The all-in-one actually built for her — at half the price"</td>
+    </tr>
+    <tr>
+      <td class="b">Bloom Greens<span class="sub">~£33</span></td>
+      <td>TikTok women's audience, taste-first</td>
+      <td>Sprinkle doses; no meaningful creatine</td>
+      <td>"Pretty powder or a full dose — you shouldn't have to choose"</td>
+    </tr>
+    <tr>
+      <td class="b">Free Soul<span class="sub">UK women's wellness</span></td>
+      <td>UK female community, protein-led</td>
+      <td>Fragmented range — she still buys 4 products</td>
+      <td>"Their range in one pouch"</td>
+    </tr>
+    <tr>
+      <td class="b">MyProtein creatine<span class="sub">~£12</span></td>
+      <td>Price; the default creatine</td>
+      <td>Flavourless commodity, zero female identity, creatine only</td>
+      <td>"Creatine plus everything else — and it tastes like strawberries"</td>
+    </tr>
+    <tr class="you">
+      <td class="b">herbody</td>
+      <td colspan="3"><strong>Full creatine dose + collagen + vitamins + inositol, flavour-first, for women.</strong> The only square on this board nobody occupies.</td>
+    </tr>
+  </table>
+  </div>
+
+  <p class="note">Tactical homework (one evening): read the 1-star reviews of Bloom, Free Soul and the top two women's creatines on amazon.co.uk. Their complaints — taste, clumping, "didn't feel anything," sprinkle doses — are your bullet points, written for you by the market.</p>
+</section>
+
+<section>
+  <p class="eyebrow">03 · Price architecture</p>
+  <h2>Charge for the shelf you replace</h2>
+  <p>Price against the <em>basket she's already buying</em>, not against other powders. Creatine (£12) + collagen (£20) + multivitamin (£12) + inositol (£15) is a £59/month habit before shipping. That's your anchor, and it belongs in the images, not just the copy.</p>
+
+  <div class="mathrow">
+    <div class="stat"><div class="n">£59+</div><div class="l">the separate-products basket you replace — your anchor number</div></div>
+    <div class="stat"><div class="n">£33–37</div><div class="l">your slot: premium to commodity powders, clearly under AG1, beside Bloom</div></div>
+    <div class="stat"><div class="n">~£1.15</div><div class="l">per-day reframe for bullets and A+ — "less than a coffee"</div></div>
+    <div class="stat"><div class="n">−15%</div><div class="l">launch ladder: open low to buy velocity and reviews, restore price at ~50 reviews</div></div>
+  </div>
+
+  <ul class="tight">
+    <li><strong>Subscribe &amp; Save from day one (5–10%).</strong> A daily powder is a subscription product wearing a pouch. S&amp;S attach rate is also your single best signal that the product — not the discount — is working.</li>
+    <li><strong>Don't price under £30.</strong> Below that you read as another sprinkle product, and you can't fund PPC out of margin. The formula justifies the premium; the anchor image proves it.</li>
+    <li><strong>Hold one lever back:</strong> a 2-pouch bundle at a visible saving is your week-6 move if velocity stalls — not a launch-day giveaway.</li>
+  </ul>
+</section>
+
+<section>
+  <p class="eyebrow">04 · The listing is the funnel</p>
+  <h2>Seven images that argue in order</h2>
+  <p>On Amazon your listing is the website, the salesperson and the ad. Build the image stack as a sequential argument — each frame kills the next objection she raises, in the order she raises them.</p>
+
+  <div class="imgstack">
+    <div class="frame"><span class="fn">1 · Stop</span><h5>Hero pouch</h5><p>Serving count and "creatine + collagen + vitamins" legible at thumbnail size — the thumbnail is fighting in search results, not on your PDP.</p></div>
+    <div class="frame"><span class="fn">2 · Thesis</span><h5>The shelf, replaced</h5><p>Flat-lay: five tubs vs. one pouch, with the £59 vs £35 math. Your money image — the AG1 argument in one frame.</p></div>
+    <div class="frame"><span class="fn">3 · Proof</span><h5>Full doses, named</h5><p>Ingredient panel with real amounts and %NRVs. Attacks the sprinkle-dose enemy directly.</p></div>
+    <div class="frame"><span class="fn">4 · Trust</span><h5>Tested &amp; certified</h5><p>GMP manufacture, third-party COA, UK-made. Borrowed credibility while your review count is small.</p></div>
+    <div class="frame"><span class="fn">5 · Desire</span><h5>The taste shot</h5><p>Pink pour, real strawberries. Taste fear kills powder purchases; kill it with the most appetising frame in the stack.</p></div>
+    <div class="frame"><span class="fn">6 · Identity</span><h5>Her ritual</h5><p>Gym bag, desk, morning light. She's buying who she is at 7am, not a nutrient list.</p></div>
+    <div class="frame"><span class="fn">7 · Close</span><h5>Subscribe &amp; save</h5><p>The per-day math and the S&amp;S saving, visualised. Last frame before the buy box gets the call to action.</p></div>
+  </div>
+
+  <p><strong>Keyword strategy in one line:</strong> title and backend target the wedge — <em>creatine for women, all-in-one supplement for women, collagen creatine powder</em> — not the ocean terms. Rank for 5 terms you can win before touching terms you can't.</p>
+</section>
+
+<section>
+  <p class="eyebrow">05 · Launch sequence</p>
+  <h2>Manufacture momentum you don't have</h2>
+  <p>Amazon's algorithm rewards early velocity and conversion. A cold launch wastes the honeymoon; a choreographed one compounds it. The sequence matters more than any single tactic:</p>
+
+  <ol class="seq">
+    <li>
+      <h4>Build a founding list while production runs</h4>
+      <p class="when">Now → launch</p>
+      <p>One-page site, one job: <strong>"Founding member — 20% off launch week."</strong> Push it through your personal network, her group chats, local gym noticeboards. Fifty warm emails is enough; a hundred is a weapon. This costs time you have in tiny fragments, not money.</p>
+    </li>
+    <li>
+      <h4>Seed reviews before you need them</h4>
+      <p class="when">Listing live, week 1</p>
+      <p>Enrol 30 units in <strong>Amazon Vine</strong> the day the listing goes live. Reviews are the whole game at your scale: organically ~2–4% of buyers review, so 1,300 units yields maybe 30–50 reviews unaided. Vine front-loads the first 20–30 so real shoppers never see a zero-review listing.</p>
+    </li>
+    <li>
+      <h4>Fire the list in a 72-hour window</h4>
+      <p class="when">Launch week</p>
+      <p>Send the founding-member email in one concentrated burst, at the ladder price. A spike of external, high-converting traffic in a tight window is the strongest ranking signal a small brand can buy — and yours is free.</p>
+    </li>
+    <li>
+      <h4>Let PPC discover, then concentrate</h4>
+      <p class="when">Weeks 1–4</p>
+      <p>One auto campaign (£10–15/day) as a search-term listening post; one exact campaign on your 5 wedge keywords (£10–15/day). Weekly, move converting terms from auto into exact and negate the junk. That 20-minute loop <em>is</em> your ad strategy — resist adding campaigns.</p>
+    </li>
+    <li>
+      <h4>Convert buyers into the flywheel</h4>
+      <p class="when">Ongoing</p>
+      <p>Insert card in every pouch: QR to a "make it work" page — how to dose, what week 3 feels like, then a nudge to review and to S&amp;S. A customer who uses the product properly gets results; results write your 5-star reviews for run two.</p>
+    </li>
+    <li>
+      <h4>Spend the win, not the hope</h4>
+      <p class="when">Week 6+</p>
+      <p>Only after the listing converts: raise price to target, deploy the 2-pouch bundle if velocity dips, and <em>then</em> consider seeding 10–15 pouches to UK nano-creators in the women's-lifting niche for UGC you can license into the listing. Content amplifies a listing that works; it cannot save one that doesn't.</p>
+    </li>
+  </ol>
+</section>
+
+<section>
+  <p class="eyebrow">06 · The scorecard</p>
+  <h2>1,300 units is an experiment — grade it like one</h2>
+  <p>This run's real product is <em>information</em>. Decide now what the data must show, so run two is a decision instead of a mood. Judge it at day 90:</p>
+
+  <div class="gates">
+    <div class="gate good">
+      <span class="g">Green — reorder bigger</span>
+      <h4>The wedge is real</h4>
+      <p>Listing conversion ≥10%, S&amp;S attach ≥15%, taste praised in reviews, ad spend ≤25% of sales. Reorder 3–5k units, raise price, start the creator seeding.</p>
+    </div>
+    <div class="gate mid">
+      <span class="g">Amber — fix, don't scale</span>
+      <h4>Traffic yes, conversion no</h4>
+      <p>Clicks come but conversion &lt;8%: it's price, images or reviews — not the product. Rework the stack and offer before spending another ad pound.</p>
+    </div>
+    <div class="gate bad">
+      <span class="g">Red — reposition</span>
+      <h4>The wedge missed</h4>
+      <p>Weak clicks on wedge terms or taste complaints in reviews. Sell through at cost via the list, keep the audience, relaunch with the formula or angle the reviews demand.</p>
+    </div>
+  </div>
+
+  <p class="note">Track four numbers weekly, ignore the rest: sessions, conversion rate, TACOS (total ad spend ÷ total sales), and S&amp;S attach. Everything you need to know about run two lives in those four.</p>
+</section>
+
+<section>
+  <p class="eyebrow">07 · The founder's five hours</p>
+  <h2>An operating system for a full-time-job launch</h2>
+  <div class="week">
+    <div class="card">
+      <h4>Two fixed blocks</h4>
+      <p><strong>Tue + Thu, 20 min:</strong> PPC loop — harvest converters, negate junk, check the four numbers. <strong>Sat/Sun, 2 hrs:</strong> the week's single project (image brief, email draft, insert card). One project per week, finished, beats four started.</p>
+    </div>
+    <div class="card">
+      <h4>Ruthless nos (for now)</h4>
+      <p>No TikTok posting schedule, no influencer programme, no full DTC store, no retail outreach, no second flavour, no EU. Every one of these is a run-two decision that gets easier with run-one data — and impossible without it.</p>
+    </div>
+  </div>
+</section>
+
+<div class="guardrail">
+  <span class="tag">Guardrails — the short version</span>
+  <h3>Strategy only works if the words are legal</h3>
+  <ul>
+    <li><strong>Creatine's power claim needs 3g/day.</strong> Confirm the dose with Black Label before production — at 3g you can legally say it "increases physical performance in short bursts of high-intensity exercise." Under 3g, you can only state the amount. This one spec decision is worth real conversion.</li>
+    <li><strong>Collagen has no approved UK claim</strong> — the legal play every UK brand uses: vitamin C "contributes to normal collagen formation for normal skin." Say that; imply the rest with imagery.</li>
+    <li><strong>Never print "diuretic" or "reduces bloating."</strong> Name the botanicals and doses; let the ingredient list speak. B-vitamins carry your energy language ("reduction of tiredness and fatigue").</li>
+    <li><strong>The unglamorous trio</strong> — label review before printing, free food-business registration with your council, and Black Label's GMP certificate for Amazon's category approval — is covered in the full plan in your repo. Boring, cheap, non-negotiable.</li>
+  </ul>
+</div>
+
+<footer>
+  <p class="close">You're not launching a supplement.<br>You're launching a <span class="accent">verdict</span> on the supplement shelf.</p>
+  <p>herbody · Amazon UK launch strategy · The admin, compliance and budget detail lives in <em>herbody/launch-plan.md</em> on your GitHub branch. Prices and thresholds are working assumptions to pressure-test against your actual landed cost.</p>
+</footer>
+
+</div>
