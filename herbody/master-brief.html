@@ -1,0 +1,443 @@
+<title>herbody Master Design Brief</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Spline+Sans+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FBF6F4;--surface:#FFFFFF;--surface-2:#F4E9E7;--ink:#2A1B22;--ink-soft:#6E5560;--line:#E6D4D4;
+  --berry:#C2255C;--berry-wash:#F9E7EE;--go:#2F7D5C;--go-wash:#E4F1EA;--warn:#B4690E;--warn-wash:#F8EEDD;
+  --display:'Bricolage Grotesque','Trebuchet MS',Verdana,sans-serif;--body:'Instrument Sans','Helvetica Neue',Arial,sans-serif;--mono:'Spline Sans Mono','Courier New',monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1D1218;--surface:#28191F;--surface-2:#33222A;--ink:#F5E8EE;--ink-soft:#C1A3B0;--line:#432E38;--berry:#F06595;--berry-wash:#3A1F2C;--go:#5CBA8E;--go-wash:#1F3A2E;--warn:#E3A65C;--warn-wash:#3B2C18;}}
+:root[data-theme="dark"]{--bg:#1D1218;--surface:#28191F;--surface-2:#33222A;--ink:#F5E8EE;--ink-soft:#C1A3B0;--line:#432E38;--berry:#F06595;--berry-wash:#3A1F2C;--go:#5CBA8E;--go-wash:#1F3A2E;--warn:#E3A65C;--warn-wash:#3B2C18;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--berry);text-decoration:none;border-bottom:1px solid transparent}a:hover{border-bottom-color:var(--berry)}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+header.hero{padding:64px 0 32px;border-bottom:1px solid var(--line)}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--berry);font-weight:600;margin:0 0 16px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(36px,6vw,54px);line-height:1.04;letter-spacing:-.02em;margin:0 0 18px;text-wrap:balance}
+h1 .accent{color:var(--berry)}
+.lede{font-size:18px;line-height:1.55;color:var(--ink-soft);max-width:66ch;margin:0}
+.lede strong{color:var(--ink);font-weight:600}
+nav.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:6px 18px;padding:22px 0 0;font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase}
+nav.toc a{color:var(--ink-soft)}nav.toc a:hover{color:var(--berry)}
+section{padding:50px 0 8px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--berry);font-weight:600;margin:0 0 10px}
+h2{font-family:var(--display);font-weight:700;font-size:28px;line-height:1.12;letter-spacing:-.015em;margin:0 0 14px;text-wrap:balance}
+h3{font-family:var(--display);font-weight:600;font-size:18.5px;margin:26px 0 8px}
+h4{font-family:var(--display);font-weight:700;font-size:15.5px;margin:0 0 6px}
+p{max-width:70ch;margin:0 0 14px}
+p.note{color:var(--ink-soft);font-size:14.5px}
+strong{font-weight:600}
+.tablebox{overflow-x:auto;margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:13.5px}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;text-align:left;color:var(--ink-soft);font-weight:600;padding:10px 13px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+td{padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+tr:last-child td{border-bottom:none}
+td.b{font-weight:600;white-space:nowrap}
+.ok{color:var(--go);font-weight:600}.no{color:var(--berry);font-weight:600}.open{color:var(--warn);font-weight:600}
+ul.tight{padding-left:20px;margin:8px 0 16px}
+ul.tight li{margin-bottom:7px;max-width:68ch}
+ul.tight li::marker{color:var(--berry)}
+ol.plain{padding-left:22px;margin:8px 0 16px}ol.plain li{margin-bottom:7px;max-width:68ch}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:18px 0}
+@media(max-width:700px){.grid2,.grid3{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.card p{font-size:14px;color:var(--ink-soft);margin:0;max-width:none;line-height:1.5}
+.card p strong{color:var(--ink)}
+.thesis{background:var(--berry-wash);border-left:4px solid var(--berry);padding:18px 22px;border-radius:0 10px 10px 0;margin:20px 0}
+.thesis p{margin:0;font-size:16.5px;line-height:1.5;font-weight:500;max-width:none}
+.thesis .who{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--berry);display:block;margin-bottom:8px;font-weight:600}
+.manifesto{font-family:var(--display);font-weight:600;font-size:21px;line-height:1.35;max-width:34ch;margin:14px 0 20px;text-wrap:balance}
+.manifesto em{color:var(--berry);font-style:normal}
+.sw{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0 16px}
+.sw div{display:flex;align-items:center;gap:9px;font-family:var(--mono);font-size:11.5px;background:var(--surface);border:1px solid var(--line);padding:6px 10px 6px 6px;border-radius:999px}
+.sw i{display:inline-block;width:24px;height:24px;border-radius:50%;border:1px solid rgba(0,0,0,.12)}
+.marks{display:flex;flex-wrap:wrap;gap:18px;align-items:center;margin:14px 0 18px}
+.markbox{background:var(--surface-2);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.markbox .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.brief{background:var(--surface);border:1.5px solid var(--berry);border-radius:14px;padding:20px 24px;margin:18px 0}
+.brief h3{margin-top:0}
+pre{white-space:pre-wrap;font-family:var(--mono);font-size:12.5px;line-height:1.55;background:var(--surface-2);padding:16px 18px;border-radius:10px;overflow-x:auto;margin:10px 0 0;color:var(--ink)}
+.guardrail{background:var(--surface-2);border-radius:14px;padding:20px 24px;margin:18px 0}
+.guardrail h3{margin-top:0;font-size:16.5px}
+.guardrail ul{padding-left:20px;margin:8px 0 0;font-size:14px;color:var(--ink-soft)}
+.guardrail li{margin-bottom:7px;max-width:74ch}.guardrail li strong{color:var(--ink)}
+.src{font-size:12.5px;color:var(--ink-soft);line-height:1.55;max-width:none}
+.src li{margin-bottom:4px}
+.pouch{width:200px;aspect-ratio:5/8;border-radius:10px 10px 16px 16px;padding:14px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 26px rgba(0,0,0,.16);position:relative;overflow:hidden;font-family:var(--display);background:#F4EDE6;color:#3A1A2B;border-left:12px solid #3A1A2B;border-right:12px solid #3A1A2B}
+.pouch .chip{display:inline-block;background:#3A1A2B;color:#F4EDE6;border-radius:999px;padding:3px 10px;font-weight:800;font-size:14px;letter-spacing:-.02em}
+.pouch .name{font-weight:800;line-height:.92;letter-spacing:-.02em;font-size:34px;margin-top:10px}
+.pouch .spec{font-family:var(--mono);font-size:6.8px;line-height:1.35;border:1px solid currentColor;border-radius:4px;padding:3px 5px}
+.pouch .spec b{display:block;font-size:1.25em}
+.pouch .foot{font-family:var(--mono);font-size:6.5px;letter-spacing:.06em;text-transform:uppercase;opacity:.85;margin-top:6px}
+footer{padding:36px 0 60px}
+footer p{font-size:13px;color:var(--ink-soft);max-width:74ch}
+.close{font-family:var(--display);font-weight:700;font-size:21px;line-height:1.3;color:var(--ink);margin:0 0 16px;max-width:34ch;text-wrap:balance}
+.close .accent{color:var(--berry)}
+:focus-visible{outline:2px solid var(--berry);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="kicker">herbody · BODY BEAUTY · master design brief · v1.1 · September 2026</p>
+  <h1>Everything the designer needs, <span class="accent">in one place</span>.</h1>
+  <p class="lede">This supersedes the earlier study, playbook, brand-directions and distinctive-assets pages for design purposes. It carries the decisions already made, the evidence behind them, the science translated into what may be drawn and what may be claimed in the UK, the pouch's physical specification and production route, and the exact deliverables with acceptance criteria. <strong>If something here contradicts an earlier document, this wins.</strong></p>
+  <nav class="toc">
+    <a href="#read">00 Read first</a><a href="#foundation">01 Foundation</a><a href="#truth">02 Product truth</a><a href="#assets">03 Assets</a><a href="#visual">04 Visual system</a><a href="#pouch">05 Pouch</a><a href="#amazon">06 Amazon</a><a href="#touch">07 Touchpoints</a><a href="#frame">08 Competitive frame</a><a href="#claims">09 Claims</a><a href="#production">10 Production</a><a href="#ai">11 AI workflow</a><a href="#deliver">12 Deliverables</a><a href="#sources">13 Sources</a>
+  </nav>
+</header>
+
+<!-- 00 -->
+<section id="read">
+  <p class="eyebrow">00 · Read first</p>
+  <h2>Decisions made, decisions open</h2>
+  <div class="tablebox"><table>
+    <tr><th>Item</th><th>Status</th><th>Decision / what's needed</th></tr>
+    <tr><td class="b">House brand</td><td class="ok">Decided</td><td><strong>herbody</strong> (registered trademark, owned). Lowercase, "her" bold.</td></tr>
+    <tr><td class="b">Product name</td><td class="ok">Decided</td><td><strong>BODY BEAUTY</strong>. Descriptor: "the complete daily".</td></tr>
+    <tr><td class="b">Market &amp; channel</td><td class="ok">Decided</td><td>UK. Amazon UK first. 1,300-unit first run, one flavour: Strawberry + Raspberry.</td></tr>
+    <tr><td class="b">Pack direction</td><td class="ok">Decided</td><td>Alabaster face, black-cherry frame, product name as monolith, four-cell spec strip. Blush/rose-gold concepts retired.</td></tr>
+    <tr><td class="b">Distinctive assets</td><td class="ok">Decided</td><td>Primary: the <strong>her.</strong> chip. Secondary: the <strong>Scoop</strong> glyph. Supporting: the Five asterisk (back panel / A+). See §03.</td></tr>
+    <tr><td class="b">Creatine dose</td><td class="ok">Decided · confirm spec</td><td><strong>5g</strong>. Now evidence-backed (benefit in women clusters at ≥5g with training) and legal-claim-backed (≥3g). Confirm the Black Label spec delivers 5g per 12.8g scoop.</td></tr>
+    <tr><td class="b">Vitamin &amp; mineral count</td><td class="open">Open</td><td>"24" is a placeholder. Replace with the true count from the spec before any print.</td></tr>
+    <tr><td class="b">Myo-inositol dose</td><td class="open">Open</td><td>All evidence is at 2–4g/day. If the scoop carries a few hundred mg it stays in the spec strip as an ingredient, but gets no story in A+ or social. If ≥2g, it can carry an ingredient-education module.</td></tr>
+    <tr><td class="b">Clear scoop window on pack</td><td class="open">Run 2</td><td>Creatine is hygroscopic; a window costs 4–7× the moisture barrier of foil and the recycling label. Run 1: <strong>printed</strong> scoop glyph + high-barrier film. Window is a run-2 option after stability testing.</td></tr>
+    <tr><td class="b">Berry-face flip</td><td class="open">A/B</td><td>Deep-raspberry face with cream type thumbs harder. Deliver as a variant for a thumbnail A/B in the first PPC campaign; switch at reorder if it wins.</td></tr>
+  </table></div>
+  <p class="note">How to use this document: §01–04 are the brand and must be applied without variation. §05–07 are the surfaces. §09 is law. §12 is the checklist you will be measured against.</p>
+</section>
+
+<!-- 01 -->
+<section id="foundation">
+  <p class="eyebrow">01 · Foundation</p>
+  <h2>Philosophy, positioning, audience, voice</h2>
+  <h3>The philosophy</h3>
+  <p class="manifesto">her. one scoop.<br>Five things she already buys, at the doses the studies used, in one honest ritual. <em>We don't sell her a promise. We hand her the finished routine.</em></p>
+  <ul class="tight">
+    <li><strong>Completeness over cleverness.</strong> The product's truth is that it finishes the job; every surface says "complete" before it says anything else.</li>
+    <li><strong>Doses, not adjectives.</strong> Numbers on the front. "Premium", "advanced", "enhancer" never appear. Proof furniture (grams, counts, marks) replaces claims.</li>
+    <li><strong>Adult, addressed, unhurried.</strong> She is spoken <em>to</em>, in the second person, in sentences that start with "her". No exclamation marks. No pink-and-shrink.</li>
+    <li><strong>Evidence, translated.</strong> The science is shown as "in studies of the ingredient", charted honestly, and never inflated into a claim the UK register doesn't allow.</li>
+    <li><strong>One ritual.</strong> The scoop is the object, the mark and the habit. Everything points at 7am.</li>
+  </ul>
+  <h3>Positioning</h3>
+  <div class="thesis"><span class="who">For · who · is · that · unlike · because</span><p><strong>For</strong> women 35–55 (and the 24–34 who follow them) <strong>who</strong> are buying creatine, collagen, a multivitamin and inositol as four separate products and want the edge back — energy, memory, shape — without the bro aisle or the sprinkle-dose "for her" tubs, <strong>herbody Body Beauty is</strong> the complete daily scoop <strong>that</strong> delivers all four at the doses the research used, <strong>unlike</strong> Free Soul, Wellgard, Warrior and Bloom, which each sell one or two of them, <strong>because</strong> 5g creatine · 5g collagen · a full multivitamin · myo-inositol is on the front of the pack and in every scoop.</p></div>
+  <h3>The enemy</h3>
+  <p>Not a brand — a behaviour: <strong>the £59 shelf of half-finished tubs</strong>, and the pink products that charge more for 3g. Every asset either replaces the shelf or exposes the sprinkle.</p>
+  <h3>Two buyers, one pack</h3>
+  <div class="grid2">
+    <div class="card"><h4>Core · 35–55 · "steady &amp; sharp"</h4><p>Perimenopause-aware, strength-training on advice, reads labels, trusts named experts and other women her age. Motivations in the data: cognition &gt; energy &gt; strength; "muscle" is eighth. Price-tolerant when the dose is honest. Anxiety she won't say aloud: losing the edge.</p></div>
+    <div class="card"><h4>Growth · 24–34 · "sorted"</h4><p>Gym-curious, feed-fed, already buys collagen and a multi, tired of five tubs. Converts on taste, aesthetics, per-day price and creators. Wants the pouch to look good on the counter. Anxiety: bloat, breakouts, "am I doing this right".</p></div>
+  </div>
+  <h3>Voice</h3>
+  <div class="grid2">
+    <div class="card"><h4>Do</h4><p>"5g, because that's the dose the research uses." · "her body. her rules. her scoop." · "Creatine isn't a gym supplement. It's a women's-health one." · Short sentences. Second person. Specific numbers. Full stops.</p></div>
+    <div class="card"><h4>Don't</h4><p>"Unlock your glow-up!" · "Snatched by summer" · "Clinically formulated for optimal recomposition" · "ladies", "girlboss", "hack", "detox", "balance your hormones". No exclamation marks, no lab voice, no youth slang.</p></div>
+  </div>
+  <h3>Name architecture</h3>
+  <p><strong>herbody</strong> (house) → <strong>BODY BEAUTY</strong> (product) → "the complete daily" (descriptor). Future SKUs keep the two-word shape (Body Calm, Body Bright). Never "Her-" prefixes, "-Glow" suffixes, "Crea-" prefixes — those are the category's crowded lanes.</p>
+</section>
+
+<!-- 02 -->
+<section id="truth">
+  <p class="eyebrow">02 · Product truth</p>
+  <h2>The formula, the evidence, and what each ingredient may say</h2>
+  <p>One scoop (12.8g) daily, 30 scoops per 384g pouch. The designer needs this table for the spec strip, the back panel, A+ content and any infographic. "May visualise" is what can be charted as ingredient science; "may claim" is the only benefit language legal on pack or listing in Great Britain.</p>
+  <div class="tablebox"><table>
+    <tr><th>Ingredient · dose</th><th>What the evidence says</th><th>May visualise (as "in studies of the ingredient")</th><th>May claim in GB (exact wording)</th></tr>
+    <tr><td class="b">Creatine monohydrate · 5g</td><td>Women carry 70–80% lower stores than men (Smith-Ryan 2021). 2026 meta-analysis in postmenopausal women (7 RCTs, n=608): lean mass +0.37kg, leg press +7.5kg — <strong>only at ≥5g/day with resistance training</strong>; ≤3g without training showed nothing (Naddafha 2026). 3g/day reaches the same muscle plateau as loading by day 28 (Hultman 1996) — no loading phase. Water goes into muscle, not under the skin (Powers 2003). No renal signal in healthy adults (Kreider 2017).</td><td>Lean-mass and leg-press bars; the Hultman "no loading needed" curve; a "where the water goes" muscle-cell diagram.</td><td>"Creatine increases physical performance in successive bursts of short-term, high-intensity exercise" (≥3g/day; adults doing high-intensity exercise). For 55+: "Daily creatine consumption can enhance the effect of resistance training on muscle strength in adults over 55." <span class="no">Not:</span> bone, mood, sleep, cognition, "lean", "tone", menopause.</td></tr>
+    <tr><td class="b">Collagen peptides · 5g incl. 2.5g VERISOL®</td><td>VERISOL at 2.5g/day: skin elasticity up at 8 weeks in women 35–55 (Proksch 2014a); eye-wrinkle volume −20% vs placebo in women 45–65, effect persisting 4 weeks after stopping (Proksch 2014b); nail growth +12%, broken nails −42% (Hexsel 2017, open-label); cellulite reduction at 6 months (Schunck 2015). Meta-analyses of hydrolysed collagen agree on hydration and elasticity (de Miranda 2021; Pu 2023). 2.5g is the studied dose — the product matches it.</td><td>−20% eye-wrinkle-volume bars at 4 and 8 weeks; elasticity time-course with the "persists after stopping" tail.</td><td><span class="no">Collagen has no authorised claim.</span> Route all skin/hair/nail language through: "Vitamin C contributes to normal collagen formation for the normal function of skin" · "Biotin contributes to the maintenance of normal hair / normal skin" · "Zinc contributes to the maintenance of normal hair / nails / skin".</td></tr>
+    <tr><td class="b">Hyaluronic acid · 100mg</td><td>120mg/day improved hydration, wrinkles and elasticity over 8–12 weeks (Kawada 2014; Oe 2017; Hsu 2021; Dolečková 2025, n=150, manufacturer-authored); 60mg weaker. Absorption evidence is animal only. <strong>100mg sits just under the best-evidenced 120mg.</strong></td><td>A hydration trajectory over 12 weeks, labelled as ingredient studies at 120mg.</td><td><span class="no">No authorised claim of any kind.</span> Support line only ("with 100mg hyaluronic acid").</td></tr>
+    <tr><td class="b">Myo-inositol · dose TBC</td><td>Meta-analysis of 26 RCTs (n=1,691) in PCOS at 1–4g/day: cycle regularity, insulin markers (Greff 2023). No effect on mood at any dose (Mukai 2014). <strong>Evidence is at 2–4g; a multi-ingredient scoop usually carries far less.</strong></td><td>Ingredient-origin graphic only. No outcome chart unless dosed ≥2g.</td><td><span class="no">No authorised claim.</span> Never: PCOS, fertility, hormones, cycle, insulin, mood.</td></tr>
+    <tr><td class="b">Multivitamin &amp; minerals · [24]</td><td>Authorised-claim carriers. These are the brand's legal energy, skin and hair language.</td><td>%NRV panel; a "your daily [24]" grid.</td><td>B6 / B12 / folate / magnesium: "contributes to the reduction of tiredness and fatigue" · Vitamin D / magnesium: "contributes to (the maintenance of) normal muscle function" · plus the vitamin C, biotin, zinc lines above. Each needs ≥15% NRV per daily dose.</td></tr>
+    <tr><td class="b">Botanical base · dose TBC</td><td>Named descriptively, doses listed.</td><td>Nothing outcome-based.</td><td><span class="no">Never</span> "diuretic", "water retention", "de-bloat", "bloating".</td></tr>
+  </table></div>
+  <p class="note">Science-education content (e.g. creatine and sleep-deprived cognition, Gordji-Nejad 2024) may appear in blog and social as education, clearly separated from the product, never on pack or the Amazon listing. EFSA rejected the creatine-cognition claim in November 2024.</p>
+</section>
+
+<!-- 03 -->
+<section id="assets">
+  <p class="eyebrow">03 · Distinctive assets</p>
+  <h2>Three things we own. Never vary them.</h2>
+  <p>Distinctive-asset practice (Romaniuk/Sharp): pick about three assets, always present them together so they wire together in memory, and never let them drift — "every inconsistency actively prevents assets from gaining fame". A small brand needs far less exposure to build them than a big one, provided it is relentlessly consistent.</p>
+  <div class="marks">
+    <div class="markbox"><svg width="120" height="76" viewBox="0 0 110 70" aria-label="her. chip"><rect x="2" y="8" width="106" height="54" rx="27" fill="#3A1A2B"/><text x="55" y="47" text-anchor="middle" font-family="Bricolage Grotesque, Trebuchet MS, sans-serif" font-weight="800" font-size="34" fill="#F4EDE6" letter-spacing="-1">her.</text></svg><div class="lbl">Primary · the her. chip</div></div>
+    <div class="markbox"><svg width="100" height="100" viewBox="0 0 110 110" aria-label="Scoop glyph"><circle cx="46" cy="64" r="34" fill="#C2255C"/><rect x="66" y="8" width="14" height="46" rx="7" transform="rotate(35 73 31)" fill="#C2255C"/><circle cx="46" cy="64" r="20" fill="#F4EDE6"/></svg><div class="lbl">Secondary · the Scoop</div></div>
+    <div class="markbox"><svg width="90" height="90" viewBox="0 0 110 110" aria-label="Five asterisk"><g fill="#C2255C" transform="translate(55 55)"><ellipse rx="11" ry="34" cy="-22"/><ellipse rx="11" ry="34" cy="-22" transform="rotate(72)"/><ellipse rx="11" ry="34" cy="-22" transform="rotate(144)"/><ellipse rx="11" ry="34" cy="-22" transform="rotate(216)"/><ellipse rx="11" ry="34" cy="-22" transform="rotate(288)"/></g><circle cx="55" cy="55" r="9" fill="#F4EDE6"/></svg><div class="lbl">Supporting · the Five</div></div>
+  </div>
+  <div class="tablebox"><table>
+    <tr><th>Asset</th><th>What it is</th><th>Where it lives</th><th>Rules</th></tr>
+    <tr><td class="b">her. chip</td><td>"her." reversed out in cream on black cherry, extra-bold grotesk, full stop the same weight as the letters. The first syllable of the registered name, promoted to a mark. <strong>Two permitted containers, nothing else:</strong> on the pouch, a rectangular <em>tab</em> that bleeds off the top edge with rounded bottom corners and carries "body" inside it beneath "her." (Bricolage Medium, cream, 45% of the "her." cap height, left-aligned to the "h" stem, equal padding left/right/bottom); everywhere else, the <em>pill</em>, with "body" set to its right on the same baseline in black cherry — the horizontal lockup <strong>[her.] body</strong>.</td><td>Top-left of every pack face (tab); social avatar, favicon, sticker (pill); listing header, site, email (horizontal lockup); the opening of every headline ("her body. her rules. her scoop.").</td><td>"body" never floats outside the tab or the lockup in a different colour or weight. The typography inside is identical in both containers. Never rotated, outlined, gradient-filled or recoloured beyond cherry-on-cream / cream-on-cherry / raspberry-on-cream. Minimum height 6mm print, 24px screen. Clear space = the height of the "h" on all sides.</td></tr>
+    <tr><td class="b">Scoop glyph</td><td>A circle with a 35° handle; the ring in raspberry, the centre in the surface colour, the <strong>handle solid</strong> (not outlined). Reads as a measuring scoop and as a full stop.</td><td>Pack face beside the spec strip (printed, run 1); the "o" in social handles; the app icon alternate; loading animation (fills); pattern (rows of scoops) on the insert card and shipper.</td><td>Always the same angle. Never filled with an image in run 1. Physical copper scoop shipped in every pouch is the same object in three dimensions.</td></tr>
+    <tr><td class="b">Five asterisk</td><td>Five-petal ellipse asterisk. Sits after the product name as a footnote that resolves to "*five in one".</td><td>Back panel, A+ module 3, insert card, list bullets on site and email.</td><td>Not on the front of pack (three assets on a face is the limit). Each petal may be labelled with one of the five.</td></tr>
+  </table></div>
+  <p class="note">Colour is <em>not</em> counted as an asset on its own — it is rented in this category. The <strong>combination</strong> alabaster + black-cherry frame + raspberry accent is the fourth, silent asset, and it is what the Amazon thumbnail reads.</p>
+</section>
+
+<!-- 04 -->
+<section id="visual">
+  <p class="eyebrow">04 · Visual system</p>
+  <h2>Palette, type, grid, image, motion</h2>
+  <h3>Palette</h3>
+  <div class="sw">
+    <div><i style="background:#F4EDE6"></i>#F4EDE6 alabaster · ≈ Pantone 9224 C · C3 M5 Y8 K0</div>
+    <div><i style="background:#3A1A2B"></i>#3A1A2B black cherry · ≈ Pantone 7645 C · C60 M85 Y45 K60</div>
+    <div><i style="background:#E8386D"></i>#E8386D raspberry · ≈ Pantone 1915 C · C0 M85 Y35 K0</div>
+    <div><i style="background:#C2255C"></i>#C2255C deep raspberry (glyph / screen accent)</div>
+    <div><i style="background:#B8A9A0"></i>#B8A9A0 stone (secondary, editorial only)</div>
+    <div><i style="background:#7A1F45"></i>#7A1F45 berry ground (A/B variant face only)</div>
+  </div>
+  <p>Why: saturated, hue-congruent colour signals potency and taste; pale, low-saturation packs read "healthy but weak"; dark shapes hold on Amazon's white; pink pastel is the category uniform. Alabaster face keeps the "light, healthy" read; the cherry frame supplies the silhouette; raspberry is the only loud thing and is literally the flavour. Three colours on a face, maximum.</p>
+  <h3>Typography</h3>
+  <div class="tablebox"><table>
+    <tr><th>Role</th><th>Face</th><th>Rule</th></tr>
+    <tr><td class="b">Product name (monolith)</td><td>Bricolage Grotesque ExtraBold (or PP Right Grotesk / Söhne Breit if licensing)</td><td>Condensed is permitted <em>only</em> here, at monolith scale (≥28mm cap height). Glance-legibility research shows regular-width reads ~11% faster than condensed at small sizes — so nothing else on the pack is condensed.</td></tr>
+    <tr><td class="b">Wordmark</td><td>Same family, lowercase; "her" at 800, "body" at 600</td><td>Softened terminals allowed in a custom cut. Never script.</td></tr>
+    <tr><td class="b">Spec strip &amp; numerals</td><td>Instrument Sans SemiBold, tabular figures</td><td>Numbers are trust objects: engineered, aligned, never decorative. Uppercase labels (uppercase reads faster at glance).</td></tr>
+    <tr><td class="b">Body / mandatory copy</td><td>Instrument Sans Regular–Medium</td><td>≥6pt dark-on-light, ≥7pt light-on-dark; mandatory information ≥1.2mm x-height (UK/EU FIC). SemiBold minimum on flexo; Regular acceptable on digital.</td></tr>
+    <tr><td class="b">Voice lines / headlines</td><td>Bricolage Grotesque 600–700, sentence case with full stops</td><td>"her ___." constructions. No exclamation marks.</td></tr>
+  </table></div>
+  <h3>Grid and hierarchy (reading order in 0.5–2 seconds)</h3>
+  <ol class="plain">
+    <li><strong>her. chip</strong> — top-left, small, the brand's signature</li>
+    <li><strong>BODY BEAUTY</strong> — the monolith, ~60% of face width; category-scale because the brand has no unaided recall yet</li>
+    <li><strong>The spec strip</strong> — four cells, bordered: 5g CREATINE | 5g COLLAGEN | [24] VITAMINS &amp; MINERALS | MYO-INOSITOL</li>
+    <li><strong>Support line</strong> — "with 100mg hyaluronic acid · 2.5g VERISOL® peptides"</li>
+    <li><strong>One authorised claim</strong> — "Biotin and zinc contribute to the maintenance of normal hair and normal skin."</li>
+    <li><strong>Flavour · servings · weight · "Food supplement with sweetener"</strong></li>
+  </ol>
+  <p>Type-First Editorial grid, flush-left. Top third: chip + monolith. Middle third: spec strip + scoop glyph. Bottom third: support, claim, flavour, mandatory. Generous negative space; nothing centred-stacked; nothing crossing seal zones.</p>
+  <h3>Iconography</h3>
+  <p>One style only: single-weight line icons (1.5pt at print scale) in black cherry, used sparingly on the back panel and A+ (a scoop, a glass, a clock for "daily"). No flat-vector-meets-photoreal mixing, no pictogram sets.</p>
+  <h3>Photography</h3>
+  <ul class="tight">
+    <li><strong>Still life:</strong> pouch and copper scoop on stone/marble, morning side-light, warm-neutral grade, raspberry only in the powder and the fruit.</li>
+    <li><strong>Sensory:</strong> the pink pour in slow motion, cut strawberries and raspberries, condensation on glass — this is the appetite the cream pack needs.</li>
+    <li><strong>People:</strong> women 35–55 in movement, laughing mid-sentence, hands and shoulders more than faces; black-and-white with a plum duotone, product in colour. No gym-mirror selfies, no before/after.</li>
+    <li><strong>Never:</strong> pink pastel sets, rose-gold props, spa imagery, lab coats.</li>
+  </ul>
+  <h3>Motion</h3>
+  <p>The her. chip is the "hero frame" of a two-beat animation: the full stop lands last. The scoop glyph fills as a loader. The raspberry pour is the only slow-motion asset. No particle effects, no gradients in motion.</p>
+</section>
+
+<!-- 05 -->
+<section id="pouch">
+  <p class="eyebrow">05 · The pouch</p>
+  <h2>Structure, material, finish, copy, law</h2>
+  <div class="grid2">
+    <div>
+      <div class="pouch">
+        <div><div style="display:inline-block;background:#3A1A2B;color:#F4EDE6;border-radius:0 0 8px 8px;padding:10px 11px 8px;margin:-14px 0 0 -2px;line-height:1"><div style="font-weight:800;font-size:16px;letter-spacing:-.02em">her.</div><div style="font-weight:500;font-size:8px;margin-top:4px">body</div></div><div class="name">BODY<br>BEAUTY</div></div>
+        <svg viewBox="0 0 110 110" style="position:absolute;right:10px;top:44%;width:44px;height:44px"><circle cx="46" cy="64" r="34" fill="#C2255C"/><rect x="66" y="8" width="14" height="46" rx="7" transform="rotate(35 73 31)" fill="#C2255C"/><circle cx="46" cy="64" r="20" fill="#F4EDE6"/></svg>
+        <div><div class="spec"><b>5g</b>CREATINE · <b>5g</b>COLLAGEN · <b>24</b>VITAMINS &amp; MINERALS · MYO-INOSITOL</div><div class="foot">with 100mg HA · 2.5g VERISOL® · Strawberry + Raspberry · 30 scoops · 384g ℮</div></div>
+      </div>
+    </div>
+    <div>
+      <div class="tablebox" style="margin-top:0"><table style="min-width:0">
+        <tr><th>Spec</th><th>Decision</th></tr>
+        <tr><td class="b">Format</td><td>Flat-bottom (box-bottom) pouch, ~384g fill; approx. 160 × 240 × 80mm. Full-width opening (scoop-clearance is a common complaint).</td></tr>
+        <tr><td class="b">Material · run 1</td><td>High-barrier laminate (foil or metallised), WVTR ≤0.5g/m²/day. Creatine absorbs moisture within hours at 40–60% RH and degrades; the first run protects the product over the recycling label.</td></tr>
+        <tr><td class="b">Material · run 2</td><td>Mono-PE with AlOx transparent barrier (WVTR ≈2), OPRL "Recycle with bags at large supermarket" eligible; window becomes possible after stability testing.</td></tr>
+        <tr><td class="b">Finish</td><td>Soft-touch matte lamination; spot gloss varnish on BODY BEAUTY and the her. chip only. Deboss is not viable below ~3,000 units — spot UV over soft-touch gives the raised contrast.</td></tr>
+        <tr><td class="b">Closure</td><td>Press-to-close powder-proof zipper (pocket-zip fitment for a clean face), tear notch, no valve (powder), no hang hole.</td></tr>
+        <tr><td class="b">In the pouch</td><td>Copper (or copper-finish) 12.8g scoop. "Accurate scoop inside" on the back.</td></tr>
+        <tr><td class="b">Codes</td><td>EAN-13 (GS1 UK) plus a GS1 Digital Link QR that resolves to the batch COA page. Lot and best-before printed by the converter (variable data on digital).</td></tr>
+      </table></div>
+    </div>
+  </div>
+  <h3>Front panel copy — final</h3>
+<pre>her.  /  body                         (one tab, top-left, bleeding off the top edge;
+                                       "body" inside the tab beneath "her.")
+BODY BEAUTY                           (monolith)
+[ 5g CREATINE | 5g COLLAGEN | [24] VITAMINS &amp; MINERALS | [dose] MYO-INOSITOL ]
+                                      (never an abbreviation such as "MY" in the
+                                       fourth cell: the dose, or "+" if it is small)
+◉ scoop glyph, right of strip
+with 100mg hyaluronic acid · 2.5g VERISOL® bovine collagen peptides
+Biotin and zinc contribute to the maintenance of normal hair and normal skin.
+Strawberry + Raspberry flavour
+30 daily scoops · 384g ℮
+Food supplement with sweetener</pre>
+  <h3>Back panel — required contents</h3>
+  <ul class="tight">
+    <li>Product description (one paragraph, brand voice, no unauthorised claims)</li>
+    <li>Full ingredients list, descending order, allergens in bold; "contains bovine collagen"</li>
+    <li>Nutrition &amp; supplement facts per 12.8g scoop with %NRV for vitamins/minerals; creatine, collagen, HA, inositol, botanicals stated per scoop</li>
+    <li>Directions: one level scoop (12.8g) in 300ml water daily; "no loading phase needed"</li>
+    <li>Mandatory statements: "Do not exceed the recommended daily dose" · "Food supplements should not be used as a substitute for a varied, balanced diet and a healthy lifestyle" · "Keep out of reach of young children" · pregnancy/breastfeeding and medical-condition consult line · "Contains creatine: 3g daily is the amount associated with the claimed effect" (condition of the creatine claim)</li>
+    <li>Storage: cool, dry, resealed; best-before and lot; net weight ℮; FBO name and UK address; "Made in the UK"</li>
+    <li>EAN + QR ("Scan for this batch's lab results"); OPRL label appropriate to the film; the Five asterisk resolving "*five in one"</li>
+    <li>All mandatory text ≥1.2mm x-height; ≥6pt body</li>
+  </ul>
+  <h3>Thumbnail test (must pass before sign-off)</h3>
+  <p>Shrink the front to 64 × 100px on pure white beside a pink competitor. The cherry frame must hold as a shape; "BEAUTY" must be readable; the raspberry glyph must register as a dot. If it fails, enlarge type or increase contrast — never add elements.</p>
+</section>
+
+<!-- 06 -->
+<section id="amazon">
+  <p class="eyebrow">06 · Amazon UK</p>
+  <h2>Seven images that argue in order, then A+</h2>
+  <div class="tablebox"><table>
+    <tr><th>#</th><th>Image</th><th>Job</th><th>Spec</th></tr>
+    <tr><td class="b">1</td><td>Hero pouch on pure white</td><td>Stop the scroll; spec strip legible at thumbnail</td><td>2000×2000, product ≥85% of frame, no props, no text overlay</td></tr>
+    <tr><td class="b">2</td><td>The shelf, replaced</td><td>The thesis: five tubs vs one pouch, "£59+ vs £29.99"</td><td>Flat-lay, alabaster surface, price maths in brand type</td></tr>
+    <tr><td class="b">3</td><td>Full doses, named</td><td>Spec strip as a hero graphic; %NRV grid; "no sprinkle"</td><td>Infographic, cherry on alabaster, tabular numerals</td></tr>
+    <tr><td class="b">4</td><td>The scoop, measured</td><td>Copper scoop + "5g creatine, exactly"; answers the scoop-honesty complaint</td><td>Macro still-life</td></tr>
+    <tr><td class="b">5</td><td>The pour</td><td>Taste: pink pour, fruit, ice; "light, not sickly"</td><td>Sensory photo, raspberry-forward</td></tr>
+    <tr><td class="b">6</td><td>her morning</td><td>Identity: woman 40ish, movement, plum duotone, product in colour</td><td>Lifestyle, no before/after</td></tr>
+    <tr><td class="b">7</td><td>Subscribe &amp; Save close</td><td>Per-day price, S&amp;S saving, "one scoop, sorted"</td><td>Graphic</td></tr>
+  </table></div>
+  <h3>A+ modules</h3>
+  <ol class="plain">
+    <li><strong>Banner:</strong> "her. one scoop." with the manifesto line.</li>
+    <li><strong>The five, explained:</strong> the Five asterisk, each petal labelled, doses per scoop.</li>
+    <li><strong>Ingredient science:</strong> one chart per ingredient from §02's "may visualise" column, each captioned "in clinical studies of the ingredient at [dose]"; never product claims.</li>
+    <li><strong>How to take it:</strong> one scoop, 300ml, daily, no loading; "what week three feels like".</li>
+    <li><strong>Comparison (unnamed):</strong> "most women's creatine: 3–3.5g. Ours: 5g." Columns for creatine, collagen, vitamins, inositol vs "typical".</li>
+    <li><strong>Tested:</strong> GMP, batch COA via QR, one third-party mark when earned.</li>
+    <li><strong>FAQ:</strong> bloating (dose honesty + water-into-muscle), taste, pregnancy (consult GP), when to take.</li>
+  </ol>
+  <p class="note">Video: 20 seconds — chip animation, pour, scoop, spec strip, "her. one scoop." No voice-over claims beyond the authorised wording.</p>
+</section>
+
+<!-- 07 -->
+<section id="touch">
+  <p class="eyebrow">07 · Touchpoints</p>
+  <h2>Beyond the pouch</h2>
+  <div class="grid3">
+    <div class="card"><h4>Insert card</h4><p>A6, alabaster, scoop pattern on the reverse. Front: "What week three feels like." — sets expectations, then the QR to the batch COA and a soft review ask. Signed "her."</p></div>
+    <div class="card"><h4>Copper scoop</h4><p>12.8g, laser-etched "5g creatine · one scoop". The same object as the glyph. Costs ~£0.60–1.20/unit; it is the brand in the hand.</p></div>
+    <div class="card"><h4>Shipper / overbox</h4><p>Kraft or alabaster mailer with a single cherry scoop glyph; overbox the first run for seal safety (pouch spillage is a live complaint). Frustration-free rules: seal ≥5.7lb/in; expiry visible outside.</p></div>
+    <div class="card"><h4>Social templates</h4><p>1:1 and 9:16. Alabaster ground, chip top-left, one "her ___." line, product or pour. Avatar = chip. Stories use the scoop loader.</p></div>
+    <div class="card"><h4>Website hero</h4><p>"her. one scoop." over the pour; spec strip below the fold as a live element; QR/COA page reachable in one tap. One-page site, Buy on Amazon, email capture.</p></div>
+    <div class="card"><h4>Email header</h4><p>Chip + "her" line, cherry rule, nothing else. Founding-member offer template in the same system.</p></div>
+  </div>
+</section>
+
+<!-- 08 -->
+<section id="frame">
+  <p class="eyebrow">08 · Competitive frame</p>
+  <h2>Be unlike these; learn from those</h2>
+  <div class="tablebox"><table>
+    <tr><th>Be unlike</th><th>Why</th><th>Learn from</th><th>What</th></tr>
+    <tr><td class="b">Wellgard, VitaSense, Bloom (UK grid)</td><td>Pink pastel pouches, 3–5g, no vitamins — the uniform</td><td class="b">Free Soul (2025 rebrand)</td><td>Giant vertical wordmark, colour-only SKU system, no clinical iconography; 7,000-woman co-creation as proof</td></tr>
+    <tr><td class="b">Warrior</td><td>Black + pink gym tub, 3g, sweetness complaints</td><td class="b">Bloom</td><td>Category word larger than brand; two-leaf mark kept through redesign; benefit claims enlarged — +288% growth</td></tr>
+    <tr><td class="b">Momentous</td><td>Black clinical; right voice (Sims), wrong warmth</td><td class="b">Arrae Tone</td><td>"Not Your Boyfriend's Creatine" — enemy framing</td></tr>
+    <tr><td class="b">Myprotein 3-in-1</td><td>Pastel, 3g, 20 servings, permanently discounted</td><td class="b">Ritual / Transparent Labs</td><td>QR-to-COA and traceability as brand furniture</td></tr>
+    <tr><td class="b">Ancient + Brave</td><td>Dark glass, no scoop in the jar</td><td class="b">The Nue Co</td><td>Monogram + one signature colour, held for years</td></tr>
+  </table></div>
+</section>
+
+<!-- 09 -->
+<section id="claims">
+  <p class="eyebrow">09 · Claims</p>
+  <h2>The only benefit language allowed, and the words that never appear</h2>
+  <div class="tablebox"><table>
+    <tr><th>Nutrient</th><th>Exact GB register wording</th><th>Condition</th></tr>
+    <tr><td class="b">Creatine</td><td>"Creatine increases physical performance in successive bursts of short-term, high-intensity exercise"</td><td>≥3g/day; adults doing high-intensity exercise; consumer told 3g/day is the effective amount</td></tr>
+    <tr><td class="b">Creatine (55+)</td><td>"Daily creatine consumption can enhance the effect of resistance training on muscle strength in adults over the age of 55"</td><td>3g/day; resistance training ≥3×/week for several weeks; over-55 audience</td></tr>
+    <tr><td class="b">Vitamin C</td><td>"Vitamin C contributes to normal collagen formation for the normal function of skin"</td><td>≥15% NRV per daily dose</td></tr>
+    <tr><td class="b">Biotin</td><td>"Biotin contributes to the maintenance of normal hair" / "normal skin"</td><td>≥15% NRV</td></tr>
+    <tr><td class="b">Zinc</td><td>"Zinc contributes to the maintenance of normal hair" / "normal nails" / "normal skin"</td><td>≥15% NRV</td></tr>
+    <tr><td class="b">B6 · B12 · folate · magnesium</td><td>"…contributes to the reduction of tiredness and fatigue"</td><td>≥15% NRV each</td></tr>
+    <tr><td class="b">Vitamin D · magnesium</td><td>"…contributes to (the maintenance of) normal muscle function"</td><td>≥15% NRV</td></tr>
+  </table></div>
+  <div class="guardrail">
+    <h3>Never on pack, listing, site, or paid social</h3>
+    <ul>
+      <li><strong>Outcome words without an authorised claim beside them:</strong> glow, tone, sculpt, recomposition, enhancer, anti-ageing, lean, snatched.</li>
+      <li><strong>Disease / medicinal:</strong> PCOS, fertility, hormone balance, menopause relief, perimenopause support, cortisol, insulin, diuretic, water retention, de-bloat, bloating, brain fog, anxiety, depression, bone density.</li>
+      <li><strong>Collagen / HA / inositol benefits stated of the ingredient itself</strong> — all three have no authorised claim.</li>
+      <li><strong>"Clinically proven"</strong> — requires a trial on the finished product. Use "in clinical studies of the ingredient".</li>
+      <li><strong>Any "% of women fear bloating" statistic</strong> — no peer-reviewed survey exists; do not print one.</li>
+      <li><strong>Blend or product names that imply a benefit</strong> are themselves health claims under Regulation 1924/2006 and must sit beside an authorised claim.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 10 -->
+<section id="production">
+  <p class="eyebrow">10 · Production route</p>
+  <h2>1,300 pouches is a digital job</h2>
+  <p>Below ~20,000 units digital printing is cheaper than gravure and needs no cylinders (which cost ~£100–160 each and 2–4 weeks). Digital goes to press in days, supports variable data (lot, best-before, batch QR) and takes soft-touch, spot-gloss and cold-foil finishes.</p>
+  <div class="tablebox"><table>
+    <tr><th>UK / EU converter</th><th>Minimum</th><th>Lead time</th><th>Notes</th></tr>
+    <tr><td class="b">ePac UK (Silverstone)</td><td>£2,000 order minimum</td><td>~15 working days from artwork approval</td><td>HP Indigo; child-resistant formats; serialised QR</td></tr>
+    <tr><td class="b">Aropack UK</td><td>No MOQ stated</td><td>2–3 weeks</td><td>Stand-up, flat-bottom, side-gusset; recyclable and high-barrier films; variable data</td></tr>
+    <tr><td class="b">The Bag Broker UK</td><td>2,000 (splittable across SKUs)</td><td>~3 weeks</td><td>BRCGS; mono-PE options; box-bottom</td></tr>
+    <tr><td class="b">Rosenflex / Just Bulk / Labelisten (DE)</td><td>~500</td><td>2–4 weeks</td><td>HP Indigo; verify finishes</td></tr>
+  </table></div>
+  <h3>Send the converter</h3>
+  <ul class="tight">
+    <li>Their dieline for the chosen flat-bottom size; artwork rebuilt on it with 3mm bleed and 12mm clear of seals</li>
+    <li>Material spec: high-barrier laminate (run 1), WVTR target, soft-touch outer, zipper type, tear notch, no valve</li>
+    <li>Pantone references for the three colours plus the CMYK build; soft-touch + spot-gloss varnish map as a separate layer</li>
+    <li>Variable-data fields: lot, best-before (DD/MM/YYYY), batch QR</li>
+    <li>Seal-strength requirement (≥5.7lb/in) and a request for a zip-cycle test on a sample</li>
+    <li>Ask for a printed proof, not a PDF proof, before the run</li>
+  </ul>
+  <p class="note">Amazon FBA: expiry visible without opening, FNSKU not over it, ≥105 days remaining on receipt; overbox the first shipment. UK Plastic Packaging Tax and EPR do not apply at this volume, but the converter prices the tax in.</p>
+</section>
+
+<!-- 11 -->
+<section id="ai">
+  <p class="eyebrow">11 · AI workflow</p>
+  <h2>How to use image models without getting the category average</h2>
+  <ul class="tight">
+    <li><strong>Assets first, adjectives never.</strong> Prompt the specific asset (the chip, the glyph, the four-cell strip, the palette by hex). "Premium", "unique", "modern" produce the average pouch.</li>
+    <li><strong>Don't trust generated text.</strong> Image models still garble copy. Generate the pouch with placeholder blocks, then set all type in Figma/Illustrator on the dieline. Ideogram-class tools are acceptable for concept text only.</li>
+    <li><strong>Generators output RGB.</strong> Nothing they make is print-ready; the dieline file is rebuilt as vector with Pantone and CMYK.</li>
+    <li><strong>Thumbnail every concept.</strong> 64px on white beside a pink competitor, every round, before anyone falls in love with a render.</li>
+    <li><strong>Reject non-producible outputs.</strong> Models propose embossed film, impossible windows and materials that don't exist at this volume. Check §05 and §10 before presenting.</li>
+  </ul>
+  <div class="brief"><h3>Pouch concept prompt (run 1, printed glyph)</h3><pre>Flat-bottom stand-up pouch, alabaster cream (#F4EDE6) soft-touch matte face with black-cherry (#3A1A2B) side gussets and a thin black-cherry band at the base. Top-left: a black-cherry (#3A1A2B) rectangular tab bleeding off the top edge of the pouch with rounded bottom corners, containing two lines of cream (#F4EDE6) type left-aligned: "her." large in extra-bold grotesk with the full stop, and "body" beneath it at about 45% of the size in medium weight, with equal padding on the left, right and bottom; no text outside the tab. Centre-left: the product name "BODY BEAUTY" in extra-bold condensed grotesk filling about 60% of the face width, black-cherry, spot-gloss. Right of the name's baseline: a raspberry (#C2255C) "scoop" glyph about 12% of the face width — a thick ring with a solid (not outlined) handle at 35°. Below: a bordered four-cell spec box reading "5g CREATINE | 5g COLLAGEN | 24 VITAMINS &amp; MINERALS | MYO-INOSITOL". Beneath, small lines: "with 100mg hyaluronic acid · 2.5g VERISOL® collagen peptides", "Strawberry + Raspberry flavour", "30 daily scoops · 384g". No fruit illustration, no gradients, no metallic, no pastel pink. Studio product photo on pure white, Amazon hero. Also render a 64px thumbnail beside a pink pouch. --ar 5:8</pre></div>
+  <div class="brief"><h3>Berry-face A/B variant</h3><pre>Same layout and elements as above, but the face is deep raspberry (#7A1F45) with all type in cream (#FBF3EC), the her. chip in cream with raspberry text, the scoop glyph in bright raspberry (#E8386D), spec box border cream. Soft-touch matte. Studio on white, plus 64px thumbnail beside the alabaster version.</pre></div>
+  <div class="brief"><h3>Marks (vector kit request)</h3><pre>Flat vector logo mark: a horizontal rounded pill in #3A1A2B with the word "her." in #F4EDE6, extra-bold grotesk, tight tracking, the full stop the same weight as the letters. Second mark: a ring (#C2255C, stroke ~40% of radius) with a short rounded handle rising at 35° from the top-right. Third: a five-petal asterisk of elongated ellipses in #C2255C with a small cream centre. Show each at 1:1 app-icon size on white, as a 16px favicon, and as an embossed sticker on matte cream. No gradients, no shadows, no extra symbols.</pre></div>
+</section>
+
+<!-- 12 -->
+<section id="deliver">
+  <p class="eyebrow">12 · Deliverables</p>
+  <h2>What to hand back, and how it will be judged</h2>
+  <div class="tablebox"><table>
+    <tr><th>Deliverable</th><th>Format</th><th>Acceptance criteria</th></tr>
+    <tr><td class="b">Vector mark kit</td><td>SVG/AI/PDF: chip, scoop glyph, Five; mono and colour; clear-space and minimum-size sheet</td><td>Legible at 16px; chip and glyph work without the name; no gradients</td></tr>
+    <tr><td class="b">Pouch artwork · run 1</td><td>Front, back, gussets on converter dieline; 3mm bleed; varnish layer; Pantone + CMYK; outlined fonts; 1 PDF/X-4</td><td>Passes the 64px thumbnail test; all §05 mandatory items present at ≥1.2mm x-height; four-cell strip intact; no forbidden words (§09); [24] and inositol dose replaced with spec values</td></tr>
+    <tr><td class="b">Pouch artwork · berry A/B variant</td><td>Front only, same dieline</td><td>Same elements, only the face/type colours swapped</td></tr>
+    <tr><td class="b">Amazon image set</td><td>7 × 2000×2000 JPG + 1 video 20s 1080×1080</td><td>Order and jobs per §06; hero on pure white ≥85% fill; no claims beyond §09; charts captioned "in studies of the ingredient"</td></tr>
+    <tr><td class="b">A+ content</td><td>7 modules to Amazon module specs</td><td>Per §06; comparison unnamed; QR/COA module present</td></tr>
+    <tr><td class="b">Insert card + scoop etch + mailer</td><td>A6 two-sided; scoop etch vector; mailer one-colour</td><td>Scoop pattern on reverse; "What week three feels like" copy; QR to COA</td></tr>
+    <tr><td class="b">Social kit</td><td>1:1, 9:16 templates; avatar; story loader animation; 5 launch posts</td><td>Chip top-left on every asset; one "her ___." line each; no forbidden words</td></tr>
+    <tr><td class="b">Mini guideline</td><td>6–8 page PDF</td><td>Assets, palette, type, hierarchy, do/don't, claims list — so the next person can't drift</td></tr>
+  </table></div>
+  <p class="note">Sign-off order: marks → pouch front thumbnail test → full pouch artwork → printed proof from converter → Amazon set. Nothing prints before the label compliance review clears the back panel.</p>
+</section>
+
+<!-- 13 -->
+<section id="sources">
+  <p class="eyebrow">13 · Sources</p>
+  <h2>Where the facts come from</h2>
+  <ul class="src">
+    <li><strong>Creatine:</strong> Smith-Ryan 2021 <a href="https://doi.org/10.3390/nu13030877">Nutrients</a>; Smith-Ryan 2025 <a href="https://doi.org/10.1080/15502783.2025.2502094">JISSN</a>; Antonio 2021 <a href="https://doi.org/10.1186/s12970-021-00412-w">JISSN</a>; Kreider 2017 <a href="https://doi.org/10.1186/s12970-017-0173-z">ISSN position stand</a>; Naddafha 2026 <a href="https://doi.org/10.1080/15502783.2026.2668435">JISSN meta-analysis, postmenopausal women</a>; Chilibeck 2023 <a href="https://doi.org/10.1249/MSS.0000000000003202">MSSE</a>; Hultman 1996 <a href="https://doi.org/10.1152/jappl.1996.81.1.232">J Appl Physiol</a>; Powers 2003 <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC155510/">J Athl Train</a>; Gordji-Nejad 2024 <a href="https://doi.org/10.1038/s41598-024-54249-9">Sci Rep</a>; EFSA cognition rejection 2024 <a href="https://www.nutraingredients.com/Article/2024/12/12/stakeholders-react-to-efsas-health-claim-rejection-of-creatine-for-cognitive-function/">report</a></li>
+    <li><strong>Collagen (VERISOL®):</strong> Proksch 2014a <a href="https://doi.org/10.1159/000351376">SPP</a>; Proksch 2014b <a href="https://doi.org/10.1159/000355523">SPP</a>; Schunck 2015 <a href="https://doi.org/10.1089/jmf.2015.0022">J Med Food</a>; Hexsel 2017 <a href="https://doi.org/10.1111/jocd.12393">JCD</a>; de Miranda 2021 <a href="https://doi.org/10.1111/ijd.15518">IJD</a>; Pu 2023 <a href="https://doi.org/10.3390/nu15092080">Nutrients</a>; EFSA VERISOL rejection <a href="https://efsa.onlinelibrary.wiley.com/doi/abs/10.2903/j.efsa.2013.3257">2013</a></li>
+    <li><strong>Hyaluronic acid:</strong> Kawada 2014 <a href="https://doi.org/10.3164/jcbn.14-81">JCBN</a>; Oe 2017 <a href="https://doi.org/10.2147/CCID.S141845">CCID</a>; Hsu 2021 <a href="https://doi.org/10.3390/nu13072220">Nutrients</a>; Dolečková 2025 <a href="https://doi.org/10.1038/s41598-025-32758-5">Sci Rep</a>; EFSA rejection <a href="https://efsa.onlinelibrary.wiley.com/doi/pdf/10.2903/j.efsa.2012.2806">2012</a></li>
+    <li><strong>Myo-inositol:</strong> Greff 2023 <a href="https://doi.org/10.1186/s12958-023-01055-z">RB&amp;E</a>; Unfer 2017 <a href="https://doi.org/10.1530/EC-17-0243">Endocr Connect</a>; Mukai 2014 <a href="https://doi.org/10.1002/hup.2369">Hum Psychopharmacol</a></li>
+    <li><strong>Claims register:</strong> <a href="https://www.legislation.gov.uk/eur/2012/432/annex">Reg. 432/2012 (retained)</a>; <a href="https://www.gov.uk/government/publications/great-britain-nutrition-and-health-claims-nhc-register">GB NHC register</a>; creatine <a href="https://efsa.onlinelibrary.wiley.com/doi/pdf/10.2903/j.efsa.2011.2303">EFSA 2011</a>, <a href="https://www.legislation.gov.uk/eur/2017/672">Reg. 2017/672</a></li>
+    <li><strong>Packaging psychology:</strong> Labrecque 2025 <a href="https://journals.sagepub.com/doi/10.1177/00222429241296392">J Marketing</a>; Steiner 2025 <a href="https://www.emerald.com/bfj/article/127/13/1/1267042/How-can-health-look-tasty-Effects-of-packaging">BFJ</a>; Mead &amp; Richerson 2018 <a href="https://www.sciencedirect.com/science/article/abs/pii/S0148296317302783">JBR</a>; Zhu 2015 <a href="https://psycnet.apa.org/record/2015-26765-001">Social Psychology</a>; Atkinson &amp; Rosenthal 2014 <a href="https://www.tandfonline.com/doi/abs/10.1080/00913367.2013.834803">J Advertising</a>; Simmonds 2018 <a href="https://www.sciencedirect.com/science/article/abs/pii/S095032931730174X">FQP</a>; Ye 2020 <a href="https://myscp.onlinelibrary.wiley.com/doi/abs/10.1002/jcpy.1126">JCP</a>; glance legibility <a href="https://www.nngroup.com/articles/glanceable-fonts/">NN/g on MIT AgeLab</a></li>
+    <li><strong>Distinctive assets &amp; design:</strong> Romaniuk summary <a href="https://www.nineblaess.de/blog/distinctive-brand-assets/">nineblaess</a>; Free Soul rebrand <a href="https://thedieline.com/free-soul-puts-the-being-back-in-well-being/">Dieline</a>, <a href="https://raggededge.com/partnerships/free-soul">Ragged Edge</a>; Bloom redesign <a href="https://www.designalytics.com/insights/awards-bloom">Designalytics</a>; Dieline 2026 awards <a href="https://thedieline.com/the-best-packaging-and-cpg-of-2026-dieline-awards-winners-revealed/">winners</a>; Pentawards 2025 <a href="https://spnews.com/pentawards-2025-winners-revealed/">winners</a>; AI packaging workflow <a href="https://runway.com/resources/ai-packaging-design">Runway</a></li>
+    <li><strong>Production:</strong> digital vs gravure <a href="https://www.groundedpackaging.co/blog/rotogravure-vs-digital-printing-for-flexible-packaging-whats-right-for-your-brand">Grounded</a>; ePac UK <a href="https://epacflexibles.com/en-gb/understanding-epacs-minimum-order-requirements/">minimums</a>; Aropack <a href="https://aropack.co.uk/our-services/digital-print-pouches/">digital pouches</a>; Bag Broker <a href="https://www.thebagbroker.co.uk/custom-packaging/digital-printing/">digital</a>; OPRL <a href="https://oprl.org.uk/how-to-use-labels/">labels</a>, <a href="https://oprl.org.uk/blog/flexible-plastic-collections-delayed-until-2030-what-it-means-for-packaging-and-recycling-labels/">2030 delay</a>; mono-PE barrier <a href="https://www.flexography.org/industry-news/a-transparent-solution-for-a-full-pe-barrier/">AlOx</a>; deboss feasibility <a href="https://packhit.com/packaging/finishes/embossing/">Packhit</a>; GS1 Sunrise 2027 <a href="https://www.gs1us.org/industries-and-insights/by-topic/sunrise-2027">GS1</a>; FBA expiry <a href="https://www.precisionprep.co.uk/amazon-expiry-date-lot-number-requirements.html">Precision Prep</a>; SIPP seal spec <a href="https://packoasis.com/blog/amazon-sipp-sioc-ffp-packaging-certification-spec-2026">Packoasis</a>; Plastic Packaging Tax <a href="https://brightsustainability.co.uk/news/plastic-packaging-tax-april-2026-uk-sme-guide">2026 guide</a></li>
+    <li><strong>Market:</strong> women's-creatine buyer data <a href="https://www.nutraingredients.com/Article/2026/05/26/creatine-for-women-what-the-data-says-about-the-industrys-most-misread-buyer/">NutraIngredients 2026</a>; Free Soul £42.3m <a href="https://londonbusinessjournal.co.uk/2026/06/05/free-soul-sunday-times-100-growth/">LBJ</a>; Amazon UK listings cited in <em>The herbody Study</em> §03</li>
+  </ul>
+  <p class="note">Flags carried from the research: Hall 2025 (creatine, perimenopause, sleep) is a conference abstract without placebo; the 2025 VERISOL hydration study is manufacturer-funded and not PubMed-indexed; HA absorption data are animal-only; the B12 EFSA opinion number should be re-checked in the printed register; no peer-reviewed survey of women's attitudes to creatine exists.</p>
+</section>
+
+<footer>
+  <p class="close">her. one scoop. <span class="accent">Now build it exactly.</span></p>
+  <p>herbody · BODY BEAUTY · master design brief v1 · September 2026. Replace the two bracketed spec values before print. Companion documents remain on the repository for history; this brief is the working reference.</p>
+</footer>
+
+</div>
