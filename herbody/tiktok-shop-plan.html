@@ -1,0 +1,411 @@
+<title>herbody on TikTok Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Spline+Sans+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --paper:#F3F1EC; --paper-2:#EAE6DF; --ink:#1B1A19; --ink-2:#4A4642; --ink-3:#7C766F; --rule:#D9D3CA;
+  --alab:#F4EDE6; --cherry:#3A1A2B; --rasp:#C2255C; --rasp-2:#E8386D;
+  --accent:#C2255C; --accent-ink:#8F1A45; --good:#2E6B4F; --warn:#A6631B; --bad:#A02B2B;
+  --card:#FBFAF7; --shadow:0 1px 0 rgba(27,26,25,.06), 0 8px 24px -16px rgba(27,26,25,.25);
+  --tt:#1B1A19;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#151413; --paper-2:#1E1C1A; --ink:#EEEAE3; --ink-2:#C9C2B8; --ink-3:#8F877D; --rule:#332F2B;
+    --accent:#E8386D; --accent-ink:#F27AA0; --good:#6FBF95; --warn:#E0A05A; --bad:#E27070;
+    --card:#1C1A18; --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.6); --tt:#EEEAE3;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#151413; --paper-2:#1E1C1A; --ink:#EEEAE3; --ink-2:#C9C2B8; --ink-3:#8F877D; --rule:#332F2B;
+  --accent:#E8386D; --accent-ink:#F27AA0; --good:#6FBF95; --warn:#E0A05A; --bad:#E27070;
+  --card:#1C1A18; --shadow:0 1px 0 rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.6); --tt:#EEEAE3;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Instrument Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding:40px 24px 96px}
+h1,h2,h3{font-family:"Bricolage Grotesque","Instrument Sans",system-ui,sans-serif;text-wrap:balance;margin:0;line-height:1.05}
+h1{font-size:clamp(40px,6vw,64px);font-weight:700;letter-spacing:-.02em}
+h2{font-size:clamp(24px,3vw,32px);font-weight:650;letter-spacing:-.015em;margin-top:64px;margin-bottom:12px}
+h3{font-size:19px;font-weight:600;margin-top:28px;margin-bottom:8px}
+p{max-width:68ch;margin:0 0 14px}
+.lede{font-size:19px;color:var(--ink-2);max-width:62ch}
+.kicker{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px}
+small,.small{font-size:13.5px;color:var(--ink-3)}
+a{color:var(--accent-ink)}
+ul,ol{max-width:70ch;padding-left:22px;margin:0 0 14px}
+li{margin-bottom:6px}
+strong{font-weight:600}
+.mono{font-family:"Spline Sans Mono",ui-monospace,monospace;font-size:13px}
+
+.verdict{display:grid;grid-template-columns:1.2fr 1fr;gap:32px;margin-top:28px;padding:28px 0 0;border-top:3px solid var(--ink)}
+.verdict .big{font-family:"Bricolage Grotesque",sans-serif;font-size:clamp(24px,3.4vw,34px);font-weight:600;line-height:1.15;letter-spacing:-.015em;text-wrap:balance}
+.verdict .big em{font-style:normal;color:var(--accent)}
+.vlist{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.vlist li{display:grid;grid-template-columns:22px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid var(--rule);font-size:15px}
+.vlist .n{font-family:"Spline Sans Mono",monospace;font-size:12px;color:var(--ink-3);padding-top:3px}
+@media (max-width:760px){.verdict{grid-template-columns:1fr}}
+
+/* allocation bar */
+.alloc{margin:18px 0 6px}
+.alloc .bar{display:flex;height:44px;border-radius:6px;overflow:hidden;border:1px solid var(--rule)}
+.alloc .seg{display:flex;align-items:center;justify-content:center;font-family:"Spline Sans Mono",monospace;font-size:12px;color:#fff;white-space:nowrap;overflow:hidden}
+.alloc .legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 18px;margin-top:12px;font-size:14px}
+.alloc .legend div{display:flex;gap:8px;align-items:flex-start}
+.alloc .legend i{display:inline-block;width:12px;height:12px;border-radius:2px;margin-top:5px;flex:none}
+.alloc .legend b{font-family:"Spline Sans Mono",monospace;font-weight:500}
+
+/* tables */
+.tbl{width:100%;border-collapse:collapse;font-size:14.5px;margin:12px 0 8px}
+.tbl th{text-align:left;font-family:"Spline Sans Mono",monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;padding:8px 10px 8px 0;border-bottom:1px solid var(--ink)}
+.tbl td{padding:10px 10px 10px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.tbl td:first-child{font-weight:600;width:22%}
+.tbl .num{font-family:"Spline Sans Mono",monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+.scroll{overflow-x:auto}
+.tag{display:inline-block;font-family:"Spline Sans Mono",monospace;font-size:11px;letter-spacing:.06em;padding:2px 7px;border-radius:3px;border:1px solid var(--rule);color:var(--ink-2);white-space:nowrap}
+.tag.good{color:var(--good);border-color:var(--good)}.tag.warn{color:var(--warn);border-color:var(--warn)}.tag.bad{color:var(--bad);border-color:var(--bad)}
+
+/* timeline */
+.gantt{display:grid;grid-template-columns:190px repeat(14,1fr);gap:4px 0;margin:18px 0 6px;font-size:13px;min-width:820px}
+.gantt .hd{font-family:"Spline Sans Mono",monospace;font-size:10.5px;letter-spacing:.06em;color:var(--ink-3);text-align:center;padding-bottom:6px;border-bottom:1px solid var(--rule)}
+.gantt .hd.launch{color:var(--accent);font-weight:500}
+.gantt .lab{padding:6px 8px 6px 0;font-weight:600;border-bottom:1px solid var(--rule)}
+.gantt .cell{border-bottom:1px solid var(--rule);position:relative;min-height:32px}
+.gantt .cell.launch{background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.gantt .b{position:absolute;top:6px;bottom:6px;left:2px;right:2px;border-radius:3px;background:var(--ink-3)}
+.gantt .b.a{background:var(--cherry)}.gantt .b.r{background:var(--rasp)}.gantt .b.g{background:var(--good)}.gantt .b.w{background:var(--warn)}
+:root[data-theme="dark"] .gantt .b.a{background:#8C5C74}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .gantt .b.a{background:#8C5C74}}
+
+/* phases */
+.phase{border-top:1px solid var(--ink);padding-top:14px;margin-top:34px}
+.phase .ph{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap}
+.phase .ph .when{font-family:"Spline Sans Mono",monospace;font-size:12px;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.phase h3{margin-top:0}
+.tasks{list-style:none;padding:0;margin:12px 0 0;max-width:none}
+.tasks li{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:10px 0;border-bottom:1px solid var(--rule);font-size:14.5px}
+.tasks li .d{font-family:"Spline Sans Mono",monospace;font-size:12px;color:var(--ink-3);padding-top:3px}
+.tasks li p{margin:0;max-width:none}
+@media (max-width:620px){.tasks li{grid-template-columns:1fr;gap:4px}}
+
+/* calculator */
+.tool{background:var(--card);border:1px solid var(--rule);border-radius:8px;padding:22px 24px;box-shadow:var(--shadow);margin-top:18px}
+.tool .in{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px 18px}
+.tool label{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:600}
+.tool input[type=number]{font-family:"Spline Sans Mono",monospace;font-size:15px;padding:8px 10px;border:1px solid var(--rule);border-radius:4px;background:var(--paper);color:var(--ink);width:100%}
+.tool .out{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:20px;padding-top:16px;border-top:1px solid var(--ink)}
+.tool .o{display:flex;flex-direction:column;gap:2px}
+.tool .o .k{font-family:"Spline Sans Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3)}
+.tool .o .v{font-family:"Bricolage Grotesque",sans-serif;font-size:26px;font-weight:700;font-variant-numeric:tabular-nums}
+.tool .o .v.neg{color:var(--bad)}
+.tool .stack{margin-top:16px;font-size:13.5px}
+.tool .stack .row{display:grid;grid-template-columns:1fr 90px;gap:10px;padding:5px 0;border-bottom:1px dashed var(--rule)}
+.tool .stack .row span:last-child{font-family:"Spline Sans Mono",monospace;text-align:right;font-variant-numeric:tabular-nums}
+.tool .why{font-size:13px;color:var(--ink-3);margin-top:12px}
+
+/* brief block */
+.brief{background:var(--paper-2);border-radius:6px;padding:20px 22px;margin:16px 0;font-size:14.5px}
+.brief h4{font-family:"Spline Sans Mono",monospace;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);margin:0 0 8px;font-weight:500}
+.brief p{max-width:none}
+.brief ul{max-width:none}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:700px){.two{grid-template-columns:1fr}}
+.two .col{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:16px 18px}
+.two .col h4{margin:0 0 8px;font-size:14px;display:flex;align-items:center;gap:8px}
+.two .col h4 i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.two .col ul{font-size:14px;margin:0;padding-left:18px}
+
+.note{border-left:3px solid var(--accent);padding:6px 0 6px 16px;margin:18px 0;max-width:70ch}
+.note p:last-child{margin-bottom:0}
+.srcs{font-size:13.5px;color:var(--ink-2);columns:2;column-gap:32px;max-width:none}
+.srcs li{break-inside:avoid;margin-bottom:6px}
+@media (max-width:700px){.srcs{columns:1}}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+  <div class="kicker">herbody · TikTok Shop UK launch plan · 500 units · 6 September 2026</div>
+  <h1>herbody on TikTok Shop</h1>
+  <p class="lede">A detailed plan for launching BODY BEAUTY on TikTok Shop UK with 500 of the 1,300 first-run units, alongside the Amazon UK launch. Built for a founder with a full-time job who will not be on camera daily: creators make the content, TikTok's automation buys the traffic, and your job is briefing, approving and reading the numbers.</p>
+
+  <div class="verdict">
+    <div>
+      <div class="kicker">The shape of it</div>
+      <div class="big">Split the units, but <em>not the launch</em>. Amazon goes live first; TikTok Shop follows two weeks later so every brand search a creator video generates lands on a listing with reviews. TikTok is run as an affiliate-first machine, not a founder-led one.</div>
+    </div>
+    <ul class="vlist">
+      <li><span class="n">01</span><span>Supplements are a restricted category on TikTok Shop UK. Qualification takes 2–4 weeks and gates everything, so it starts now.</span></li>
+      <li><span class="n">02</span><span>Of 500 units, 130 are marketing inventory (creator samples, LIVE hosts, replacements). 370 are for sale.</span></li>
+      <li><span class="n">03</span><span>Fulfilment goes through Fulfilled by TikTok. The 72-hour ship SLA is not compatible with a day job.</span></li>
+      <li><span class="n">04</span><span>Paid traffic is one Product GMV Max campaign, switched on only once 10 or more creator videos exist.</span></li>
+      <li><span class="n">05</span><span>Every creator gets a one-page claims sheet. On this platform a single "bloating" or "hormones" video can pull the listing.</span></li>
+    </ul>
+  </div>
+
+  <h2>Where the 500 units go</h2>
+  <div class="alloc">
+    <div class="bar">
+      <div class="seg" style="width:20%;background:var(--cherry)">100 · seeding wave 1</div>
+      <div class="seg" style="width:4%;background:#7A1F45">20</div>
+      <div class="seg" style="width:2%;background:#A6631B"></div>
+      <div class="seg" style="width:74%;background:var(--rasp)">370 · for sale</div>
+    </div>
+    <div class="legend">
+      <div><i style="background:var(--cherry)"></i><span><b>100</b> creator samples, wave 1 (target invitations, weeks −4 to −2)</span></div>
+      <div><i style="background:#7A1F45"></i><span><b>20</b> wave 2: LIVE hosts and the top converters from wave 1</span></div>
+      <div><i style="background:#A6631B"></i><span><b>10</b> replacements, damaged-in-transit, one giveaway</span></div>
+      <div><i style="background:var(--rasp)"></i><span><b>370</b> sellable stock in FBT, the sell-through target for weeks 1–8</span></div>
+    </div>
+  </div>
+  <p>The seeding allocation is deliberately heavy. On TikTok Shop the content is the marketing, and the industry planning ratio is that 40–60% of seeded creators post, with the best programmes averaging more than one video per sample. 100 samples should produce 45–70 videos. That library is what GMV Max needs to work and what the listing needs to convert, and it is far cheaper per video than any agency.</p>
+
+  <h3>Should you split at all?</h3>
+  <p>Yes, with one condition. Amazon UK is where the category is bought; TikTok is where it is discovered, and TikTok discovery spills into Amazon brand searches within hours of a video moving. Running both means the spill-over is captured. The condition is sequencing: if TikTok goes first, those brand searches hit an Amazon listing with no reviews and the spill-over is wasted. So Amazon goes live, Vine is enrolled, and TikTok launches roughly two weeks later. The 800 Amazon units include the 30 for Vine. Hold nothing back as a float; if TikTok outsells Amazon, transfer from FBA stock in week 5.</p>
+
+  <h2>Fourteen weeks at a glance</h2>
+  <div class="scroll">
+  <div class="gantt" aria-label="Launch timeline">
+    <div class="hd" style="text-align:left">Workstream</div>
+    <div class="hd">−6</div><div class="hd">−5</div><div class="hd">−4</div><div class="hd">−3</div><div class="hd">−2</div><div class="hd">−1</div><div class="hd launch">L</div><div class="hd">+1</div><div class="hd">+2</div><div class="hd">+3</div><div class="hd">+4</div><div class="hd">+5</div><div class="hd">+6</div><div class="hd">+7</div>
+
+    <div class="lab">Shop + category qualification</div>
+    <div class="cell"><div class="b a"></div></div><div class="cell"><div class="b a"></div></div><div class="cell"><div class="b a"></div></div><div class="cell"><div class="b a"></div></div><div class="cell"></div><div class="cell"></div><div class="cell launch"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+    <div class="lab">Listing, product video, FBT inbound</div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"><div class="b a"></div></div><div class="cell"><div class="b a"></div></div><div class="cell"><div class="b a"></div></div><div class="cell"></div><div class="cell launch"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+    <div class="lab">Amazon live + Vine</div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"><div class="b g"></div></div><div class="cell"><div class="b g"></div></div><div class="cell launch"><div class="b g"></div></div><div class="cell"><div class="b g"></div></div><div class="cell"><div class="b g"></div></div><div class="cell"><div class="b g"></div></div><div class="cell"><div class="b g"></div></div><div class="cell"><div class="b g"></div></div><div class="cell"><div class="b g"></div></div><div class="cell"><div class="b g"></div></div>
+
+    <div class="lab">Seeding wave 1 (100)</div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"><div class="b r"></div></div><div class="cell"><div class="b r"></div></div><div class="cell"><div class="b r"></div></div><div class="cell"></div><div class="cell launch"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+    <div class="lab">Creator videos arriving</div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"><div class="b r"></div></div><div class="cell"><div class="b r"></div></div><div class="cell launch"><div class="b r"></div></div><div class="cell"><div class="b r"></div></div><div class="cell"><div class="b r"></div></div><div class="cell"><div class="b r"></div></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div>
+
+    <div class="lab">Product GMV Max</div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell launch"><div class="b w"></div></div><div class="cell"><div class="b w"></div></div><div class="cell"><div class="b w"></div></div><div class="cell"><div class="b w"></div></div><div class="cell"><div class="b w"></div></div><div class="cell"><div class="b w"></div></div><div class="cell"><div class="b w"></div></div><div class="cell"><div class="b w"></div></div>
+
+    <div class="lab">Seeding wave 2 + hosted LIVEs</div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell launch"></div><div class="cell"></div><div class="cell"><div class="b r"></div></div><div class="cell"><div class="b r"></div></div><div class="cell"><div class="b r"></div></div><div class="cell"><div class="b r"></div></div><div class="cell"></div><div class="cell"></div>
+
+    <div class="lab">Reorder decision</div>
+    <div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell launch"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"><div class="b"></div></div><div class="cell"><div class="b"></div></div><div class="cell"></div>
+  </div>
+  </div>
+  <p class="small">Weeks are relative to TikTok Shop launch day (L). Amazon goes live at week −2. The new-seller 3% commission window runs for 30 days from onboarding completion, so complete onboarding no earlier than week −1 to keep it covering launch.</p>
+
+  <div class="phase">
+    <div class="ph"><span class="when">Weeks −6 to −4</span><h3>Phase 0 · Get allowed to sell</h3></div>
+    <p>Supplements are a restricted category on TikTok Shop UK. Nothing else in this plan matters until the category qualification is granted, and the review takes two to four weeks. Weight-loss, detox, hormone and sexual-enhancement supplements are prohibited outright; general vitamins, minerals, protein, collagen and creatine are permitted with qualification.</p>
+    <ul class="tasks">
+      <li><span class="d">Day 1</span><p><strong>Open the seller account</strong> as HerBody Ltd at seller-uk.tiktok.com with Companies House number, director ID, UK bank account and the registered address. Do not complete every onboarding step yet; the 3% new-seller commission clock starts when onboarding is marked complete.</p></li>
+      <li><span class="d">Day 1–3</span><p><strong>Apply for the Health &amp; Supplements category.</strong> Build one document pack and reuse it for Amazon: FBO registration confirmation from your local authority, Black Label's GMP certificate, a batch COA (third-party if you have it), the final label artwork PDF, product liability insurance certificate, and the company's UK address. Where TikTok asks for a "product qualification", upload the label and COA.</p></li>
+      <li><span class="d">Day 2</span><p><strong>Apply for Fulfilled by TikTok (FBT).</strong> FBT's UK rate card charges around £0.78 per item for parcels up to 0.5kg plus small daily storage; the pouch at 384g plus a mailer sits inside that tier. Seller shipping is £0 on orders under £22 and £1.99 at £22 and over. With FBT, the 72-hour ship SLA is TikTok's problem, not yours.</p></li>
+      <li><span class="d">Week −6</span><p><strong>Decide the price</strong> once, for both channels. TikTok buyers compare against Amazon in the same minute; keep list price identical and let TikTok's vouchers do the discounting. The calculator below uses £34.99 as the working assumption; change it there.</p></li>
+      <li><span class="d">Week −5</span><p><strong>Write the creator claims sheet</strong> (below) and have it checked by the same food-law consultant doing the label review. This is the document that protects the listing.</p></li>
+      <li><span class="d">Week −5</span><p><strong>Register on the Affiliate Centre</strong> and set the Open Plan at 15% commission. Health and beauty are the categories where creators expect the top of the range; below 12% the good ones do not apply.</p></li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <div class="ph"><span class="when">Weeks −4 to −2</span><h3>Phase 1 · Build the listing and seed the creators</h3></div>
+    <ul class="tasks">
+      <li><span class="d">Week −4</span><p><strong>Shoot five listing videos</strong> (9:16, 15–30 seconds, no faces needed): the scoop going into water and dissolving; the "one scoop replaces this shelf" flat-lay; the back-panel spec strip read out on screen; a taste-test reaction from a friend; the pouch's tear strip and first open. A phone, a window and a plain surface. These become the listing's video carousel and the first ten GMV Max creatives.</p></li>
+      <li><span class="d">Week −4</span><p><strong>Write the listing.</strong> Title: "herbody BODY BEAUTY · Creatine 5g + Collagen 5g + Multivitamin + Myo-Inositol · Strawberry Raspberry · 30 Scoops". Bullets in this order: what is in one scoop with doses; the authorised claims verbatim (creatine and physical performance at 3g/day, vitamin C and collagen formation, biotin and zinc for skin, hair and nails, magnesium for tiredness); flavour and mixability; how to take it; who makes it and where. No "bloating", "hormones", "cycle", "PCOS", "menopause", "recomposition" or "glow-up" anywhere, including hashtags.</p></li>
+      <li><span class="d">Week −4</span><p><strong>Ship 130 units to FBT</strong> as soon as the pouches land (100 for seeding is sent from home, below). Book the inbound; FBT receiving takes 3–7 days.</p></li>
+      <li><span class="d">Week −4 to −2</span><p><strong>Seeding wave 1: 100 target invitations.</strong> In the Affiliate Centre, filter creators by UK, women, health/fitness/beauty, 5,000–80,000 followers, GMV in the last 30 days above zero, and average video views above 5,000. Send 200 target invitations at 20% commission with a free sample to get 100 acceptances (expect 40–55% acceptance). Post the samples yourself with a printed claims sheet and a handwritten line in each. Three tranches so content arrives in a stream, not a lump.</p></li>
+      <li><span class="d">Week −4</span><p><strong>Reserve 20 of the 100 for the community</strong> IKSIR was built for: UK Muslim women creators in fitness and modest-fashion niches. This is where the halal ingredient statement, the charity pledge and your own story carry weight, and TikTok is the only channel where they do. Same brand, same pouch, a different set of hands.</p></li>
+      <li><span class="d">Week −2</span><p><strong>Amazon listing goes live and Vine is enrolled.</strong> From here every TikTok video that moves has somewhere to send the brand search.</p></li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <div class="ph"><span class="when">Weeks −2 to launch</span><h3>Phase 2 · Content arrives, machine gets built</h3></div>
+    <ul class="tasks">
+      <li><span class="d">Daily, 20 min</span><p><strong>Review incoming creator videos</strong> in the Affiliate Centre. Every video is checked against the claims sheet before you do anything with it. A non-compliant video gets a polite message and a request to re-cut; do not add it to any ad campaign. Compliant videos get the ad authorisation code requested (Spark Ads permission) so GMV Max can use them.</p></li>
+      <li><span class="d">Week −1</span><p><strong>Complete onboarding</strong> to start the 30-day 3% commission window. Set up two vouchers: a shop-wide 10% welcome voucher for new followers, and a £3 off voucher that creators can attach to their videos. Enrol in co-funded promotions when the Shop Performance Score allows (2.5 minimum; new shops get a free-trial period where TikTok funds 100%).</p></li>
+      <li><span class="d">Week −1</span><p><strong>Build the Product GMV Max campaign</strong> in Ads Manager but leave it paused: daily budget £40, ROI target set at TikTok's recommendation, all authorised creator videos and your five listing videos attached. It needs a minimum of ten creatives and a seven-day untouched run to be eligible for ROI protection.</p></li>
+      <li><span class="d">Week −1</span><p><strong>Post to the brand account</strong> three times: a pouch reveal, a creator video reposted with permission, the "what is in one scoop" spec strip. The brand account exists so the listing has a home, not to be a channel.</p></li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <div class="ph"><span class="when">Launch week</span><h3>Phase 3 · Day by day</h3></div>
+    <ul class="tasks">
+      <li><span class="d">Mon · L</span><p>Listing live with all five videos and the first 15–25 creator videos linked. Welcome voucher on. Message every creator who has posted: "we are live, your link is active, the £3 voucher is attached to your video". Raise commission on the Open Plan to 18% for the first 14 days.</p></li>
+      <li><span class="d">Tue · L+1</span><p>Turn on GMV Max at £40/day. Do not touch it for seven days: no pauses, no budget changes over 50%, no ROI target edits. Add new creator videos to it as they come in.</p></li>
+      <li><span class="d">Wed · L+2</span><p>First check of the numbers: video views per creator, click-through to the product card, and the product card's conversion rate. Benchmarks: 1–3% conversion from video is healthy, 8–12% from LIVE.</p></li>
+      <li><span class="d">Thu · L+3</span><p>Send 20 wave-2 target invitations to whoever has converted at all in wave 1, at 22% commission, plus a second sample for a "two weeks in" video. Book two hosted LIVEs for week +2 with creators who already sell in LIVE, at 20% commission plus a £150 host fee each. You are not the host.</p></li>
+      <li><span class="d">Fri · L+4</span><p>Reply to every product question and review. Questions on a TikTok listing are public and copied into future videos; answers must stay inside the claims sheet.</p></li>
+      <li><span class="d">Sat–Sun</span><p>Nothing. FBT ships, creators post, GMV Max runs. Check the Seller Centre once for any listing violation notice; those need a response within the stated window.</p></li>
+    </ul>
+  </div>
+
+  <div class="phase">
+    <div class="ph"><span class="when">Weeks +1 to +8</span><h3>Phase 4 · Run it and decide</h3></div>
+    <ul class="tasks">
+      <li><span class="d">Weekly, 1 hr</span><p><strong>The Sunday review:</strong> units sold by source (organic creator, GMV Max, LIVE, brand account), cost per unit sold, commission paid, ad spend, refund rate, and stock left in FBT. One spreadsheet, one row per week.</p></li>
+      <li><span class="d">Week +2</span><p><strong>Two hosted LIVEs.</strong> A LIVE with a flash deal (£5 off for 60 minutes) and a creator who already runs supplement LIVEs is the highest-conversion format on the platform. Attach LIVE GMV Max at £30 for each session.</p></li>
+      <li><span class="d">Week +3</span><p><strong>Scale what works.</strong> If GMV Max is at or above the ROI target, raise the daily budget by 30–50% at most once a week. If it is below, add creatives before adding money; the fix for GMV Max is almost always more videos, not more budget.</p></li>
+      <li><span class="d">Week +4</span><p><strong>Commission back to 15%</strong> on the Open Plan; keep the top ten creators on 20% targeted plans. Send each of them a "month two" sample so the repeat story ("I've finished a pouch") gets told.</p></li>
+      <li><span class="d">Week +5</span><p><strong>Stock check.</strong> If fewer than 120 units remain in FBT, transfer 100 from FBA. If more than 250 remain, move £ from GMV Max into a fourth LIVE and a 15% voucher week.</p></li>
+      <li><span class="d">Week +6</span><p><strong>Reorder decision</strong> with Black Label. The trigger is sell-through, not sentiment: 370 units gone or a clear path to gone by week +8 at a positive contribution per unit means reorder at the next price break.</p></li>
+    </ul>
+  </div>
+
+  <h2>Unit economics on TikTok Shop</h2>
+  <p>TikTok's fees stack differently from Amazon's. The referral fee on food and supplements is 9%, payment processing about 1%, FBT around £0.78 per item and £1.99 seller shipping on orders over £22, plus whatever you pay creators and GMV Max. Put in your own numbers.</p>
+  <div class="tool" id="calc">
+    <div class="in">
+      <label>List price (£)<input id="p" type="number" step="0.5" value="34.99"></label>
+      <label>Average discount (%)<input id="disc" type="number" step="1" value="10"></label>
+      <label>COGS per unit (£)<input id="cogs" type="number" step="0.5" value="9"></label>
+      <label>Creator commission (%)<input id="aff" type="number" step="1" value="18"></label>
+      <label>Ad spend (% of sales)<input id="ads" type="number" step="1" value="12"></label>
+      <label>Share of sales via creators (%)<input id="affshare" type="number" step="5" value="70"></label>
+    </div>
+    <div class="stack" id="stack"></div>
+    <div class="out">
+      <div class="o"><span class="k">Net price after discount</span><span class="v" id="o-net">–</span></div>
+      <div class="o"><span class="k">Contribution per unit</span><span class="v" id="o-cpu">–</span></div>
+      <div class="o"><span class="k">Contribution margin</span><span class="v" id="o-cm">–</span></div>
+      <div class="o"><span class="k">370 units sold</span><span class="v" id="o-tot">–</span></div>
+      <div class="o"><span class="k">Less seeding + LIVE hosts</span><span class="v" id="o-netall">–</span></div>
+    </div>
+    <p class="why" id="calc-why"></p>
+  </div>
+  <p class="small">Seeding cost in the last tile = 130 units at COGS plus £4 postage each, plus two hosted LIVE fees at £150. VAT is treated as included in the list price; if you are not VAT registered the 20% is yours to keep and the margin is better than shown.</p>
+
+  <h2>The creator claims sheet</h2>
+  <p>This goes in every sample parcel and every target invitation message. It is the single most important document in the plan. TikTok removes listings for creator claims, the ASA ruled against Vivo Life in January 2025 for a creator's B12 video, and a food supplement that is marketed for weight loss is prohibited on the platform outright.</p>
+  <div class="brief">
+    <h4>herbody · what you can say on camera</h4>
+    <p><strong>Say what it is:</strong> "one scoop, every day: 5g creatine, 5g collagen, a full multivitamin and myo-inositol, strawberry raspberry". <strong>Say what you noticed:</strong> taste, mixability, how easy it is, that it replaced the four things you were buying. <strong>Say these, word for word, if you want a benefit:</strong> "creatine increases physical performance in successive bursts of short-term, high-intensity exercise"; "vitamin C contributes to normal collagen formation for the normal function of skin"; "biotin and zinc contribute to the maintenance of normal skin, hair and nails"; "magnesium contributes to a reduction of tiredness and fatigue".</p>
+  </div>
+  <div class="two">
+    <div class="col">
+      <h4><i style="background:var(--good)"></i>Fine</h4>
+      <ul>
+        <li>"5g is the dose used in the studies; most women's creatines are 3g"</li>
+        <li>"I take it in the morning with water" (your routine)</li>
+        <li>"One scoop replaced my creatine, collagen and multivitamin"</li>
+        <li>"Made in the UK by a GMP-certified manufacturer"</li>
+        <li>Taste, texture, the scoop, the pouch, the price per day</li>
+        <li>"No porcine ingredients" (factual, once confirmed by the manufacturer)</li>
+        <li>Say "commission paid" or #ad; TikTok labels affiliate videos but say it anyway</li>
+      </ul>
+    </div>
+    <div class="col">
+      <h4><i style="background:var(--bad)"></i>Never</h4>
+      <ul>
+        <li>Weight loss, fat loss, "lean", "recomposition", "toned", "bloating", "debloat"</li>
+        <li>Hormones, cycle, PMS, PCOS, menopause, fertility, "balance"</li>
+        <li>Anti-ageing, wrinkles, "glow-up", "plumper skin", hair growth</li>
+        <li>Energy, focus, mood, brain, sleep, anxiety</li>
+        <li>Before-and-after photos or "results in X weeks"</li>
+        <li>"Clinically proven", "doctors recommend", any disease or symptom</li>
+        <li>Comparisons naming another brand</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>What you are actually doing each week</h2>
+  <div class="scroll">
+  <table class="tbl">
+    <tr><th>Job</th><th>Time</th><th>Who</th><th>Notes</th></tr>
+    <tr><td>Creator approvals and messages</td><td class="num">2–3 h/wk</td><td>You</td><td>Affiliate Centre on the phone, 20 minutes a day. This is the job.</td></tr>
+    <tr><td>Video compliance check</td><td class="num">1 h/wk</td><td>You</td><td>Watch every video once against the sheet before authorising it for ads.</td></tr>
+    <tr><td>GMV Max and vouchers</td><td class="num">30 min/wk</td><td>You</td><td>Add creatives, read ROI, adjust budget at most once a week.</td></tr>
+    <tr><td>Sunday review</td><td class="num">1 h/wk</td><td>You</td><td>One spreadsheet row. The reorder decision comes from this.</td></tr>
+    <tr><td>Fulfilment, returns, SLA</td><td class="num">0</td><td>FBT</td><td>The reason FBT is worth £0.78 a unit.</td></tr>
+    <tr><td>Sample dispatch, waves 1 and 2</td><td class="num">2 evenings</td><td>You</td><td>120 parcels over three weeks; Royal Mail Tracked 48 from home.</td></tr>
+    <tr><td>Optional: freelance affiliate manager</td><td class="num">£300–500/mo</td><td>Hire</td><td>Only if the creator inbox exceeds 30 minutes a day by week +2. A TikTok Shop Partner agency is not worth it at 500 units.</td></tr>
+  </table>
+  </div>
+
+  <h2>Budget</h2>
+  <div class="scroll">
+  <table class="tbl">
+    <tr><th>Item</th><th>Cost</th><th>When</th></tr>
+    <tr><td>Creator samples, wave 1 (100 units at COGS + postage)</td><td class="num">£1,300</td><td>Weeks −4 to −2</td></tr>
+    <tr><td>Wave 2 samples and hosted LIVE fees</td><td class="num">£560</td><td>Weeks +1 to +3</td></tr>
+    <tr><td>Product GMV Max, 8 weeks at £40/day rising</td><td class="num">£2,400–3,200</td><td>Launch onward</td></tr>
+    <tr><td>LIVE GMV Max, 3 sessions</td><td class="num">£90</td><td>Weeks +2 to +4</td></tr>
+    <tr><td>FBT inbound shipping and receiving</td><td class="num">£60–90</td><td>Week −4</td></tr>
+    <tr><td>Product liability insurance (if not already held)</td><td class="num">£150–300/yr</td><td>Week −6</td></tr>
+    <tr><td>Claims-sheet legal check (bundled with label review)</td><td class="num">£0–150</td><td>Week −5</td></tr>
+    <tr><td><strong>Total cash before commissions and fees</strong></td><td class="num"><strong>£4,600–5,700</strong></td><td></td></tr>
+  </table>
+  </div>
+  <p>Commissions, referral fees and FBT are taken from each sale, not paid up front, and they are in the calculator. New-seller incentives worth up to £800 in ad credits and fee relief exist in 2026; take whatever is offered at onboarding and put it into GMV Max.</p>
+
+  <h2>Numbers that tell you to stop, or to double</h2>
+  <div class="scroll">
+  <table class="tbl">
+    <tr><th>Metric</th><th>Healthy</th><th>Act if</th><th>Action</th></tr>
+    <tr><td>Sample post rate, wave 1</td><td class="num">40–60%</td><td class="num">&lt; 30% by week −1</td><td>Vetting problem: tighten to creators with recent GMV, raise to 22%.</td></tr>
+    <tr><td>Video-to-purchase conversion</td><td class="num">1–3%</td><td class="num">&lt; 0.8% for 2 weeks</td><td>Listing problem: rewrite the first bullet and the first video, add a voucher.</td></tr>
+    <tr><td>GMV Max ROI</td><td class="num">≥ target</td><td class="num">&lt; 70% of target after 14 days</td><td>Creative problem: pause budget growth, add 10 videos, restart.</td></tr>
+    <tr><td>Refund rate</td><td class="num">&lt; 5%</td><td class="num">&gt; 8%</td><td>Usually taste or sweetness. Read the reasons; it feeds run two.</td></tr>
+    <tr><td>Units sold per week, from week +2</td><td class="num">≥ 45</td><td class="num">&lt; 20 for 3 weeks</td><td>Stop paid spend, sell through on organic and LIVE, do not reorder for this channel.</td></tr>
+    <tr><td>Listing violations</td><td class="num">0</td><td class="num">any</td><td>Fix within the window, find the video that caused it, re-brief everyone.</td></tr>
+  </table>
+  </div>
+
+  <h2>What TikTok changes about the brand</h2>
+  <p>Nothing on the pouch. Three things around it.</p>
+  <ul>
+    <li><strong>The founder story becomes visible, in text.</strong> One pinned brand video and the listing's "about" panel can say who makes this and why, in the past tense and with specifics. Creators repeat what they are given, so give them two sentences worth repeating.</li>
+    <li><strong>The charity mechanic works here where it was overhead on Amazon.</strong> Keep the Charities Act in mind: "we donate £1 per pouch to [named charity]" in advertising makes HerBody Ltd a commercial participator and needs a written agreement. The simple legal version is the one in the launch plan: donate quarterly, say so afterwards with the receipt. Creators can repeat a past-tense fact.</li>
+    <li><strong>The 20 community creators are the IKSIR insight, delivered.</strong> If that tranche outperforms the other 80 on conversion, that is the evidence for a later IKSIR edition, and you will have it by week +4.</li>
+  </ul>
+
+  <div class="note">
+    <p><strong>One risk to name.</strong> TikTok Shop UK's supplement enforcement is stricter than Amazon's and is applied to creator speech you do not control. The plan handles it with the claims sheet, the pre-authorisation check and a re-brief on any violation. It cannot make the risk zero. If the listing is pulled, the 370 units are still sellable on Amazon and the creator videos still drive brand searches there, which is a second reason Amazon goes first.</p>
+  </div>
+
+  <h2>Sources</h2>
+  <ul class="srcs">
+    <li><a href="https://seller-uk.tiktok.com/university/essay?knowledge_id=8749718977922838&default_language=en-GB">TikTok Shop UK Seller University, Selling supplements on TikTok Shop</a> (prohibited products, permitted claims)</li>
+    <li><a href="https://seller-uk.tiktok.com/university/essay?knowledge_id=3878917099931414">TikTok Shop UK, Promoting supplements and health products: what creators need to know</a></li>
+    <li><a href="https://tslagency.co.uk/tiktok-shop-fees-uk-2026-complete-breakdown/">TSL Agency, TikTok Shop fees UK 2026</a>; <a href="https://www.z.media/insights/tiktok-shop-fees-uk-2026">Z Media, TikTok Shop UK fees 2026</a>; <a href="https://www.getonecart.com/tiktok-shop-seller-fees/">OneCart, seller fees 2026</a></li>
+    <li><a href="https://blog.m2ecloud.com/tiktok-shop-2025-new-shipping-fees-amp-co-funded-promotions-for-uk-sellers/">M2E Cloud, UK shipping fee and co-funded promotions</a>; <a href="https://www.hivehq.ai/blog/understanding-tik-tok-shipping-fulfillment-costs">HiveHQ, FBT costs 2026</a>; <a href="https://www.ogdenfulfilment.co.uk/tiktok-shop-fulfilment-uk/">Ogden Fulfilment, the 72-hour SLA</a></li>
+    <li><a href="https://anicca.co.uk/blog/gmv-max-explained/">Anicca, GMV Max explained (UK)</a>; <a href="https://www.dataslayer.ai/blog/tiktok-shop-gmv-max-30-higher-gmv-vs-manual-ads-2026-complete-guide">Dataslayer, GMV Max 2026 guide</a>; <a href="https://medialabs-co.com/blog/tiktok-shop-gmv-max-guide">Media Labs, GMV Max playbook</a></li>
+    <li><a href="https://www.shortformnation.com/blog/tiktok-shop-affiliate-commission-rates-what-brands-should-offer-2026-data">Short Form Nation, affiliate commission rates 2026</a>; <a href="https://www.hamstergarage.com/article/tiktok-shop-affiliate-kpis-glossary-benchmarks">Hamster Garage, affiliate KPI benchmarks</a>; <a href="https://www.dashboardly.io/statistics/tiktok-shop-conversion-rate-statistics">Dashboardly, conversion benchmarks</a></li>
+    <li><a href="https://www.nutraingredients.com/Article/2025/01/07/asa-bans-ads-from-vivo-life-and-ovira/">NutraIngredients, ASA rulings against Vivo Life and Ovira (Jan 2025)</a></li>
+    <li><a href="https://seller.tiktok.com/uk">TikTok Shop UK seller site</a> (new-seller incentives up to £800)</li>
+    <li>herbody launch plan, study and IKSIR assessment (this session) for pricing context, Amazon sequencing and the Charities Act note.</li>
+  </ul>
+</div>
+
+<script>
+(function(){
+  var ids=['p','disc','cogs','aff','ads','affshare'];
+  var el={};ids.forEach(function(i){el[i]=document.getElementById(i);});
+  function f(n){return (n<0?'−':'')+'£'+Math.abs(n).toFixed(2);}
+  function calc(){
+    var p=+el.p.value||0, disc=(+el.disc.value||0)/100, cogs=+el.cogs.value||0, aff=(+el.aff.value||0)/100, ads=(+el.ads.value||0)/100, share=(+el.affshare.value||0)/100;
+    var net=p*(1-disc);
+    var ref=net*0.09, pay=net*0.0102, fbt=0.78, ship=net>=22?1.99:0, comm=net*aff*share, ad=net*ads;
+    var costs=ref+pay+fbt+ship+comm+ad+cogs;
+    var cpu=net-costs, cm=net?cpu/net*100:0;
+    var tot=cpu*370;
+    var seeding=130*(cogs+4)+300;
+    var rows=[['Referral fee 9%',ref],['Payment processing ~1%',pay],['FBT pick, pack, storage',fbt],['Seller shipping (£1.99 over £22)',ship],['Creator commission × share via creators',comm],['GMV Max at '+Math.round(ads*100)+'% of sales',ad],['COGS',cogs]];
+    document.getElementById('stack').innerHTML=rows.map(function(r){return '<div class="row"><span>'+r[0]+'</span><span>'+f(r[1])+'</span></div>';}).join('');
+    document.getElementById('o-net').textContent=f(net);
+    var c=document.getElementById('o-cpu');c.textContent=f(cpu);c.classList.toggle('neg',cpu<0);
+    var m=document.getElementById('o-cm');m.textContent=cm.toFixed(0)+'%';m.classList.toggle('neg',cpu<0);
+    var t=document.getElementById('o-tot');t.textContent=f(tot);t.classList.toggle('neg',tot<0);
+    var n=document.getElementById('o-netall');n.textContent=f(tot-seeding);n.classList.toggle('neg',tot-seeding<0);
+    var why=document.getElementById('calc-why');
+    if(cpu<0) why.textContent='Negative per unit: the channel loses money on every sale at these settings. Lower creator commission or ad share before lowering price.';
+    else if(cm<25) why.textContent='Thin. The channel pays for itself but not for the seeding. Treat TikTok as paid brand awareness for Amazon, or raise the price.';
+    else why.textContent='Workable. At this contribution the 370 units cover the seeding and LIVE costs and leave a surplus; the reorder decision can be made on sell-through alone.';
+  }
+  ids.forEach(function(i){el[i].addEventListener('input',calc);});
+  calc();
+})();
+</script>

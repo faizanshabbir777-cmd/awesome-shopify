@@ -1,0 +1,257 @@
+<title>herbody Distinctive Assets</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Spline+Sans+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FBF6F4;--surface:#FFFFFF;--surface-2:#F4E9E7;--ink:#2A1B22;--ink-soft:#6E5560;--line:#E6D4D4;
+  --berry:#C2255C;--berry-wash:#F9E7EE;--go:#2F7D5C;--go-wash:#E4F1EA;--warn:#B4690E;--warn-wash:#F8EEDD;
+  --display:'Bricolage Grotesque','Trebuchet MS',Verdana,sans-serif;--body:'Instrument Sans','Helvetica Neue',Arial,sans-serif;--mono:'Spline Sans Mono','Courier New',monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1D1218;--surface:#28191F;--surface-2:#33222A;--ink:#F5E8EE;--ink-soft:#C1A3B0;--line:#432E38;--berry:#F06595;--berry-wash:#3A1F2C;--go:#5CBA8E;--go-wash:#1F3A2E;--warn:#E3A65C;--warn-wash:#3B2C18;}}
+:root[data-theme="dark"]{--bg:#1D1218;--surface:#28191F;--surface-2:#33222A;--ink:#F5E8EE;--ink-soft:#C1A3B0;--line:#432E38;--berry:#F06595;--berry-wash:#3A1F2C;--go:#5CBA8E;--go-wash:#1F3A2E;--warn:#E3A65C;--warn-wash:#3B2C18;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+header.hero{padding:72px 0 36px;border-bottom:1px solid var(--line)}
+.kicker{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--berry);font-weight:600;margin:0 0 18px}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,6.5vw,58px);line-height:1.04;letter-spacing:-.02em;margin:0 0 20px;text-wrap:balance}
+h1 .accent{color:var(--berry)}
+.lede{font-size:18.5px;line-height:1.55;color:var(--ink-soft);max-width:64ch;margin:0}
+.lede strong{color:var(--ink);font-weight:600}
+section{padding:54px 0 10px;border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--berry);font-weight:600;margin:0 0 10px}
+h2{font-family:var(--display);font-weight:700;font-size:30px;line-height:1.12;letter-spacing:-.015em;margin:0 0 16px;text-wrap:balance}
+h3{font-family:var(--display);font-weight:600;font-size:19px;margin:26px 0 8px}
+p{max-width:68ch;margin:0 0 16px}
+p.note{color:var(--ink-soft);font-size:15px}
+strong{font-weight:600}
+.tablebox{overflow-x:auto;margin:22px 0;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:14px}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;text-align:left;color:var(--ink-soft);font-weight:600;padding:11px 14px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+td{padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.45}
+tr:last-child td{border-bottom:none}
+td.b{font-weight:600;white-space:nowrap}
+.c{text-align:center}
+.fail{color:var(--berry);font-weight:600}.pass{color:var(--go);font-weight:600}
+ul.tight{padding-left:20px;margin:10px 0 18px}
+ul.tight li{margin-bottom:8px;max-width:66ch}
+ul.tight li::marker{color:var(--berry)}
+.thesis{background:var(--berry-wash);border-left:4px solid var(--berry);padding:18px 22px;border-radius:0 10px 10px 0;margin:22px 0}
+.thesis p{margin:0;font-size:17px;line-height:1.5;font-weight:500;max-width:none}
+.thesis .who{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--berry);display:block;margin-bottom:8px;font-weight:600}
+
+.concept{border:1px solid var(--line);border-radius:16px;background:var(--surface);padding:26px 28px;margin:26px 0}
+.concept-head{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:baseline}
+.concept-head .n{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--berry);font-weight:600}
+.concept-head h3{margin:0;font-size:24px}
+.idea{font-size:17px;font-weight:500;margin:8px 0 18px;max-width:60ch}
+.stage{display:grid;grid-template-columns:150px 200px 1fr;gap:22px;align-items:start}
+@media(max-width:760px){.stage{grid-template-columns:1fr 1fr}.stage .txt{grid-column:1/-1}}
+.markbox{background:var(--surface-2);border-radius:12px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.markbox .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.sizes{display:flex;gap:10px;align-items:flex-end}
+.sizes svg{display:block}
+.pouch{width:200px;aspect-ratio:5/8;border-radius:10px 10px 16px 16px;padding:14px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 10px 26px rgba(0,0,0,.16);position:relative;overflow:hidden;font-family:var(--display)}
+.pouch .wm{font-family:var(--body);font-size:11px}
+.pouch .name{font-weight:800;line-height:.92;letter-spacing:-.02em;font-size:30px}
+.pouch .spec{font-family:var(--mono);font-size:7px;line-height:1.35;border:1px solid currentColor;border-radius:4px;padding:3px 5px}
+.pouch .spec b{display:block;font-size:1.25em}
+.pouch .foot{font-family:var(--mono);font-size:6.5px;letter-spacing:.06em;text-transform:uppercase;opacity:.85;margin-top:6px}
+.txt dl{display:grid;grid-template-columns:110px 1fr;gap:6px 12px;font-size:14.5px;margin:0}
+.txt dt{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);padding-top:3px}
+.txt dd{margin:0;max-width:58ch}
+.verdict{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+@media(max-width:700px){.verdict{grid-template-columns:1fr}}
+.verdict div{font-size:14px;line-height:1.5;padding:12px 14px;border-radius:10px;background:var(--surface-2)}
+.verdict b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;color:var(--ink-soft)}
+.brief{background:var(--surface);border:1.5px solid var(--berry);border-radius:14px;padding:22px 26px;margin:22px 0}
+.brief h3{margin-top:0}
+.brief pre{white-space:pre-wrap;font-family:var(--mono);font-size:13px;line-height:1.55;background:var(--surface-2);padding:16px 18px;border-radius:10px;overflow-x:auto;margin:12px 0 0;color:var(--ink)}
+footer{padding:40px 0 64px}
+footer p{font-size:13.5px;color:var(--ink-soft);max-width:72ch}
+.close{font-family:var(--display);font-weight:700;font-size:22px;line-height:1.3;color:var(--ink);margin:0 0 18px;max-width:32ch;text-wrap:balance}
+.close .accent{color:var(--berry)}
+:focus-visible{outline:2px solid var(--berry);outline-offset:2px}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <p class="kicker">herbody · distinctive assets · round 3</p>
+  <h1>A layout is not <span class="accent">a brand</span>.</h1>
+  <p class="lede">Every render so far is a coloured pouch, a wordmark and a spec strip. Competent, and interchangeable. <strong>A brand is one thing you own that works without your name</strong> — a shape, a device, a word habit, a structural trick — that comes from a truth of the product and survives at 32 px. Here are four, each drawn, each tested at favicon size, each with the reason it can't be borrowed by Wellgard next month.</p>
+</header>
+
+<section id="test">
+  <p class="eyebrow">The test the renders failed</p>
+  <h2>Five questions a distinctive asset has to pass</h2>
+  <div class="tablebox"><table>
+    <tr><th>Question</th><th class="c">Matte Berry</th><th class="c">Cream Monolith</th><th class="c">Mineral Blush</th><th class="c">Editorial Slash</th></tr>
+    <tr><td class="b">Could she draw it from memory?</td><td class="c fail">No</td><td class="c fail">No</td><td class="c fail">No</td><td class="c fail">Barely</td></tr>
+    <tr><td class="b">Does it work with the name removed?</td><td class="c fail">No</td><td class="c fail">No</td><td class="c fail">No</td><td class="c fail">No</td></tr>
+    <tr><td class="b">Does it hold at 32 px (profile pic, favicon)?</td><td class="c fail">Colour only</td><td class="c fail">Colour only</td><td class="c fail">No</td><td class="c fail">Colour only</td></tr>
+    <tr><td class="b">Can it become a pattern, a sticker, a motion?</td><td class="c fail">No</td><td class="c fail">No</td><td class="c fail">No</td><td class="c pass">Yes</td></tr>
+    <tr><td class="b">Does it come from a product truth?</td><td class="c fail">Flavour colour only</td><td class="c fail">No</td><td class="c fail">No</td><td class="c fail">No</td></tr>
+  </table></div>
+  <p class="note">The renders did one thing right: the spec strip and the honest doses. Keep that as the brand's proof object. Everything below is the missing idea, built to sit above that strip.</p>
+</section>
+
+<!-- ============ CONCEPT 1 ============ -->
+<section id="c1">
+  <div class="concept">
+    <div class="concept-head"><span class="n">Concept 01</span><h3>The Scoop</h3></div>
+    <p class="idea">"One scoop" is the entire proposition — so the scoop becomes the mark, the window and the object in the pouch.</p>
+    <div class="stage">
+      <div class="markbox">
+        <svg width="110" height="110" viewBox="0 0 110 110" aria-label="Scoop mark"><circle cx="46" cy="64" r="34" fill="#C2255C"/><rect x="66" y="8" width="14" height="46" rx="7" transform="rotate(35 73 31)" fill="#C2255C"/><circle cx="46" cy="64" r="20" fill="#F4EDE6"/></svg>
+        <div class="lbl">the mark</div>
+        <div class="sizes">
+          <svg width="32" height="32" viewBox="0 0 110 110"><circle cx="46" cy="64" r="34" fill="#C2255C"/><rect x="66" y="8" width="14" height="46" rx="7" transform="rotate(35 73 31)" fill="#C2255C"/><circle cx="46" cy="64" r="20" fill="#F4EDE6"/></svg>
+          <svg width="16" height="16" viewBox="0 0 110 110"><circle cx="46" cy="64" r="34" fill="#C2255C"/><rect x="66" y="8" width="14" height="46" rx="7" transform="rotate(35 73 31)" fill="#C2255C"/></svg>
+        </div>
+        <div class="lbl">32 px · 16 px</div>
+      </div>
+      <div class="pouch" style="background:#F4EDE6;color:#3A1A2B">
+        <div><div class="wm"><b>her</b>body</div><div class="name" style="margin-top:6px">BODY<br>BEAUTY</div></div>
+        <div style="position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);width:118px;height:118px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#F7C9D2,#E8386D 70%,#C2255C);box-shadow:inset 0 0 0 6px #3A1A2B"></div>
+        <div style="position:absolute;left:66%;top:22%;width:12px;height:52px;border-radius:6px;background:#3A1A2B;transform:rotate(35deg)"></div>
+        <div><div class="spec"><b>5g</b>CREATINE · <b>5g</b>COLLAGEN · <b>24</b>VITS &amp; MINS · INOSITOL</div><div class="foot">One scoop · 30 servings · 384g ℮</div></div>
+      </div>
+      <div class="txt">
+        <dl>
+          <dt>The asset</dt><dd>A circle-and-handle glyph. On pack it is a real <strong>clear window</strong> the size of a scoop, showing the pink powder — the mark is literally the product. A copper scoop ships in every pouch.</dd>
+          <dt>Why ownable</dt><dd>Nobody on the UK grid owns the scoop; it answers the #2 review complaint (scoop and serving honesty) in one image; a window lifts purchase intent in the evidence; and a circle on a rectangle is a shape, which is what the eye finds first.</dd>
+          <dt>System</dt><dd>The glyph replaces the "o" in social handles, becomes the app icon and sticker, the pattern (scoops in rows), and the loading animation (a scoop filling). Copy habit: everything is "one scoop": "one scoop of strength", "one scoop, sorted".</dd>
+          <dt>Costs</dt><dd>Clear-window pouch adds converter cost; copper scoop adds ~£0.60–1.20 per unit. Both are the point.</dd>
+        </dl>
+        <div class="verdict"><div><b>Wins</b>The most literal, the most defensible, and the one that turns a packaging detail into a brand promise.</div><div><b>Risks</b>Window + berry powder must be tested for light stability; a bad window print looks cheap.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONCEPT 2 ============ -->
+<section id="c2">
+  <div class="concept">
+    <div class="concept-head"><span class="n">Concept 02</span><h3>The Five</h3></div>
+    <p class="idea">Five things in one scoop — creatine, collagen, vitamins, inositol, botanicals — so the mark is a five-petal asterisk, and the asterisk becomes the brand's punctuation.</p>
+    <div class="stage">
+      <div class="markbox">
+        <svg width="110" height="110" viewBox="0 0 110 110" aria-label="Five mark"><g fill="#C2255C" transform="translate(55 55)"><ellipse rx="11" ry="34" cy="-22" transform="rotate(0)"/><ellipse rx="11" ry="34" cy="-22" transform="rotate(72)"/><ellipse rx="11" ry="34" cy="-22" transform="rotate(144)"/><ellipse rx="11" ry="34" cy="-22" transform="rotate(216)"/><ellipse rx="11" ry="34" cy="-22" transform="rotate(288)"/></g><circle cx="55" cy="55" r="9" fill="#F4EDE6"/></svg>
+        <div class="lbl">the mark</div>
+        <div class="sizes">
+          <svg width="32" height="32" viewBox="0 0 110 110"><g fill="#C2255C" transform="translate(55 55)"><ellipse rx="11" ry="34" cy="-22"/><ellipse rx="11" ry="34" cy="-22" transform="rotate(72)"/><ellipse rx="11" ry="34" cy="-22" transform="rotate(144)"/><ellipse rx="11" ry="34" cy="-22" transform="rotate(216)"/><ellipse rx="11" ry="34" cy="-22" transform="rotate(288)"/></g></svg>
+          <svg width="16" height="16" viewBox="0 0 110 110"><g fill="#C2255C" transform="translate(55 55)"><ellipse rx="12" ry="36" cy="-22"/><ellipse rx="12" ry="36" cy="-22" transform="rotate(72)"/><ellipse rx="12" ry="36" cy="-22" transform="rotate(144)"/><ellipse rx="12" ry="36" cy="-22" transform="rotate(216)"/><ellipse rx="12" ry="36" cy="-22" transform="rotate(288)"/></g></svg>
+        </div>
+        <div class="lbl">32 px · 16 px</div>
+      </div>
+      <div class="pouch" style="background:#7A1F45;color:#FBF3EC">
+        <div><div class="wm"><b>her</b>body</div><div class="name" style="margin-top:6px">BODY<br>BEAUTY<span style="color:#F06595">*</span></div></div>
+        <svg viewBox="0 0 110 110" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-46%);width:120px;height:120px;opacity:.95"><g fill="#F06595" transform="translate(55 55)"><ellipse rx="11" ry="34" cy="-22"/><ellipse rx="11" ry="34" cy="-22" transform="rotate(72)"/><ellipse rx="11" ry="34" cy="-22" transform="rotate(144)"/><ellipse rx="11" ry="34" cy="-22" transform="rotate(216)"/><ellipse rx="11" ry="34" cy="-22" transform="rotate(288)"/></g><circle cx="55" cy="55" r="9" fill="#7A1F45"/></svg>
+        <div><div class="spec" style="border-color:#F06595"><b>5g</b>CREATINE · <b>5g</b>COLLAGEN · <b>24</b>VITS &amp; MINS · INOSITOL</div><div class="foot">*five in one · 30 servings · 384g ℮</div></div>
+      </div>
+      <div class="txt">
+        <dl>
+          <dt>The asset</dt><dd>A five-petal asterisk. It sits after the product name like a footnote — <strong>BODY BEAUTY*</strong> — and the asterisk always resolves to "*five in one". Each petal can be labelled on the back and in A+ content.</dd>
+          <dt>Why ownable</dt><dd>It encodes the wedge (five, not two) in a shape; an asterisk is a typographic habit competitors can't copy without looking like you; and five-fold symmetry reads as a flower without being floral.</dd>
+          <dt>System</dt><dd>The asterisk is the social avatar, the bullet in every list, the pattern on the insert card, the "loading" spinner, and a pin badge. Copy habit: claims end with the asterisk and the footnote — which is also a neat way to keep UK claims tidy.</dd>
+          <dt>Costs</dt><dd>None beyond a proper vector mark. Works on any pouch, any colour.</dd>
+        </dl>
+        <div class="verdict"><div><b>Wins</b>Cheapest to execute, scales into a range (each SKU keeps the asterisk, changes what it resolves to), and it makes the differentiation graphic.</div><div><b>Risks</b>Asterisks also signal "small print"; the resolving footnote must be confident, never apologetic. Needs a hand-tuned drawing, not a stock glyph.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONCEPT 3 ============ -->
+<section id="c3">
+  <div class="concept">
+    <div class="concept-head"><span class="n">Concept 03</span><h3>her.</h3></div>
+    <p class="idea">The name already contains the idea — <em>her</em> body. Make "her" a stamp, and make every sentence the brand says start with it.</p>
+    <div class="stage">
+      <div class="markbox">
+        <svg width="110" height="70" viewBox="0 0 110 70" aria-label="her chip"><rect x="2" y="8" width="106" height="54" rx="27" fill="#3A1A2B"/><text x="55" y="47" text-anchor="middle" font-family="Bricolage Grotesque, Trebuchet MS, sans-serif" font-weight="800" font-size="34" fill="#F4EDE6" letter-spacing="-1">her.</text></svg>
+        <div class="lbl">the mark</div>
+        <div class="sizes">
+          <svg width="44" height="28" viewBox="0 0 110 70"><rect x="2" y="8" width="106" height="54" rx="27" fill="#3A1A2B"/><text x="55" y="47" text-anchor="middle" font-family="Bricolage Grotesque, Trebuchet MS, sans-serif" font-weight="800" font-size="34" fill="#F4EDE6">her.</text></svg>
+          <svg width="26" height="17" viewBox="0 0 110 70"><rect x="2" y="8" width="106" height="54" rx="27" fill="#3A1A2B"/><text x="55" y="49" text-anchor="middle" font-family="Bricolage Grotesque, Trebuchet MS, sans-serif" font-weight="800" font-size="40" fill="#F4EDE6">her</text></svg>
+        </div>
+        <div class="lbl">32 px · 16 px</div>
+      </div>
+      <div class="pouch" style="background:#F4EDE6;color:#3A1A2B;border-left:12px solid #3A1A2B;border-right:12px solid #3A1A2B">
+        <div><div style="display:inline-block;background:#3A1A2B;color:#F4EDE6;border-radius:999px;padding:3px 10px;font-weight:800;font-size:15px;letter-spacing:-.02em">her.</div><div style="font-family:var(--body);font-size:9px;margin-top:2px">body</div>
+        <div class="name" style="margin-top:14px;font-size:26px">her body.<br>her beauty.<br><span style="color:#E8386D">her scoop.</span></div></div>
+        <div><div class="spec"><b>5g</b>CREATINE · <b>5g</b>COLLAGEN · <b>24</b>VITS &amp; MINS · INOSITOL</div><div class="foot">Body Beauty · 30 servings · 384g ℮</div></div>
+      </div>
+      <div class="txt">
+        <dl>
+          <dt>The asset</dt><dd>A solid pill with <strong>her.</strong> reversed out — full stop included. It's the wordmark's first syllable promoted to a logo, so the brand name and the mark are the same thing.</dd>
+          <dt>Why ownable</dt><dd>It's registered — you own the word in the name. Nobody else can stamp "her." on a supplement without trading on you. And a language is harder to copy than a colour: "her strength", "her mornings", "her rules" — every headline for the next five years is written.</dd>
+          <dt>System</dt><dd>The chip is the avatar and sticker; the copy system is the brand: product pages, ads, packs and social all open with "her". The full stop is the tone — calm, decided. "Body Beauty" stays as the product name in the strip.</dd>
+          <dt>Costs</dt><dd>None. But it demands discipline: the day someone writes "unlock your glow-up" the system dies.</dd>
+        </dl>
+        <div class="verdict"><div><b>Wins</b>Turns the trademark into the brand idea; the most "authored" of the four; ages best; perfect for the 35–55 buyer who wants to be addressed, not sold to.</div><div><b>Risks</b>"her." carries a politics some buyers read as earnest; the pill can feel like a label unless the type is drawn well.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONCEPT 4 ============ -->
+<section id="c4">
+  <div class="concept">
+    <div class="concept-head"><span class="n">Concept 04</span><h3>The Line</h3></div>
+    <p class="idea">Your own render found it: the raspberry diagonal. Make it the only fixed thing — one line, always the same angle, across every pouch, image and post.</p>
+    <div class="stage">
+      <div class="markbox">
+        <svg width="110" height="110" viewBox="0 0 110 110" aria-label="Line mark"><rect x="0" y="0" width="110" height="110" rx="14" fill="#F4EDE6"/><rect x="-20" y="46" width="150" height="20" fill="#E8386D" transform="rotate(-32 55 55)"/></svg>
+        <div class="lbl">the mark</div>
+        <div class="sizes">
+          <svg width="32" height="32" viewBox="0 0 110 110"><rect width="110" height="110" rx="20" fill="#F4EDE6"/><rect x="-20" y="46" width="150" height="22" fill="#E8386D" transform="rotate(-32 55 55)"/></svg>
+          <svg width="16" height="16" viewBox="0 0 110 110"><rect width="110" height="110" rx="24" fill="#F4EDE6"/><rect x="-20" y="44" width="150" height="26" fill="#E8386D" transform="rotate(-32 55 55)"/></svg>
+        </div>
+        <div class="lbl">32 px · 16 px</div>
+      </div>
+      <div class="pouch" style="background:#F4EDE6;color:#3A1A2B">
+        <div style="position:absolute;left:-40px;top:52%;width:300px;height:26px;background:#E8386D;transform:rotate(-32deg)"></div>
+        <div style="position:relative"><div class="wm"><b>her</b>body</div><div class="name" style="margin-top:6px">BODY<br>BEAUTY</div></div>
+        <div style="position:relative"><div class="spec" style="background:#F4EDE6"><b>5g</b>CREATINE · <b>5g</b>COLLAGEN · <b>24</b>VITS &amp; MINS · INOSITOL</div><div class="foot">Strawberry + Raspberry · 30 servings · 384g ℮</div></div>
+      </div>
+      <div class="txt">
+        <dl>
+          <dt>The asset</dt><dd>A single raspberry band at 32°, edge to edge. It never changes angle, weight or colour. Everything else — pouch colour, flavour, product — can.</dd>
+          <dt>Why ownable</dt><dd>Shelves and search grids are made of upright rectangles; a diagonal is the rarest shape there, and shape is what the eye finds first (eye-tracking evidence, §evidence). At 64 px it's still a diagonal when every word has gone.</dd>
+          <dt>System</dt><dd>The line crosses every hero image, cuts the corner of every social tile, underlines every headline, and animates as a wipe in video. Flavour range: same line, different ground. Copy habit: "the daily line" — the streak she keeps.</dd>
+          <dt>Costs</dt><dd>None; it's ink. Needs registration care where it crosses the gusset.</dd>
+        </dl>
+        <div class="verdict"><div><b>Wins</b>Strongest at feed speed and thumbnail; the easiest to apply consistently with five hours a week; a genuine range system.</div><div><b>Risks</b>The least "meaningful" of the four — it's a mark of consistency, not of an idea — unless the copy gives it one (the streak, the line she holds).</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pick">
+  <p class="eyebrow">The pick</p>
+  <h2>Two of these combine; the other two are single bets</h2>
+  <div class="thesis"><span class="who">Recommendation</span><p><strong>Concept 03 (her.) as the brand, Concept 01 (the Scoop) as the pack.</strong> "her." gives you the idea and the language; the scoop window gives the pouch an ownable shape and answers the category's honesty problem. Together they read: <em>her. one scoop.</em> — a brand you can say, draw, and hand someone. Keep the Five as the back-panel and A+ device (five petals, five pillars) and hold the Line for a future range system. If you want one bet only: the Scoop.</p></div>
+  <ul class="tight">
+    <li><strong>Why not just pick the prettiest render:</strong> prettiness is what image models are good at and what competitors can regenerate in an afternoon. A window, a stamp, a footnote habit — those have to be <em>decided</em>, and decisions are what a brand is.</li>
+    <li><strong>What to spend real money on:</strong> one human designer, one week, £600–1,500, to draw the chosen mark properly (optical corrections, the "her." type, the scoop glyph proportions) and hand you a vector kit. Everything else can stay AI-generated against the brief.</li>
+    <li><strong>What not to do:</strong> ask Gemini for "a unique brand". It will give you the category average with a gradient. Ask it, instead, for the specific asset below.</li>
+  </ul>
+</section>
+
+<section id="prompts">
+  <p class="eyebrow">Prompts that force an asset</p>
+  <h2>Feed the idea, not the adjective</h2>
+  <div class="brief"><h3>Concept 01 + 03 · pouch</h3><pre>Flat-bottom stand-up pouch, alabaster cream (#F4EDE6) matte face with black-cherry (#3A1A2B) side gussets. Top-left: a solid black-cherry pill badge with "her." reversed out in cream, extra-bold grotesk, full stop included; beneath it the word "body" small. Centre: a perfectly circular CLEAR WINDOW about 45% of the face width, showing raspberry-pink powder inside, with a short black-cherry "handle" bar at 35° rising from the top-right of the circle so the window reads as a measuring scoop. Below the window: a bordered four-cell spec box "5g CREATINE | 5g COLLAGEN | 24 VITAMINS &amp; MINERALS | MYO-INOSITOL" and the line "one scoop · 30 servings · 384g". No other graphics, no fruit illustration, no gradients, no pastel pink ground. Studio shot on pure white, Amazon product photo. --ar 5:8</pre></div>
+  <div class="brief"><h3>Concept 03 · social avatar and sticker</h3><pre>Logo mark: a horizontal rounded pill in black-cherry (#3A1A2B) with the word "her." in cream (#F4EDE6), extra-bold condensed grotesk, tight letter-spacing, the full stop the same weight as the letters. Show it as a 1:1 app icon on white, as a 3D embossed sticker on a matte pouch, and as a 16 px favicon. Flat vector, no shadows, no gradient, no extra symbols.</pre></div>
+  <div class="brief"><h3>Concept 02 · the Five, for A+ content</h3><pre>A five-petal asterisk mark in raspberry (#C2255C) on cream, each petal a smooth elongated ellipse meeting at a small cream centre; beside it the text "BODY BEAUTY*" and the footnote "*five in one: creatine · collagen · vitamins &amp; minerals · myo-inositol · botanicals", each petal labelled with one of the five. Flat vector, editorial, no gradients.</pre></div>
+</section>
+
+<footer>
+  <p class="close">Own a shape, a word, or a habit. <span class="accent">Colour alone is rented.</span></p>
+  <p>herbody · distinctive assets · September 2026. Marks are structural vectors for decision, not final artwork. Companion: <em>herbody Brand Directions</em> (voice, palette, photography per direction), <em>The herbody Study</em> (evidence and designer brief).</p>
+</footer>
+
+</div>
